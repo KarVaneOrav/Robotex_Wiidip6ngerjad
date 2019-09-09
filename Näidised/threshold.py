@@ -1,6 +1,6 @@
 import cv2
 from functools import partial
-import config
+from Näidised import config
 
 
 def start():
@@ -9,7 +9,7 @@ def start():
 
     # Try to get saved range from config file, use whole color space as default if not saved
     # Color ranges are saved as { "min": (hmin, smin, vmin), "max": (hmax, smax, vmax) }
-    color_range = config.get("colors", color_name, default={ "min": (0, 0, 0), "max": (179, 255, 255) })
+    color_range = config.get("colors", color_name, default={"min": (0, 0, 0), "max": (179, 255, 255)})
 
     # Create trackbars (sliders) for HSV channels
     cv2.namedWindow("frame")
@@ -37,7 +37,6 @@ def start():
         # Convert to HSV
         hsv = cv2.cvtColor(bgr, cv2.COLOR_BGR2HSV)
 
-        # TODO: also apply all the filters you do when actually running the robot (eg noise removal)
         # Apply color mask to HSV image
         mask = cv2.inRange(hsv, color_range["min"], color_range["max"])
 
