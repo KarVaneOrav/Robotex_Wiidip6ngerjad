@@ -1,4 +1,4 @@
 # Robotex
 Robotex robot
 
-#WeediPõngerjad
+#WiidiPõngerjad
