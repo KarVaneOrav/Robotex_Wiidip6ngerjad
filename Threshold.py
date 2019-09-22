@@ -27,7 +27,7 @@ blobparams.filterByConvexity = False
 detector = cv2.SimpleBlobDetector_create(blobparams)
 
 # trackbars
-bars = [40, 37, 0, 79, 255, 255, 5]
+bars = [54, 37, 0, 79, 255, 255, 5]
 
 cv2.namedWindow('Controls', cv2.WINDOW_AUTOSIZE)
 
@@ -43,7 +43,7 @@ cv2.createTrackbar('Morph', "Controls", bars[6], 20, partial(updateValue, 6))
 # Configure depth and color streams
 pipeline = rs.pipeline()
 config = rs.config()
-config.enable_stream(rs.stream.color, 640, 480, rs.format.bgr8, 30)
+config.enable_stream(rs.stream.color, 640, 480, rs.format.bgr8, 60)
 
 # Start streaming
 pipeline.start(config)
