@@ -27,7 +27,7 @@ blobparams.filterByConvexity = False
 detector = cv2.SimpleBlobDetector_create(blobparams)
 
 # trackbars
-bars = [54, 37, 0, 79, 255, 255, 5]
+bars = [54, 37, 0, 79, 255, 255, 5, 5]
 
 cv2.namedWindow('Controls', cv2.WINDOW_AUTOSIZE)
 
@@ -37,7 +37,8 @@ cv2.createTrackbar('lR', "Controls", bars[2], 255, partial(updateValue, 2))
 cv2.createTrackbar('hB', "Controls", bars[3], 255, partial(updateValue, 3))
 cv2.createTrackbar('hG', "Controls", bars[4], 255, partial(updateValue, 4))
 cv2.createTrackbar('hR', "Controls", bars[5], 255, partial(updateValue, 5))
-cv2.createTrackbar('Morph', "Controls", bars[6], 20, partial(updateValue, 6))
+cv2.createTrackbar('Open', "Controls", bars[6], 20, partial(updateValue, 6))
+cv2.createTrackbar('Erode', "Controls", bars[7], 20, partial(updateValue, 7))
 
 
 # Configure depth and color streams
@@ -51,7 +52,8 @@ pipeline.start(config)
 try:
     while True:
         #kernel
-        kernel = np.ones((bars[6],bars[6]),np.uint8)
+        kernelOpen = np.ones((bars[6],bars[6]),np.uint8)
+        kernelErode = np.ones((bars[7],bars[7]),np.uint8)
         
         # Wait for a coherent pair of frames: color
         frames = pipeline.wait_for_frames()
@@ -71,7 +73,8 @@ try:
 
         # Our operations on the frame come here
         thresholded = cv2.inRange(hsv_frame, lowerLimits, upperLimits)
-        thresholded = cv2.morphologyEx(thresholded, cv2.MORPH_OPEN, kernel)
+        thresholded = cv2.erode(thresholded,kernelErode,iterations = 1)
+        thresholded = cv2.morphologyEx(thresholded, cv2.MORPH_OPEN, kernelOpen)
         
         # finding blobs
         keypoints = detector.detect(thresholded)
