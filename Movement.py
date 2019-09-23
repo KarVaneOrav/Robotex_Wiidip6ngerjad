@@ -10,10 +10,10 @@ def forward(ser=ser):
     ser.write(b'sd:0:-10:10\n')
 
 def right(ser=ser):
-    ser.write(b'sd:10:0:0\n')
+    ser.write(b'sd:10:10:10\n')
 
 def left(ser=ser):
-    ser.write(b'sd:-10:0:0\n')
+    ser.write(b'sd:-10:-10:-10\n')
 
 def close(ser=ser):
     ser.close()

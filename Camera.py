@@ -5,8 +5,9 @@ import numpy as np
 import cv2
 
 # values for image processing
-greenThreshold = [54, 37, 0, 79, 255, 255]
-greenKernel = np.ones((5, 5),np.uint8)
+greenThreshold = [31, 62, 52, 79, 255, 255]
+greenKernelErode = np.ones((4, 4),np.uint8)
+greenKernelOpen = np.ones((4, 4),np.uint8)
 
 #blobparams
 blobparams = cv2.SimpleBlobDetector_Params()
@@ -31,6 +32,8 @@ pipeline.start(config)
 # stop pipeline at the end
 
 ####
+def stop():
+    pipeline.stop()
 
 def get_frame():
     while True:        
@@ -53,12 +56,13 @@ def processed_frame_green(thresh=greenThreshold, kernel=greenKernel):
     hsv_frame = cv2.cvtColor(color_frame, cv2.COLOR_BGR2HSV)
     
     # colour detection limits
-    lowerLimits = np.array([thresh[0], thresh[1], thresh[2]])
-    upperLimits = np.array([thresh[3], thresh[4], thresh[5]])
+    lowerLimits = np.array([greenThreshold[0], greenThreshold[1], greenThreshold[2]])
+    upperLimits = np.array([greenThreshold[3], greenThreshold[4], greenThreshold[5]])
 
     # Our operations on the frame come here
     thresholded = cv2.inRange(hsv_frame, lowerLimits, upperLimits)
-    morphed = cv2.morphologyEx(thresholded, cv2.MORPH_OPEN, kernel)
+    morphed = cv2.erode(thresholded,greenKernelErode,iterations = 1)
+    morphed = cv2.morphologyEx(morphed, cv2.MORPH_OPEN, greenKernelOpen)
     
     return morphed
 
@@ -72,6 +76,12 @@ def green_finder():
     
     return coordinates
 
-def stop():
-    pipeline.stop()
+def ball_to_middle(balls):
+    if balls[0][0] < 310:
+        return "left"
+    elif balls[0][0] >330:
+        return "right"
+    else:
+        return "ok"
+    
     
