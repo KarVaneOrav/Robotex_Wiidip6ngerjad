@@ -31,8 +31,15 @@ try:
                 status = Camera.ball_to_middle(balls)
                 if status != "ok":
                     action(comTime, status)
+                else:
+                    break
         
         cv2.imshow('RealSense', frame)
+    # end
+    Camera.stop()
+    Movement.close()
+    print("Smooth end")
 except:
     Camera.stop()
     Movement.close()
+    print("Shitty end")
