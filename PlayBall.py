@@ -7,10 +7,10 @@ frequency = 0.0166667
 comTime = time.time()
 jobs = {"look":True, "move":False, "throw":False}
 
-def action(time, job):
+def action(timeCount, job):
     global comTime
     
-    if time.time() >= (time + frequency):
+    if time.time() >= (timeCount + frequency):
         if job == "forward":
             Movement.forward()
         elif job == "right":
@@ -23,14 +23,14 @@ def action(time, job):
 while True:    
     if jobs.get("look"): 
         balls = Camera.green_finder()
-        if balls.lenght() == 0:
+        if len(balls) == 0:
             action(comTime, "right")
         else:
-            status = Camera.ball_to_middel(balls)
+            status = Camera.ball_to_middle(balls)
             if status != "ok":
                 action(comTime, status)
     
-    cv2.imshow('RealSense', processed_frame_green())
+    cv2.imshow('RealSense', Camera.processed_frame_green())
     
 Camera.stop()
 Movement.close()

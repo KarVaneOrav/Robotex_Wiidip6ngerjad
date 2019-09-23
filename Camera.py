@@ -72,7 +72,7 @@ def green_finder():
     # finding blobs
     keypoints = detector.detect(frame)
     for i in keypoints:
-        coordinates += [int(i.pt[0]), int(i.pt[1])]
+        coordinates += [[int(i.pt[0]), int(i.pt[1])]]
     
     return coordinates
 
