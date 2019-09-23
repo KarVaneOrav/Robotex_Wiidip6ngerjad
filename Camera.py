@@ -66,8 +66,7 @@ def processed_frame_green(thresh=greenThreshold, kernel1=greenKernelErode, kerne
     
     return morphed
 
-def green_finder():
-    frame = processed_frame_green()
+def green_finder(frame):
     coordinates = []
     # finding blobs
     keypoints = detector.detect(frame)

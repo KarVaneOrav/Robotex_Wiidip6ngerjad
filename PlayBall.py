@@ -20,9 +20,10 @@ def action(timeCount, job):
         
         comTime = time.time()
 
-while True:    
+while True:
+    frame = Camera.processed_frame_green()
     if jobs.get("look"): 
-        balls = Camera.green_finder()
+        balls = Camera.green_finder(frame)
         if len(balls) == 0:
             action(comTime, "right")
         else:
@@ -30,7 +31,7 @@ while True:
             if status != "ok":
                 action(comTime, status)
     
-    cv2.imshow('RealSense', Camera.processed_frame_green())
+    cv2.imshow('RealSense', frame)
     
 Camera.stop()
 Movement.close()
