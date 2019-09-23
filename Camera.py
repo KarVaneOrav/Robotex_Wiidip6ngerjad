@@ -5,9 +5,9 @@ import numpy as np
 import cv2
 
 # values for image processing
-greenThreshold = [31, 62, 52, 79, 255, 255]
-greenKernelErode = np.ones((4, 4),np.uint8)
-greenKernelOpen = np.ones((4, 4),np.uint8)
+greenThreshold = [24, 171, 23, 90, 255, 165]
+greenKernelErode = np.ones((1, 1),np.uint8)
+greenKernelOpen = np.ones((1, 1),np.uint8)
 
 # colour detection limits
 lowerLimits = np.array([greenThreshold[0], greenThreshold[1], greenThreshold[2]])
