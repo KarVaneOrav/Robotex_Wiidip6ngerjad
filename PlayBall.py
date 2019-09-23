@@ -2,11 +2,6 @@ import Camera
 import Movement
 import time
 import cv2
-import pyrealsense2 as rs
-import numpy as np
-import cv2
-from serial.tools import list_ports
-import serial
 
 frequency = 0.0166667
 comTime = time.time()
