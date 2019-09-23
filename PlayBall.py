@@ -5,7 +5,7 @@ import cv2
 
 frequency = 0.0166667
 comTime = time.time()
-jobs = {"look"=True, "move"=False, "throw"=False}
+jobs = {"look":True, "move":False, "throw":False}
 
 def action(time, job):
     global comTime
