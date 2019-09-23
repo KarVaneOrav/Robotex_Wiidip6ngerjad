@@ -1,8 +1,8 @@
 # All camera operations
 
-import pyrealsense2 as rs
-import numpy as np
-import cv2
+#import pyrealsense2 as rs
+#import numpy as np
+#import cv2
 
 # values for image processing
 greenThreshold = [31, 62, 52, 79, 255, 255]
