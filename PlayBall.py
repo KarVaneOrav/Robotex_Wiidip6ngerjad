@@ -45,8 +45,10 @@ try:
     # end
     Camera.stop()
     Movement.close()
+    cv2.destroyAllWindows()
     print("Smooth end")
 except:
     Camera.stop()
     Movement.close()
+    cv2.destroyAllWindows()
     print("Shitty end")
