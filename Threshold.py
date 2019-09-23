@@ -27,7 +27,7 @@ blobparams.filterByConvexity = False
 detector = cv2.SimpleBlobDetector_create(blobparams)
 
 # trackbars
-bars = [24, 171, 23, 90, 255, 165, 0, 0]
+bars = [21, 111, 59, 85, 255, 168, 5, 3]
 
 cv2.namedWindow('Controls', cv2.WINDOW_AUTOSIZE)
 
