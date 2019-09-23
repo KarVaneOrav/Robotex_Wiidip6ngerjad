@@ -9,6 +9,10 @@ greenThreshold = [31, 62, 52, 79, 255, 255]
 greenKernelErode = np.ones((4, 4),np.uint8)
 greenKernelOpen = np.ones((4, 4),np.uint8)
 
+# colour detection limits
+lowerLimits = np.array([greenThreshold[0], greenThreshold[1], greenThreshold[2]])
+upperLimits = np.array([greenThreshold[3], greenThreshold[4], greenThreshold[5]])
+
 #blobparams
 blobparams = cv2.SimpleBlobDetector_Params()
 blobparams.minArea = 1000
@@ -55,10 +59,6 @@ def processed_frame_green(thresh=greenThreshold, kernel1=greenKernelErode, kerne
     #convert to hsv
     hsv_frame = cv2.cvtColor(color_frame, cv2.COLOR_BGR2HSV)
     
-    # colour detection limits
-    lowerLimits = np.array([greenThreshold[0], greenThreshold[1], greenThreshold[2]])
-    upperLimits = np.array([greenThreshold[3], greenThreshold[4], greenThreshold[5]])
-
     # Our operations on the frame come here
     thresholded = cv2.inRange(hsv_frame, lowerLimits, upperLimits)
     morphed = cv2.erode(thresholded,kernel1,iterations = 1)
