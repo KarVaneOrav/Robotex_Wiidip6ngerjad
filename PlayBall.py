@@ -24,6 +24,8 @@ try:
     while True:
         frame = Camera.processed_frame_green()
         cv2.imshow('RealSense', frame)
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
         print("show frame")
         
         if jobs.get("look"): 
