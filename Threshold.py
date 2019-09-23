@@ -17,7 +17,7 @@ def updateValue(bar, new_value):
 
 #blobparams
 blobparams = cv2.SimpleBlobDetector_Params()
-blobparams.minArea = 1000
+blobparams.minArea = 500
 blobparams.maxArea = 10000000
 blobparams.filterByColor = True # filter by color
 blobparams.blobColor = 255  # 255 is white
@@ -27,7 +27,7 @@ blobparams.filterByConvexity = False
 detector = cv2.SimpleBlobDetector_create(blobparams)
 
 # trackbars
-bars = [31, 62, 52, 79, 255, 255, 4, 4]
+bars = [24, 171, 23, 90, 255, 165, 0, 0]
 
 cv2.namedWindow('Controls', cv2.WINDOW_AUTOSIZE)
 
