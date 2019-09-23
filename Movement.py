@@ -2,7 +2,7 @@ from serial.tools import list_ports
 import serial
 import time
 
-speed = "5"
+speed = '10'
 
 # List of existing ports. Chooses the right device if there are no others
 port = (str(list_ports.comports()[0]).split(' '))[0]
