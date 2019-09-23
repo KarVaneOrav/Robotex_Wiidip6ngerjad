@@ -15,7 +15,7 @@ upperLimits = np.array([greenThreshold[3], greenThreshold[4], greenThreshold[5]]
 
 #blobparams
 blobparams = cv2.SimpleBlobDetector_Params()
-blobparams.minArea = 1000
+blobparams.minArea = 500
 blobparams.maxArea = 10000000
 blobparams.filterByColor = True # filter by color
 blobparams.blobColor = 255  # 255 is white
