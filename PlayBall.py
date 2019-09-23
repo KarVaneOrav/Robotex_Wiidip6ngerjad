@@ -39,8 +39,6 @@ try:
                 if status != "ok":
                     action(comTime, status)
                     print("balls"+status)
-                else:
-                    break
         
     # end
     Camera.stop()
