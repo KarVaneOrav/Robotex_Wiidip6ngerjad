@@ -24,16 +24,21 @@ try:
     while True:
         frame = Camera.processed_frame_green()
         cv2.imshow('RealSense', frame)
+        print("show frame")
+        
         if jobs.get("look"): 
             balls = Camera.green_finder(frame)
+            print("get balls")
             if len(balls) == 0:
                 action(comTime, "right")
+                print("no balls")
             else:
                 status = Camera.ball_to_middle(balls)
                 if status != "ok":
                     action(comTime, status)
-#                else:
-#                    break
+                    print("balls"+status)
+                else:
+                    break
         
     # end
     Camera.stop()
