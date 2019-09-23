@@ -49,7 +49,7 @@ def get_frame():
     color_frame = np.asanyarray(color_frame.get_data())
     return color_frame
 
-def processed_frame_green(thresh=greenThreshold, kernel=greenKernel):
+def processed_frame_green(thresh=greenThreshold, kernel1=greenKernelErode, kernel2=greenKernelOpen):
     color_frame = get_frame()
     
     #convert to hsv
@@ -61,8 +61,8 @@ def processed_frame_green(thresh=greenThreshold, kernel=greenKernel):
 
     # Our operations on the frame come here
     thresholded = cv2.inRange(hsv_frame, lowerLimits, upperLimits)
-    morphed = cv2.erode(thresholded,greenKernelErode,iterations = 1)
-    morphed = cv2.morphologyEx(morphed, cv2.MORPH_OPEN, greenKernelOpen)
+    morphed = cv2.erode(thresholded,kernel1,iterations = 1)
+    morphed = cv2.morphologyEx(morphed, cv2.MORPH_OPEN, kernel2)
     
     return morphed
 
