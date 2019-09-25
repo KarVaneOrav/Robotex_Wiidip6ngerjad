@@ -74,7 +74,7 @@ try:
         # Our operations on the frame come here
         thresholded = cv2.inRange(hsv_frame, lowerLimits, upperLimits)
         thresholded = cv2.erode(thresholded,kernelErode,iterations = 1)
-        thresholded = cv2.morphologyEx(thresholded, cv2.MORPH_OPEN, kernelOpen)
+        thresholded = cv2.dilate(thresholded, kernelOpen, iterations = 1)
         
         # finding blobs
         keypoints = detector.detect(thresholded)

@@ -5,9 +5,9 @@ import numpy as np
 import cv2
 
 # values for image processing
-greenThreshold = [21, 111, 59, 85, 255, 168]
-greenKernelErode = np.ones((3, 3),np.uint8)
-greenKernelOpen = np.ones((5, 5),np.uint8)
+greenThreshold = [27,111,67,73,168,134]
+greenKernelErode = np.ones((2,2),np.uint8)
+greenKernelDilate = np.ones((12,12),np.uint8)
 
 # colour detection limits
 lowerLimits = np.array([greenThreshold[0], greenThreshold[1], greenThreshold[2]])
@@ -15,7 +15,7 @@ upperLimits = np.array([greenThreshold[3], greenThreshold[4], greenThreshold[5]]
 
 #blobparams
 blobparams = cv2.SimpleBlobDetector_Params()
-blobparams.minArea = 500
+blobparams.minArea = 20
 blobparams.maxArea = 10000000
 blobparams.filterByColor = True # filter by color
 blobparams.blobColor = 255  # 255 is white
@@ -27,7 +27,7 @@ detector = cv2.SimpleBlobDetector_create(blobparams)
 # Configure depth and color streams
 pipeline = rs.pipeline()
 config = rs.config()
-config.enable_stream(rs.stream.color, 640, 480, rs.format.bgr8, 30)
+config.enable_stream(rs.stream.color, 640, 480, rs.format.bgr8, 60)
 
 # Start streaming
 pipeline.start(config)
@@ -53,7 +53,7 @@ def get_frame():
     color_frame = np.asanyarray(color_frame.get_data())
     return color_frame
 
-def processed_frame_green(thresh=greenThreshold, kernel1=greenKernelErode, kernel2=greenKernelOpen):
+def processed_frame_green(thresh=greenThreshold, kernel1=greenKernelErode, kernel2=greenKernelDilate):
     color_frame = get_frame()
     
     #convert to hsv
@@ -62,7 +62,7 @@ def processed_frame_green(thresh=greenThreshold, kernel1=greenKernelErode, kerne
     # Our operations on the frame come here
     thresholded = cv2.inRange(hsv_frame, lowerLimits, upperLimits)
     morphed = cv2.erode(thresholded,kernel1,iterations = 1)
-    morphed = cv2.morphologyEx(morphed, cv2.MORPH_OPEN, kernel2)
+    morphed = cv2.dilate(morphed, kernel2, iterations = 1)
     
     return morphed
 
@@ -76,11 +76,13 @@ def green_finder(frame):
     return coordinates
 
 def ball_to_middle(balls):
-    if balls[0][0] < 310:
+    if balls[0][0] < 300:
         return "left"
-    elif balls[0][0] >330:
+    elif balls[0][0] >340:
+        print("right")
         return "right"
     else:
+        print("KESKEL")
         return "ok"
     
     

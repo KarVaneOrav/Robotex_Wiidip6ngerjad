@@ -27,6 +27,7 @@ try:
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
         print("show frame")
+        Movement.printserial()
         
         if jobs.get("look"): 
             balls = Camera.green_finder(frame)
@@ -39,12 +40,12 @@ try:
                 if status != "ok":
                     action(comTime, status)
                     print("balls"+status)
-        
-    # end
-    Camera.stop()
-    Movement.close()
-    cv2.destroyAllWindows()
-    print("Smooth end")
+                elif status == "ok":        
+		    # end
+                    #Camera.stop()
+                    #cv2.destroyAllWindows()
+                    Movement.close()
+                    print("Smooth end")
 except:
     Camera.stop()
     Movement.close()
