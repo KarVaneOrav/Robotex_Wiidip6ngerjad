@@ -17,8 +17,11 @@ def action(timeCount, job):
             Movement.right()
         elif job == "left":
             Movement.left()
+        elif job == "stop":
+            Movement.stop()
         
         comTime = time.time()
+    Movement.readSerial()
 
 try:
     while True:
@@ -27,7 +30,6 @@ try:
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
         print("show frame")
-        Movement.printserial()
         
         if jobs.get("look"): 
             balls = Camera.green_finder(frame)
@@ -37,15 +39,13 @@ try:
                 print("no balls")
             else:
                 status = Camera.ball_to_middle(balls)
-                if status != "ok":
-                    action(comTime, status)
-                    print("balls"+status)
-                elif status == "ok":        
-		    # end
-                    #Camera.stop()
-                    #cv2.destroyAllWindows()
-                    Movement.close()
-                    print("Smooth end")
+                action(comTime, status)
+                print("balls"+status)
+finally:
+    Camera.stop()
+    Movement.close()
+    cv2.destroyAllWindows()
+    print("Good end")
 except:
     Camera.stop()
     Movement.close()

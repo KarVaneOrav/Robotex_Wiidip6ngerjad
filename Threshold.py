@@ -52,7 +52,7 @@ pipeline.start(config)
 try:
     while True:
         #kernel
-        kernelOpen = np.ones((bars[6],bars[6]),np.uint8)
+        kernelDilate = np.ones((bars[6],bars[6]),np.uint8)
         kernelErode = np.ones((bars[7],bars[7]),np.uint8)
         
         # Wait for a coherent pair of frames: color
@@ -74,7 +74,7 @@ try:
         # Our operations on the frame come here
         thresholded = cv2.inRange(hsv_frame, lowerLimits, upperLimits)
         thresholded = cv2.erode(thresholded,kernelErode,iterations = 1)
-        thresholded = cv2.dilate(thresholded, kernelOpen, iterations = 1)
+        thresholded = cv2.dilate(thresholded, kernelDilate, iterations = 1)
         
         # finding blobs
         keypoints = detector.detect(thresholded)

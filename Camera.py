@@ -79,10 +79,8 @@ def ball_to_middle(balls):
     if balls[0][0] < 300:
         return "left"
     elif balls[0][0] >340:
-        print("right")
         return "right"
     else:
-        print("KESKEL")
-        return "ok"
+        return "stop"
     
     
