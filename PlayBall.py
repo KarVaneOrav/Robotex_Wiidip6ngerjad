@@ -41,13 +41,14 @@ try:
                 status = Camera.ball_to_middle(balls)
                 action(comTime, status)
                 print("balls"+status)
-finally:
-    Camera.stop()
-    Movement.close()
-    cv2.destroyAllWindows()
-    print("Good end")
+
 except:
     Camera.stop()
     Movement.close()
     cv2.destroyAllWindows()
     print("Shitty end")
+finally:
+    Camera.stop()
+    Movement.close()
+    cv2.destroyAllWindows()
+    print("Good end")
