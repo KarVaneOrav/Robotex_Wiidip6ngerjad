@@ -1,6 +1,6 @@
 from serial.tools import list_ports
 import serial
-from math import sqrt, atan2, cos
+from math import sqrt, atan2, cos, floor
 import time
 
 robotSpeedX = 1
@@ -27,9 +27,9 @@ wheelLinearVelocity2 = robotSpeed * cos(robotDirectionAngle - 120) + \
 #                             (2 * PI * wheelRadius * pidControlFrequency)
 wheelSpeedToMainboardUnits = 90.991
 
-wheelAngularSpeedMainboardUnits0 = wheelLinearVelocity0 * wheelSpeedToMainboardUnits
-wheelAngularSpeedMainboardUnits1 = wheelLinearVelocity1 * wheelSpeedToMainboardUnits
-wheelAngularSpeedMainboardUnits2 = wheelLinearVelocity2 * wheelSpeedToMainboardUnits
+wheelAngularSpeedMainboardUnits0 = floor(wheelLinearVelocity0 * wheelSpeedToMainboardUnits)
+wheelAngularSpeedMainboardUnits1 = floor(wheelLinearVelocity1 * wheelSpeedToMainboardUnits)
+wheelAngularSpeedMainboardUnits2 = floor(wheelLinearVelocity2 * wheelSpeedToMainboardUnits)
 
 move = 'sd:'+str(wheelAngularSpeedMainboardUnits0)+':'+str(wheelAngularSpeedMainboardUnits1)+':'+\
        str(wheelAngularSpeedMainboardUnits2)+'\n'
