@@ -1,9 +1,9 @@
 from serial.tools import list_ports
 import serial
 
-robotSpeedX =
-robotSpeedY = 
-robotAngularVelocity = 
+robotSpeedX = 20
+robotSpeedY = 0
+robotAngularVelocity = 20
 
 port = (str(list_ports.comports()[0]).split(' '))[0]
 ser=serial.Serial(port, 115200, timeout=0.00001)
