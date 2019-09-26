@@ -26,8 +26,17 @@ wheelLinearVelocity1 = robotSpeed * cos(robotDirectionAngle - 240) + \
 wheelLinearVelocity2 = robotSpeed * cos(robotDirectionAngle - 120) + \
                        0.14 * robotAngularVelocity
 
-move = 'sd:'+str(wheelLinearVelocity0)+':'+str(wheelLinearVelocity1)+':'+\
-       str(wheelLinearVelocity2)+'\n'
+#wheelSpeedToMainboardUnits = gearboxReductionRatio * encoderEdgesPerMotorRevolution /\
+#                             (2 * PI * wheelRadius * pidControlFrequency)
+
+wheelSpeedToMainboardUnits = 90.991
+
+wheelAngularSpeedMainboardUnits0 = wheelLinearVelocity0 * wheelSpeedToMainboardUnits
+wheelAngularSpeedMainboardUnits1 = wheelLinearVelocity1 * wheelSpeedToMainboardUnits
+wheelAngularSpeedMainboardUnits2 = wheelLinearVelocity2 * wheelSpeedToMainboardUnits
+
+move = 'sd:'+str(wheelAngularSpeedMainboardUnits0)+':'+str(wheelAngularSpeedMainboardUnits1)+':'+\
+       str(wheelAngularSpeedMainboardUnits2)+'\n'
 print(move)
 ser.write(bytes(move, 'utf-8'))
 
