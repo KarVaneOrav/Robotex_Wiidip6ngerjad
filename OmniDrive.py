@@ -1,5 +1,6 @@
 from serial.tools import list_ports
 import serial
+from math import sqrt
 
 robotSpeedX = 20
 robotSpeedY = 0
