@@ -2,7 +2,7 @@ from serial.tools import list_ports
 import serial
 from math import sqrt, atan2, cos
 
-robotSpeedX = 20
+robotSpeedX = 1
 robotSpeedY = 0
 robotAngularVelocity = 20
 
