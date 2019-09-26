@@ -28,6 +28,7 @@ wheelLinearVelocity2 = robotSpeed * cos(robotDirectionAngle - 120) + \
 
 move = 'sd:'+str(wheelLinearVelocity0)+':'+str(wheelLinearVelocity1)+':'+\
        str(wheelLinearVelocity2)+'\n'
+print(move)
 ser.write(bytes(move, 'utf-8'))
 
 while (ser.inWaiting()):
