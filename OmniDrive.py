@@ -34,7 +34,8 @@ wheelAngularSpeedMainboardUnits2 = wheelLinearVelocity2 * wheelSpeedToMainboardU
 move = 'sd:'+str(wheelAngularSpeedMainboardUnits0)+':'+str(wheelAngularSpeedMainboardUnits1)+':'+\
        str(wheelAngularSpeedMainboardUnits2)+'\n'
 print(move)
-ser.write(bytes(move, encoding='utf-8'))
+ser.write(bytes(move, encoding='ascii'))
+print("sent")
 
 while (ser.inWaiting()):
     print(ser.read())
