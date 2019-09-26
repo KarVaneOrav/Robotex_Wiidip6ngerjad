@@ -36,9 +36,6 @@ move = 'sd:'+str(wheelAngularSpeedMainboardUnits0)+':'+str(wheelAngularSpeedMain
 print(move)
 ser.write(move.encode('ascii'))
 print("sent")
-ser.write(b'sd:'+wheelAngularSpeedMainboardUnits0+':'+wheelAngularSpeedMainboardUnits1+\
-          ':'+wheelAngularSpeedMainboardUnits2+'\n')
-
 while (ser.inWaiting()):
     print(ser.read())
 
