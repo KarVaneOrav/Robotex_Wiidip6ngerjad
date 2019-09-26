@@ -25,6 +25,6 @@ wheelLinearVelocity1 = robotSpeed * cos(robotDirectionAngle - 240) + \
 wheelLinearVelocity2 = robotSpeed * cos(robotDirectionAngle - 120) + \
                        0.14 * robotAngularVelocity
 
-move = 'sd:'str(wheelLinearVelocity0)+':'+str(wheelLinearVelocity1)+':'+\
+move = 'sd:'+str(wheelLinearVelocity0)+':'+str(wheelLinearVelocity1)+':'+\
        str(wheelLinearVelocity2)+'\n'
 ser.write(bytes(move, 'utf-8'))
