@@ -77,10 +77,10 @@ def green_finder(frame):
 
 def ball_to_middle(balls):
     if balls[0][0] < 300:
-        return "left"
+        return [0, 0, -1]
     elif balls[0][0] >340:
-        return "right"
+        return [0, 0, 1]
     else:
-        return "stop"
+        return [0, 0, 0]
     
     

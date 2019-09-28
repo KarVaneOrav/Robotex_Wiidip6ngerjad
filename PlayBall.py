@@ -7,18 +7,11 @@ frequency = 0.0166667
 comTime = time.time()
 jobs = {"look":True, "move":False, "throw":False}
 
-def action(timeCount, job):
+def action(omni):
     global comTime
     
     if time.time() >= (timeCount + frequency):
-        if job == "forward":
-            Movement.forward()
-        elif job == "right":
-            Movement.right()
-        elif job == "left":
-            Movement.left()
-        elif job == "stop":
-            Movement.stop()
+        Movement.omniDrive(omni[0], omni[1], omni[2])
         
         comTime = time.time()
     Movement.readSerial()
@@ -29,18 +22,14 @@ try:
         cv2.imshow('RealSense', frame)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
-        print("show frame")
         
         if jobs.get("look"): 
             balls = Camera.green_finder(frame)
-            print("get balls")
             if len(balls) == 0:
-                action(comTime, "right")
-                print("no balls")
+                action([0, 0, 1])
             else:
-                status = Camera.ball_to_middle(balls)
-                action(comTime, status)
-                print("balls"+status)
+                speeds = Camera.ball_to_middle(balls)
+                action(speeds)
 
 except:
     Camera.stop()

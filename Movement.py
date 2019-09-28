@@ -1,7 +1,8 @@
 from serial.tools import list_ports
 import serial
+from math import sqrt, atan2, cos, floor, pi
 
-# List of existing ports. Chooses the right device if there are no others
+# Takes list of existing ports. Chooses the mainboard if there are no others.
 port = (str(list_ports.comports()[0]).split(' '))[0]
 ser=serial.Serial(port, 115200, timeout=0.00001)
 
@@ -12,14 +13,27 @@ def readSerial(ser=ser):
     while (ser.inWaiting()):
         print(ser.read())
 
-def forward(ser=ser):
-    ser.write(b'sd:0:-10:10\n')
+def omniDrive(Y, X, turn):
+    robotSpeed = sqrt(robotSpeedX * robotSpeedX + robotSpeedY * robotSpeedY)
+    robotDirectionAngle = atan2(robotSpeedY, robotSpeedX)
+    
+    '''
+    wheelLinearVelocity = robotSpeed * cos(robotDirectionAngle - wheelAngle) + \
+                           wheelDistanceFromCenter * robotAngularVelocity
+    Cause our robots wheels turn the other way, speeds are inverted.
+    wheelSpeedToMainboardUnits = gearboxReductionRatio * encoderEdgesPerMotorRevolution /\
+                                 (2 * PI * wheelRadius * pidControlFrequency)
+    wheelAngularSpeedMainboardUnits = floor(wheelLinearVelocity * wheelSpeedToMainboardUnits)
+    '''
+    wheelSpeedToMainboardUnits = 90.991
+    
+    wheelAngularSpeedMainboardUnits0 = floor(-1 * (robotSpeed * cos(robotDirectionAngle - 0) + \
+                           0.14 * -robotAngularVelocity) * 90.991)
+    wheelAngularSpeedMainboardUnits1 = floor(-1 * (robotSpeed * cos(robotDirectionAngle - (120*pi/180)) + \
+                           0.14 * -robotAngularVelocity) * 90.991)
+    wheelAngularSpeedMainboardUnits2 = floor(-1 * (robotSpeed * cos(robotDirectionAngle - (240*pi/180)) + \
+                           0.14 * -robotAngularVelocity) * 90.991)
 
-def right(ser=ser):
-    ser.write(b'sd:10:10:10\n')
-
-def left(ser=ser):
-    ser.write(b'sd:-10:-10:-10\n')
-
-def stop(ser=ser):
-    ser.write(b'sd:0:0:0\n')
+    move = 'sd:'+str(wheelAngularSpeedMainboardUnits0)+':'+str(wheelAngularSpeedMainboardUnits1)+':'+\
+           str(wheelAngularSpeedMainboardUnits2)+'\n'
+    ser.write(move.encode('ascii'))
