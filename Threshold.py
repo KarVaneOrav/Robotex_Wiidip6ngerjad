@@ -58,5 +58,5 @@ try:
 finally:
 
     # Stop streaming
-    pipeline.stop()
+    Camera.stop()
     cv2.destroyAllWindows()
