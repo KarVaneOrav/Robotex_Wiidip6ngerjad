@@ -24,13 +24,22 @@ try:
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
         
-        if jobs.get("look"): 
-            balls = Camera.green_finder(frame)
-            if len(balls) == 0:
+        balls = Camera.green_finder(frame)
+        if len(balls) == 0:
                 action([0, 0, 1])
+                continue
+        if jobs.get("look"): 
+            speeds = Camera.ball_to_middle(balls)
+            if speeds == [0, 0, 0]:
+                jobs["look"] = False
+                jobs["move"] = True
+            action(speeds)
+        elif jobs.get("move"):
+            if balls[0][1] < 300:
+                action([0,1,0])
             else:
-                speeds = Camera.ball_to_middle(balls)
-                action(speeds)
+                action([0, 0, 0])
+            
 
 except:
     print("Shitty end")

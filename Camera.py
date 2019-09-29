@@ -86,6 +86,6 @@ def ball_to_middle(balls):
     elif balls[0][0] >340:
         return [0, 0, 1]
     else:
-        return [1, 0, 0]
+        return [0, 0, 0]
     
     
