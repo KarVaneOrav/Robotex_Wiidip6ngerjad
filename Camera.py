@@ -5,8 +5,8 @@ import numpy as np
 import cv2
 
 # values for image processing
-greenThreshold = [27,111,67,73,168,134]
-greenKernelErode = np.ones((2,2),np.uint8)
+greenThreshold = [27,114,72,82,255,217]
+greenKernelErode = np.ones((3,3),np.uint8)
 greenKernelDilate = np.ones((12,12),np.uint8)
 
 # colour detection limits
@@ -86,6 +86,6 @@ def ball_to_middle(balls):
     elif balls[0][0] >340:
         return [0, 0, 1]
     else:
-        return [0, 0, 0]
+        return [1, 0, 0]
     
     
