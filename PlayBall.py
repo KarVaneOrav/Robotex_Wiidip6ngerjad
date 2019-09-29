@@ -16,9 +16,9 @@ def action(omni):
         comTime = time.time()
     Movement.readSerial()
 
+Camera.start()
+
 try:
-    Camera.start()
-    
     while True:
         frame = Camera.processed_frame_green()
         cv2.imshow('RealSense', frame)
