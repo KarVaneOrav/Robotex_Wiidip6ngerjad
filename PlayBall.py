@@ -17,6 +17,8 @@ def action(omni):
     Movement.readSerial()
 
 try:
+    Camera.start()
+    
     while True:
         frame = Camera.processed_frame_green()
         cv2.imshow('RealSense', frame)
