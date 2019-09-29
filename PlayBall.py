@@ -36,7 +36,7 @@ try:
             action(speeds)
         elif jobs.get("move"):
             if balls[0][1] < 300:
-                action([0,1,0])
+                action([0,0.5,0])
             else:
                 action([0, 0, 0])
             
