@@ -77,6 +77,9 @@ def green_finder(frame):
     
     return coordinates
 
+def getDetector():
+    return detector
+
 def ball_to_middle(balls):
     if balls[0][0] < 300:
         return [0, 0, -1]
