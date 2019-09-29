@@ -13,7 +13,7 @@ def readSerial(ser=ser):
     while (ser.inWaiting()):
         print(ser.read())
 
-def omniDrive(Y, X, turn):
+def omniDrive(robotSpeedX, robotSpeedY, robotAngularVelocity):
     robotSpeed = sqrt(robotSpeedX * robotSpeedX + robotSpeedY * robotSpeedY)
     robotDirectionAngle = atan2(robotSpeedY, robotSpeedX)
     
