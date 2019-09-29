@@ -22,6 +22,7 @@ try:
     while True:
         frame = Camera.processed_frame_green()
         cv2.imshow('RealSense', frame)
+        cv2.imshow('RealSense2', Camera.get_frame())
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
         
@@ -29,6 +30,7 @@ try:
             balls = Camera.green_finder(frame)
             if len(balls) == 0:
                     action([0, 0, 1])
+                    print("looking")
             else:
                 turn = Camera.ball_to_middle(balls)
                 if turn == [0, 0, 0]:
