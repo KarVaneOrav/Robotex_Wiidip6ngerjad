@@ -10,7 +10,7 @@ jobs = {"look":True, "move":False, "throw":False}
 def action(omni):
     global comTime
     
-    if time.time() >= (timeCount + frequency):
+    if time.time() >= (comTime + frequency):
         Movement.omniDrive(omni[0], omni[1], omni[2])
         
         comTime = time.time()
@@ -34,12 +34,9 @@ try:
                 action(speeds)
 
 except:
-    Camera.stop()
-    Movement.close()
-    cv2.destroyAllWindows()
     print("Shitty end")
 finally:
     Camera.stop()
     Movement.close()
     cv2.destroyAllWindows()
-    print("Good end")
+    print("end")
