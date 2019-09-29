@@ -5,7 +5,7 @@ import numpy as np
 import cv2
 
 # values for image processing
-greenThreshold = [14,71,49,64,151,96]
+greenThreshold = [45,72,83,68,255,218]
 greenKernelErode = np.ones((2,2),np.uint8)
 greenKernelDilate = np.ones((15,15),np.uint8)
 
