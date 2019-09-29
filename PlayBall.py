@@ -30,8 +30,10 @@ try:
             if len(balls) == 0:
                     action([0, 0, 1])
             else:
-                speeds = Camera.ball_to_middle(balls)
-                action(speeds)
+                turn = Camera.ball_to_middle(balls)
+                if turn == [0, 0, 0]:
+                    tasks["look"] = False
+                action(turn)
         else:
             if balls[0][1] < 300:
                 action([0,0.5,0])
