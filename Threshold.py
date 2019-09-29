@@ -39,7 +39,7 @@ try:
         frame = Camera.processed_frame_green(bars[0:6], kernelErode, kernelDilate)
         
         # finding blobs
-        keypoints = Camera.getDetector.detect(frame)
+        keypoints = Camera.getDetector().detect(frame)
         frame = cv2.drawKeypoints(frame, keypoints, np.array([]), (0,0,255), cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
         # tagging blobs
         for i in keypoints:
