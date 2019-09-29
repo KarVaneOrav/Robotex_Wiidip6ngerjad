@@ -36,7 +36,7 @@ try:
         kernelDilate = np.ones((bars[6],bars[6]),np.uint8)
         kernelErode = np.ones((bars[7],bars[7]),np.uint8)
         
-        frame = Camera.processed_frame_green(bars[0:6], bars[7], bars[6])
+        frame = Camera.processed_frame_green(bars[0:6], kernelErode, kernelDilate)
         
         # finding blobs
         keypoints = Camera.getDetector.detect(frame)
