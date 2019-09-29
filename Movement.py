@@ -11,7 +11,7 @@ def close(ser=ser):
 
 def readSerial(ser=ser):
     while (ser.inWaiting()):
-        print(ser.read())
+        ser.read()
 
 def omniDrive(robotSpeedX, robotSpeedY, robotAngularVelocity):
     robotSpeed = sqrt(robotSpeedX * robotSpeedX + robotSpeedY * robotSpeedY)
