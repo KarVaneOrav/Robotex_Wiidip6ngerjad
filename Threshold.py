@@ -8,6 +8,7 @@
 import cv2
 from functools import partial
 import Camera
+import numpy as np
 
 # A callback function for every trackbar
 # It is triggered every time the trackbar slider is used
