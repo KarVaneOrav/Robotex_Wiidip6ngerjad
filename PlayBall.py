@@ -38,7 +38,7 @@ try:
                 action(turn)
         else:
             if balls[0][1] < 300:
-                action([0,0.5,0])
+                action([0,0.3,0])
             else:
                 action([0, 0, 0])
                 print("Done")
