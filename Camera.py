@@ -31,12 +31,8 @@ pipeline = rs.pipeline()
 def start():
     global pipeline
     config = rs.config()
-    config.enable_stream(rs.stream.color, 640, 480, rs.format.bgr8, 60)
+    config.enable_stream(rs.stream.color, 960, 540, rs.format.bgr8, 60)
     profile = pipeline.start(config)
-    # configure RGB sensor
-    sensor = profile.get_device()
-    sensor.set_options(rs.options.enable_auto_exposure, 0)
-    sensor.set_options(rs.options.enable_auto_white_balance, 0)
 ####
 
 # stop pipeline at the end
