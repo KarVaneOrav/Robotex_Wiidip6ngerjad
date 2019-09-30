@@ -34,7 +34,7 @@ try:
             else:
                 turn = Camera.ball_to_middle(balls)
                 if turn == [0, 0, 0]:
-                    tasks["look"] = False
+                    #tasks["look"] = False
                 action(turn)
 ##        else:
 ##            if balls[0][1] < 200:
