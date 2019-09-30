@@ -8,7 +8,6 @@ import cv2
 greenThreshold = [41,55,55,82,255,185]
 greenKernelErode = np.ones((1,1),np.uint8)
 greenKernelDilate = np.ones((12,12),np.uint8)
-greenBlur = 5
 
 # colour detection limits
 lowerLimitsGreen = np.array([greenThreshold[0], greenThreshold[1], greenThreshold[2]])
@@ -92,7 +91,7 @@ def get_frame():
     return color_frame
 
 def processed_frame_green(lowerLimits = lowerLimitsGreen, upperLimits = upperLimitsGreen,\
-                          kernel1=greenKernelErode, kernel2=greenKernelDilate, blur = greenBlur):
+                          kernel1=greenKernelErode, kernel2=greenKernelDilate):
     color_frame = get_frame()
     
     #convert to hsv
@@ -100,8 +99,7 @@ def processed_frame_green(lowerLimits = lowerLimitsGreen, upperLimits = upperLim
     
     # Our operations on the frame come here
     thresholded = cv2.inRange(hsv_frame, lowerLimits, upperLimits)
-    blurred = cv2.GaussianBlur(thresholded,(greenBlur, greenBlur),0)
-    morphed = cv2.erode(blurred,kernel1,iterations = 1)
+    morphed = cv2.erode(thresholded,kernel1,iterations = 1)
     morphed = cv2.dilate(morphed, kernel2, iterations = 1)
     
     return morphed
