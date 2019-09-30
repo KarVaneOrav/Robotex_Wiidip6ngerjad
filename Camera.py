@@ -68,7 +68,7 @@ def start():
         json_string = str(as_json_object).replace("'", '\"')
         advnc_mode.load_json(json_string)
     except Exception as e:
-    print(e)
+        print(e)
 ####
 
 # stop pipeline at the end
