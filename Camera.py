@@ -34,7 +34,7 @@ def start():
     config.enable_stream(rs.stream.color, 640, 480, rs.format.bgr8, 60)
     profile = pipeline.start(config)
     # configure RGB sensor
-    sensor = profile.get_device().roi_sensor()
+    sensor = profile.get_device()
     sensor.set_options(rs.options.enable_auto_exposure, 0)
     sensor.set_options(rs.options.enable_auto_white_balance, 0)
 ####
