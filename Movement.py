@@ -6,10 +6,10 @@ from math import sqrt, atan2, cos, floor, pi
 port = (str(list_ports.comports()[0]).split(' '))[0]
 ser=serial.Serial(port, 115200, timeout=0.00001)
 
-def close(ser=ser):
+def close():
     ser.close()
 
-def readSerial(ser=ser):
+def readSerial():
     while (ser.inWaiting()):
         ser.read()
 
@@ -37,3 +37,6 @@ def omniDrive(robotSpeedX, robotSpeedY, robotAngularVelocity):
     move = 'sd:'+str(wheelAngularSpeedMainboardUnits0)+':'+str(wheelAngularSpeedMainboardUnits1)+':'+\
            str(wheelAngularSpeedMainboardUnits2)+'\n'
     ser.write(move.encode('ascii'))
+    
+def thrower():
+    ser.write(b'sd:0:0:0:10\n')
