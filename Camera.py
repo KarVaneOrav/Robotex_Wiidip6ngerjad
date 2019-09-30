@@ -43,7 +43,7 @@ def find_device_that_supports_advanced_mode() :
 def start():
     global pipeline
     config = rs.config()
-    config.enable_stream(rs.stream.color, 960, 540, rs.format.bgr8, 60)
+    config.enable_stream(rs.stream.color, 1280, 720, rs.format.bgr8, 30)
     profile = pipeline.start(config)
     
     # load preset to camera
