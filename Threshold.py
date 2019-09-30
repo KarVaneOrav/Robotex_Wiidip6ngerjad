@@ -16,7 +16,7 @@ def updateValue(bar, new_value):
     bars[bar] = new_value
 
 # trackbars
-bars = [41,55,55,82,255,185, 12, 1]
+bars = [41,55,55,82,255,185, 12, 1, 1]
 
 cv2.namedWindow('Controls', cv2.WINDOW_AUTOSIZE)
 
@@ -28,6 +28,7 @@ cv2.createTrackbar('hG', "Controls", bars[4], 255, partial(updateValue, 4))
 cv2.createTrackbar('hR', "Controls", bars[5], 255, partial(updateValue, 5))
 cv2.createTrackbar('Dilate', "Controls", bars[6], 20, partial(updateValue, 6))
 cv2.createTrackbar('Erode', "Controls", bars[7], 20, partial(updateValue, 7))
+cv2.createTrackbar('Blur', "Controls", bars[8], 20, partial(updateValue, 8))
 
 try:
     Camera.start()
@@ -39,7 +40,7 @@ try:
         lowerLimits = np.array([bars[0], bars[1], bars[2]])
         upperLimits = np.array([bars[3], bars[4], bars[5]])
         
-        frame = Camera.processed_frame_green(lowerLimits, upperLimits, kernelErode, kernelDilate)
+        frame = Camera.processed_frame_green(lowerLimits, upperLimits, kernelErode, kernelDilate, bars[8])
         
         # finding blobs
         keypoints = Camera.getDetector().detect(frame)

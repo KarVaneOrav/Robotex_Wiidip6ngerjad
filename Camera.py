@@ -8,6 +8,7 @@ import cv2
 greenThreshold = [41,55,55,82,255,185]
 greenKernelErode = np.ones((1,1),np.uint8)
 greenKernelDilate = np.ones((12,12),np.uint8)
+greenBlur = 5
 
 # colour detection limits
 lowerLimitsGreen = np.array([greenThreshold[0], greenThreshold[1], greenThreshold[2]])
@@ -27,12 +28,47 @@ detector = cv2.SimpleBlobDetector_create(blobparams)
 # Configure depth and color streams
 pipeline = rs.pipeline()
 
+def find_device_that_supports_advanced_mode() :
+    ctx = rs.context()
+    ds5_dev = rs.device()
+    devices = ctx.query_devices();
+    for dev in devices:
+        if dev.supports(rs.camera_info.product_id) and str(dev.get_info(rs.camera_info.product_id)) in DS5_product_ids:
+            if dev.supports(rs.camera_info.name):
+                print("Found device that supports advanced mode:", dev.get_info(rs.camera_info.name))
+            return dev
+    raise Exception("No device that supports advanced mode was found")
+
 # Start streaming
 def start():
     global pipeline
     config = rs.config()
     config.enable_stream(rs.stream.color, 960, 540, rs.format.bgr8, 60)
     profile = pipeline.start(config)
+    
+    # load preset to camera
+    try:
+        dev = find_device_that_supports_advanced_mode()
+        advnc_mode = rs.rs400_advanced_mode(dev)
+        print("Advanced mode is", "enabled" if advnc_mode.is_enabled() else "disabled")
+
+        # Loop until we successfully enable advanced mode
+        while not advnc_mode.is_enabled():
+            print("Trying to enable advanced mode...")
+            advnc_mode.toggle_advanced_mode(True)
+            # At this point the device will disconnect and re-connect.
+            print("Sleeping for 5 seconds...")
+            time.sleep(5)
+            # The 'dev' object will become invalid and we need to initialize it again
+            dev = find_device_that_supports_advanced_mode()
+            advnc_mode = rs.rs400_advanced_mode(dev)
+            print("Advanced mode is", "enabled" if advnc_mode.is_enabled() else "disabled")
+        
+        as_json_object = json.loads("preset.json")
+        json_string = str(as_json_object).replace("'", '\"')
+        advnc_mode.load_json(json_string)
+    except Exception as e:
+    print(e)
 ####
 
 # stop pipeline at the end
@@ -55,7 +91,8 @@ def get_frame():
     color_frame = np.asanyarray(color_frame.get_data())
     return color_frame
 
-def processed_frame_green(lowerLimits = lowerLimitsGreen, upperLimits = upperLimitsGreen, kernel1=greenKernelErode, kernel2=greenKernelDilate):
+def processed_frame_green(lowerLimits = lowerLimitsGreen, upperLimits = upperLimitsGreen,\
+                          kernel1=greenKernelErode, kernel2=greenKernelDilate, blur = greenBlur):
     color_frame = get_frame()
     
     #convert to hsv
@@ -63,6 +100,7 @@ def processed_frame_green(lowerLimits = lowerLimitsGreen, upperLimits = upperLim
     
     # Our operations on the frame come here
     thresholded = cv2.inRange(hsv_frame, lowerLimits, upperLimits)
+    blurred = cv.GaussianBlur(img,(greenBlur, greenBlur),0)
     morphed = cv2.erode(thresholded,kernel1,iterations = 1)
     morphed = cv2.dilate(morphed, kernel2, iterations = 1)
     
