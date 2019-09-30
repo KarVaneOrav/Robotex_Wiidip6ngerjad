@@ -100,8 +100,8 @@ def processed_frame_green(lowerLimits = lowerLimitsGreen, upperLimits = upperLim
     
     # Our operations on the frame come here
     thresholded = cv2.inRange(hsv_frame, lowerLimits, upperLimits)
-    blurred = cv2.GaussianBlur(img,(greenBlur, greenBlur),0)
-    morphed = cv2.erode(thresholded,kernel1,iterations = 1)
+    blurred = cv2.GaussianBlur(thresholded,(greenBlur, greenBlur),0)
+    morphed = cv2.erode(blurred,kernel1,iterations = 1)
     morphed = cv2.dilate(morphed, kernel2, iterations = 1)
     
     return morphed
