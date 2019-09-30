@@ -39,4 +39,4 @@ def omniDrive(robotSpeedX, robotSpeedY, robotAngularVelocity):
     ser.write(move.encode('ascii'))
     
 def thrower():
-    ser.write(b'sd:0:0:0:10\n')
+    ser.write(b'sd:0:0:0:1000\n')
