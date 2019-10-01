@@ -52,7 +52,7 @@ def get_frame():
     # Convert images to numpy arrays
     color_frame = np.asanyarray(color_frame.get_data())
     # crop from 1280, 720
-    cropped = color_frame[0:1280, 0:680]
+    cropped = color_frame[0:680, 0:1280]
     return cropped
 
 def processed_frame_green(color_frame, lowerLimits = lowerLimitsGreen, upperLimits = upperLimitsGreen,\
