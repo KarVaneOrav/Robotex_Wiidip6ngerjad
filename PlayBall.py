@@ -23,26 +23,25 @@ try:
         processed_frame = Camera.processed_frame_green(frame)
         
         cv2.imshow('RealSense', frame)
-        cv2.imshow('RealSense', processed_frame)
         
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
         
-        balls = Camera.green_finder(processed_frame)
+        ball = Camera.green_finder(processed_frame)
         
         if tasks.get("look"):
-            if len(balls) == 0:
+            if len(ball) == 0:
                     action([0, 0, 1])
                     print("looking")
             else:
-                turn = Camera.ball_to_middle(balls)
+                turn = Camera.ball_to_middle(ball)
                 if turn == [0, 0, 0]:
                     tasks["look"] = False
                 action(turn)
         else:
-            print(balls)
-            if balls[0][1] < 400:
-                action([0,0.3,0])
+            print(ball)
+            if ball[1] < 400:
+                action([0, 0.3, 0])
                 print("go")
             else:
                 action([0, 0, 0])
