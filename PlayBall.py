@@ -32,6 +32,7 @@ try:
                     print("looking")
             else:
                 turn = Camera.ball_to_middle(balls)
+                print("focusing")
                 #if turn == [0, 0, 0]:
                     #tasks["look"] = False
                 action(turn)
