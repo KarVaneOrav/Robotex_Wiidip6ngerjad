@@ -38,7 +38,10 @@ try:
                     tasks["look"] = False
                 action(turn)
         else:
-            if ball[1] < 400:
+            if len(ball) == 0:
+                print("lost ball")
+                break
+            elif ball[1] < 400:
                 action([0, 0.3, 0])
                 print("go")
             else:
