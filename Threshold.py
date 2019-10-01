@@ -40,7 +40,8 @@ try:
         
         frame = Camera.get_frame()
         # crop frame, frame is 1280, 720
-        frame = frame[0:680, 1280:1280]
+        r = [len(frame)-0, len(frame)-40, 0, len(frame[0])]
+        frame = frame[r[0]:r[1], r[2]:r[3]]
         processed_frame = Camera.processed_frame_green(lowerLimits, upperLimits, kernelErode, kernelDilate, frame)
         
         # finding blobs
