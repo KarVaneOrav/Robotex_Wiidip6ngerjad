@@ -72,6 +72,7 @@ def green_finder(frame):
     keypoints = detector.detect(frame)
     for i in keypoints:
         coordinates += [[int(i.pt[0]), int(i.pt[1])]]
+    print(len(coordinates))
     if len(coordinates) == 0:
         return []
     else:
