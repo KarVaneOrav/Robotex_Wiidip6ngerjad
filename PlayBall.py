@@ -32,7 +32,6 @@ try:
         if tasks.get("look"):
             if len(ball) == 0:
                     action([0, 0, 1])
-                    print("looking")
             else:
                 turn = Camera.ball_to_middle(ball)
                 if turn == [0, 0, 0]:
@@ -49,7 +48,8 @@ try:
                 break
             
 
-except:
+except Exception as e:
+    print(e)
     print("Shitty end")
 finally:
     Camera.stop()
