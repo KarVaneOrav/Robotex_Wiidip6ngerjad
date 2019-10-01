@@ -29,8 +29,9 @@ cv2.createTrackbar('hR', "Controls", bars[5], 255, partial(updateValue, 5))
 cv2.createTrackbar('Dilate', "Controls", bars[6], 20, partial(updateValue, 6))
 cv2.createTrackbar('Erode', "Controls", bars[7], 20, partial(updateValue, 7))
 
+Camera.start()
+
 try:
-    Camera.start()
     while True:
         #kernel
         kernelDilate = np.ones((bars[6],bars[6]),np.uint8)

@@ -44,30 +44,6 @@ def start():
     config = rs.config()
     config.enable_stream(rs.stream.color, 1280, 720, rs.format.bgr8, 30)
     profile = pipeline.start(config)
-    
-    # load preset to camera
-    try:
-        dev = find_device_that_supports_advanced_mode()
-        advnc_mode = rs.rs400_advanced_mode(dev)
-        print("Advanced mode is", "enabled" if advnc_mode.is_enabled() else "disabled")
-
-        # Loop until we successfully enable advanced mode
-        while not advnc_mode.is_enabled():
-            print("Trying to enable advanced mode...")
-            advnc_mode.toggle_advanced_mode(True)
-            # At this point the device will disconnect and re-connect.
-            print("Sleeping for 5 seconds...")
-            time.sleep(5)
-            # The 'dev' object will become invalid and we need to initialize it again
-            dev = find_device_that_supports_advanced_mode()
-            advnc_mode = rs.rs400_advanced_mode(dev)
-            print("Advanced mode is", "enabled" if advnc_mode.is_enabled() else "disabled")
-        
-        as_json_object = json.loads("preset.json")
-        json_string = str(as_json_object).replace("'", '\"')
-        advnc_mode.load_json(json_string)
-    except Exception as e:
-        print(e)
 ####
 
 # stop pipeline at the end
