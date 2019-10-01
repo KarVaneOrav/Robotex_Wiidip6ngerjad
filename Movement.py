@@ -37,6 +37,7 @@ def omniDrive(robotSpeedX, robotSpeedY, robotAngularVelocity):
     move = 'sd:'+str(wheelAngularSpeedMainboardUnits0)+':'+str(wheelAngularSpeedMainboardUnits1)+':'+\
            str(wheelAngularSpeedMainboardUnits2)+'\n'
     ser.write(move.encode('ascii'))
+    print(move)
     
 def thrower():
     ser.write(b'd:1000\n')
