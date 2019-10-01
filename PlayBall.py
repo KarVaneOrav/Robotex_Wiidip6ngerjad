@@ -23,6 +23,7 @@ try:
         processed_frame = Camera.processed_frame_green(frame)
         
         cv2.imshow('RealSense', frame)
+        cv2.imshow('RealSense', processed_frame)
         
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
