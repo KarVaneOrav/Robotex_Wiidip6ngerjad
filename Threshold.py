@@ -40,7 +40,7 @@ try:
         
         frame = Camera.get_frame()
         
-        processed_frame = Camera.processed_frame_green(lowerLimits, upperLimits, kernelErode, kernelDilate, frame)
+        processed_frame = Camera.processed_frame_green(frame, lowerLimits, upperLimits, kernelErode, kernelDilate)
         
         # finding blobs
         keypoints = Camera.getDetector().detect(processed_frame)
