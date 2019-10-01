@@ -65,7 +65,9 @@ def get_frame():
     return color_frame
 
 def processed_frame_green(lowerLimits = lowerLimitsGreen, upperLimits = upperLimitsGreen,\
-                          kernel1=greenKernelErode, kernel2=greenKernelDilate, color_frame = get_frame()):
+                          kernel1=greenKernelErode, kernel2=greenKernelDilate, color_frame = None):
+    if color_frame == None:
+        color_frame = get_frame()
     
     #convert to hsv
     hsv_frame = cv2.cvtColor(color_frame, cv2.COLOR_BGR2HSV)
