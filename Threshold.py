@@ -3,13 +3,15 @@ from functools import partial
 import Camera
 import numpy as np
 
+
 # A callback function for every trackbar
 # It is triggered every time the trackbar slider is used
 def updateValue(bar, new_value):
     bars[bar] = new_value
 
+
 # trackbars
-bars = [42,70,72,82,255,185,2,4]
+bars = [31, 48, 41, 79, 255, 182, 3, 1]
 
 cv2.namedWindow('Controls', cv2.WINDOW_AUTOSIZE)
 
