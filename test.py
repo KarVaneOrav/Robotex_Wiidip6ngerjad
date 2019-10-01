@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 import Camera
-import partial
+from functools import partial
 
 def updateValue(bar, new_value):
     bars[bar] = new_value
