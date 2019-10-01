@@ -89,9 +89,9 @@ def getDetector():
 
 def ball_to_middle(ball):
     if ball[0] < 700:
-        return [0, 0, -2]
+        return [0, 0, -1]
     elif ball[0] > 730:
-        return [0, 0, 2]
+        return [0, 0, 1]
     else:
         return [0, 0, 0]
     
