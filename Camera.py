@@ -72,7 +72,6 @@ def green_finder(frame):
     keypoints = detector.detect(frame)
     for i in keypoints:
         coordinates += [[int(i.pt[0]), int(i.pt[1])]]
-    print(coordinates)
     if len(coordinates) == 0:
         return []
     else:
@@ -81,7 +80,7 @@ def green_finder(frame):
         print(closest)
         for ball in coordinates:
             if ball[1] < closest[1]:
-                closest = coordinates[ball]
+                closest = ball
         return closest
 
 def getDetector():
