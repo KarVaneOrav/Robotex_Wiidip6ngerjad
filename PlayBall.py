@@ -37,6 +37,7 @@ try:
                     tasks["look"] = False
                 action(turn)
         else:
+            print(balls)
             if balls[0][1] < 400:
                 action([0,0.3,0])
                 print("go")
