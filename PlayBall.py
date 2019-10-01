@@ -17,8 +17,6 @@ def action(omni):
         comTime = time.time()
     Movement.readSerial()
 
-Camera.start()
-
 try:
     while True:
         frame = Camera.processed_frame_green()

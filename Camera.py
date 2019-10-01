@@ -39,11 +39,9 @@ def find_device_that_supports_advanced_mode() :
     raise Exception("No device that supports advanced mode was found")
 
 # Start streaming
-def start():
-    global pipeline
-    config = rs.config()
-    config.enable_stream(rs.stream.color, 1280, 720, rs.format.bgr8, 30)
-    profile = pipeline.start(config)
+config = rs.config()
+config.enable_stream(rs.stream.color, 1280, 720, rs.format.bgr8, 30)
+profile = pipeline.start(config)
 ####
 
 # stop pipeline at the end
