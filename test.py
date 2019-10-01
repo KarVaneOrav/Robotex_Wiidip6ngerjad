@@ -21,8 +21,9 @@ cv2.createTrackbar('blur', "Controls", bars[5], 30, partial(updateValue, 5))
 
 while True:
     src = Camera.get_frame()
+    frame = Camera.processed_frame_green(src)
 
-    gray = cv2.cvtColor(src, cv2.COLOR_BGR2GRAY)
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
     gray = cv2.medianBlur(gray, 5)
 
