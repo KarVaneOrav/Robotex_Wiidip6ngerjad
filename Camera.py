@@ -66,7 +66,7 @@ def get_frame():
 
 def processed_frame_green(lowerLimits = lowerLimitsGreen, upperLimits = upperLimitsGreen,\
                           kernel1=greenKernelErode, kernel2=greenKernelDilate, color_frame = False):
-    if !color_frame: # if no frame was given
+    if not color_frame: # if no frame was given
         color_frame = get_frame()
     
     #convert to hsv
