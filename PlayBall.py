@@ -21,13 +21,15 @@ try:
     while True:
         frame = Camera.get_frame()
         processed_frame = Camera.processed_frame_green(frame)
+        
         cv2.imshow('RealSense', processed_frame)
         
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
         
+        balls = Camera.green_finder(processed_frame)
+        
         if tasks.get("look"):
-            balls = Camera.green_finder(processed_frame)
             if len(balls) == 0:
                     action([0, 0, 1])
                     print("looking")
