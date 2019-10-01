@@ -39,10 +39,11 @@ try:
         lowerLimits = np.array([bars[0], bars[1], bars[2]])
         upperLimits = np.array([bars[3], bars[4], bars[5]])
         
-        frame = Camera.processed_frame_green(lowerLimits, upperLimits, kernelErode, kernelDilate)
+        frame = Camera.get_frame()
+        processed_frame = Camera.processed_frame_green(lowerLimits, upperLimits, kernelErode, kernelDilate, frame)
         
         # finding blobs
-        keypoints = Camera.getDetector().detect(frame)
+        keypoints = Camera.getDetector().detect(processed_frame)
         frame = cv2.drawKeypoints(frame, keypoints, np.array([]), (0,0,255), cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
         # tagging blobs
         for i in keypoints:
@@ -50,7 +51,8 @@ try:
             cv2.putText(frame, str(coordinate), coordinate, cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
 
         # Show images
-        cv2.imshow('RealSense', frame)
+        cv2.imshow('Processed', processed_frame)
+        cv2.imshow('Original', frame)
         
         if cv2.waitKey(1) & 0xFF == ord('s'):
             with open("threshold.txt", "a") as f:
