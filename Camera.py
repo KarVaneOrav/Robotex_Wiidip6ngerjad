@@ -52,7 +52,7 @@ def get_frame():
     # Convert images to numpy arrays
     color_frame = np.asanyarray(color_frame.get_data())
     # crop from 1280, 720
-    cropped = color_frame[0:680, 0:1280]
+    cropped = color_frame[0:680, 50:1230]
     return cropped
 
 def processed_frame_green(color_frame, lowerLimits = lowerLimitsGreen, upperLimits = upperLimitsGreen,\
@@ -88,9 +88,9 @@ def getDetector():
     return detector
 
 def ball_to_middle(ball):
-    if ball[0] < 625:
+    if ball[0] < 575:
         return [0, 0, -2]
-    elif ball[0] > 655:
+    elif ball[0] > 605:
         return [0, 0, 2]
     else:
         return [0, 0, 0]
