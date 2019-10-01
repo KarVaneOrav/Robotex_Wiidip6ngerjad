@@ -74,7 +74,6 @@ def processed_frame_green(lowerLimits = lowerLimitsGreen, upperLimits = upperLim
     thresholded = cv2.inRange(hsv_frame, lowerLimits, upperLimits)
     morphed = cv2.erode(thresholded,kernel1,iterations = 1)
     morphed = cv2.dilate(morphed, kernel2, iterations = 1)
-    print("morphed")
     return morphed
 
 def green_finder(frame):
