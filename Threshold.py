@@ -39,6 +39,8 @@ try:
         upperLimits = np.array([bars[3], bars[4], bars[5]])
         
         frame = Camera.get_frame()
+        # crop frame, frame is 1280, 720
+        frame = frame[0:680, 1280:1280]
         processed_frame = Camera.processed_frame_green(lowerLimits, upperLimits, kernelErode, kernelDilate, frame)
         
         # finding blobs
