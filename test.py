@@ -27,3 +27,6 @@ while True:
     cv.imshow("detected circles", src)
     if cv.waitKey(1) & 0xFF == ord('q'):
         break
+
+Camera.stop()
+cv.destroyAllWindows()
