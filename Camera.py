@@ -53,7 +53,7 @@ def get_frame():
     color_frame = np.asanyarray(color_frame.get_data())
     # crop from 1280, 720
     cropped = color_frame[0:1280, 0:680]
-    return color_frame
+    return cropped
 
 def processed_frame_green(color_frame, lowerLimits = lowerLimitsGreen, upperLimits = upperLimitsGreen,\
                           kernel1=greenKernelErode, kernel2=greenKernelDilate):    
