@@ -1,10 +1,3 @@
-# License: Apache 2.0. See LICENSE file in root directory.
-## Copyright(c) 2015-2017 Intel Corporation. All Rights Reserved.
-
-###############################################
-##      Open CV and Numpy integration        ##
-###############################################
-
 import cv2
 from functools import partial
 import Camera
@@ -56,7 +49,7 @@ try:
         
         if cv2.waitKey(1) & 0xFF == ord('s'):
             with open("threshold.txt", "a") as f:
-                f.write(input("Color name: ")+str(bars))
+                f.write(input("Color name: ")+str(bars)+'\n')
                 
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
