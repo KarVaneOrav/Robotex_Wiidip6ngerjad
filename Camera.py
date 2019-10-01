@@ -73,7 +73,7 @@ def green_finder(frame):
     for i in keypoints:
         coordinates += [[int(i.pt[0]), int(i.pt[1])]]
 
-    if coordinates == []:
+    if len(coordinates) == 0:
         return []
     else:
         # find closest ball
