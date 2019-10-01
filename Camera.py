@@ -74,6 +74,7 @@ def green_finder(frame):
         coordinates += [[int(i.pt[0]), int(i.pt[1])]]
     print(str(len(coordinates))+'dots')
     if len(coordinates) == 0:
+        print('returning')
         return []
     else:
         # find closest ball
