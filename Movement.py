@@ -1,9 +1,9 @@
-#from serial.tools import list_ports
+from serial.tools import list_ports
 import serial
 from math import sqrt, atan2, cos, floor, pi
 
 # Takes list of existing ports. Chooses the mainboard if there are no others.
-port = (str(serial.tools.list_ports.comports()[0]).split(' '))[0]
+port = (str(list_ports.comports()[0]).split(' '))[0]
 ser=serial.Serial(port, 115200, timeout=0.00001)
 
 def close():
