@@ -8,7 +8,7 @@ def updateValue(bar, new_value):
 
 
 # trackbars
-bars = [13, 163, 24, 122, 255, 255, 2]
+bars = [14, 163, 93, 124, 255, 255, 2]
 
 cv2.namedWindow('Controls', cv2.WINDOW_AUTOSIZE)
 

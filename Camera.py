@@ -5,7 +5,7 @@ import numpy as np
 import cv2
 
 # values for image processing
-greenThreshold = [13, 163, 24, 122, 255, 255]
+greenThreshold = [14, 163, 93, 124, 255, 255, 2]
 # greenKernelErode = np.ones((1, 1), np.uint8)
 # greenKernelDilate = np.ones((3, 3), np.uint8)
 
@@ -15,7 +15,6 @@ upperLimitsGreen = np.array([greenThreshold[3], greenThreshold[4], greenThreshol
 
 # Configure depth and color streams
 pipeline = rs.pipeline()
-
 # Start streaming
 config = rs.config()
 config.enable_stream(rs.stream.color, 1280, 720, rs.format.bgr8, 30)
