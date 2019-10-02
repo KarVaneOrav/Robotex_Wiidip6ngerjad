@@ -67,6 +67,13 @@ def processed_frame_green(color_frame, lowerLimits = lowerLimitsGreen,
 def green_finder(frame):
     contours, _hierarchy = cv2.findContours(frame, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     circles = map(cv2.minEnclosingCircle, contours)
+    # just for feedback
+    for i in circles:
+        coordinate = (int(i[0][0]), int(i[0][1]))
+        cv2.putText(frame, str(coordinate), coordinate, cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+    cv2.imshow('RealSense', frame)
+    cv2.waitKey(0)
+
     # return closest ball, gives exception if map object empty
     # sort the list
     circles = sorted(circles, key=lambda x: x[1])
