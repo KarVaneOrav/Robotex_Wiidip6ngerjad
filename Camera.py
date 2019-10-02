@@ -72,7 +72,7 @@ def green_finder(frame):
         return []
     else:
         # sort the list
-        circles.sort(key=lambda x: x[1])
+        circles = sorted(circles, key=lambda x: x[1])
         # return the closest ball
         return [circles[-1][0][0], circles[-1][0][1]]
 
