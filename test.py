@@ -8,7 +8,7 @@ def updateValue(bar, new_value):
 
 
 # trackbars
-bars = [34,16,109,81,124,255, 2, 1]
+bars = [13, 163, 24, 122, 255, 255, 2]
 
 cv2.namedWindow('Controls', cv2.WINDOW_AUTOSIZE)
 
@@ -19,7 +19,6 @@ cv2.createTrackbar('hB', "Controls", bars[3], 255, partial(updateValue, 3))
 cv2.createTrackbar('hG', "Controls", bars[4], 255, partial(updateValue, 4))
 cv2.createTrackbar('hR', "Controls", bars[5], 255, partial(updateValue, 5))
 cv2.createTrackbar('Dilate', "Controls", bars[6], 20, partial(updateValue, 6))
-cv2.createTrackbar('Erode', "Controls", bars[7], 20, partial(updateValue, 7))
 
 while True:
     lowerLimits = np.array([bars[0], bars[1], bars[2]])
@@ -28,10 +27,18 @@ while True:
     frame = Camera.get_frame()
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
 
-    thresh = cv2.inRange(hsv, lowerLimits, upperLimits)
+    thresholded = cv2.inRange(hsv, lowerLimits, upperLimits)
+
+    contours, _hierarchy = cv2.findContours(thresholded, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    circles = map(cv2.minEnclosingCircle, contours)
+
+    # tagging blobs
+    for i in circles:
+        coordinate = (int(i[0][0]), int(i[0][1]))
+        cv2.putText(frame, str(coordinate), coordinate, cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
 
     cv2.imshow("orig", frame)
-    cv2.imshow("thresholded", thresh)
+    cv2.imshow("thresholded", thresholded)
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break

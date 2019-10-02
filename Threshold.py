@@ -11,7 +11,7 @@ def updateValue(bar, new_value):
 
 
 # trackbars
-bars = [37, 12, 109, 84, 124, 255, 2, 1]
+bars = [13, 163, 24, 122, 255, 255, 2]
 
 cv2.namedWindow('Controls', cv2.WINDOW_AUTOSIZE)
 
@@ -22,27 +22,27 @@ cv2.createTrackbar('hB', "Controls", bars[3], 255, partial(updateValue, 3))
 cv2.createTrackbar('hG', "Controls", bars[4], 255, partial(updateValue, 4))
 cv2.createTrackbar('hR', "Controls", bars[5], 255, partial(updateValue, 5))
 cv2.createTrackbar('Dilate', "Controls", bars[6], 20, partial(updateValue, 6))
-#cv2.createTrackbar('Erode', "Controls", bars[7], 20, partial(updateValue, 7))
+# cv2.createTrackbar('Erode', "Controls", bars[7], 20, partial(updateValue, 7))
 
 try:
     while True:
-        #kernel
+        # kernel
         kernelDilate = np.ones((bars[6],bars[6]),np.uint8)
-        #kernelErode = np.ones((bars[7],bars[7]),np.uint8)
+        # kernelErode = np.ones((bars[7],bars[7]),np.uint8)
         
         lowerLimits = np.array([bars[0], bars[1], bars[2]])
         upperLimits = np.array([bars[3], bars[4], bars[5]])
         
         frame = Camera.get_frame()
         
-        processed_frame = Camera.processed_frame_green(frame, lowerLimits, upperLimits, kernelDilate)
-        
-        # finding blobs
-        keypoints = Camera.getDetector().detect(processed_frame)
-        frame = cv2.drawKeypoints(frame, keypoints, np.array([]), (0,0,255), cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
+        processed_frame = Camera.processed_frame_green(frame, lowerLimits, upperLimits)
+
+        contours, _hierarchy = cv2.findContours(processed_frame, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+        circles = map(cv2.minEnclosingCircle, contours)
+
         # tagging blobs
-        for i in keypoints:
-            coordinate = (int(i.pt[0]), int(i.pt[1]))
+        for i in circles:
+            coordinate = (int(i[0][0]), int(i[0][1]))
             cv2.putText(frame, str(coordinate), coordinate, cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
 
         # Show images

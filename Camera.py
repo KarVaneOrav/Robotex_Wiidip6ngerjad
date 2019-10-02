@@ -5,25 +5,13 @@ import numpy as np
 import cv2
 
 # values for image processing
-greenThreshold = [37, 12, 109, 84, 124, 255]
-#greenKernelErode = np.ones((1, 1), np.uint8)
-greenKernelDilate = np.ones((3, 3), np.uint8)
+greenThreshold = [13, 163, 24, 122, 255, 255]
+# greenKernelErode = np.ones((1, 1), np.uint8)
+# greenKernelDilate = np.ones((3, 3), np.uint8)
 
 # colour detection limits
 lowerLimitsGreen = np.array([greenThreshold[0], greenThreshold[1], greenThreshold[2]])
 upperLimitsGreen = np.array([greenThreshold[3], greenThreshold[4], greenThreshold[5]])
-
-#blobparams
-blobparams = cv2.SimpleBlobDetector_Params()
-blobparams.minArea = 15
-blobparams.maxArea = 10000000
-blobparams.minDistBetweenBlobs = 60
-blobparams.filterByColor = True # filter by color
-blobparams.blobColor = 255  # 255 is white
-blobparams.filterByCircularity = False
-blobparams.filterByConvexity = False
-#filterByInertia = False
-detector = cv2.SimpleBlobDetector_create(blobparams)
 
 # Configure depth and color streams
 pipeline = rs.pipeline()
@@ -32,6 +20,8 @@ pipeline = rs.pipeline()
 config = rs.config()
 config.enable_stream(rs.stream.color, 1280, 720, rs.format.bgr8, 30)
 profile = pipeline.start(config)
+
+
 ####
 
 # stop pipeline at the end
@@ -39,6 +29,7 @@ profile = pipeline.start(config)
 ####
 def stop():
     pipeline.stop()
+
 
 def get_frame():
     while True:        
@@ -53,14 +44,14 @@ def get_frame():
     # Convert images to numpy arrays
     color_frame = np.asanyarray(color_frame.get_data())
     # blur the frame
-    blurred = cv2.GaussianBlur(color_frame, (5, 5), 1)
+    blurred = cv2.GaussianBlur(color_frame, (3, 3), 2)
     # crop from 1280, 720 because corners are foggy
     cropped = blurred[0:680, 50:1230]
     return cropped
 
 
 def processed_frame_green(color_frame, lowerLimits = lowerLimitsGreen,
-                          upperLimits = upperLimitsGreen, kernelDilate = greenKernelDilate):
+                          upperLimits = upperLimitsGreen):
     #convert to hsv
     hsv_frame = cv2.cvtColor(color_frame, cv2.COLOR_BGR2HSV)
     
@@ -68,31 +59,24 @@ def processed_frame_green(color_frame, lowerLimits = lowerLimitsGreen,
     thresholded = cv2.inRange(hsv_frame, lowerLimits, upperLimits)
 
     # in case morphing is needed
-    #morphed = cv2.erode(thresholded,kernel1,iterations = 1)
-    morphed = cv2.dilate(thresholded, kernelDilate, iterations = 1)
+    # morphed = cv2.erode(thresholded,kernel1,iterations = 1)
+    # morphed = cv2.dilate(thresholded, kernelDilate, iterations = 1)
 
     return thresholded
 
+
 def green_finder(frame):
-    coordinates = []
-    # finding blobs
-    keypoints = detector.detect(frame)
-    for i in keypoints:
-        coordinates += [[int(i.pt[0]), int(i.pt[1])]]
-    print(str(len(coordinates))+'dots')
-    if len(coordinates) == 0:
+    contours, _hierarchy = cv2.findContours(frame, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    circles = map(cv2.minEnclosingCircle, contours)
+
+    if len(circles) == 0:
         return []
     else:
-        # find closest ball
-        closest = coordinates[0]
-        print(str(closest)+'ball')
-        for ball in coordinates:
-            if ball[1] < closest[1]:
-                closest = ball
-        return closest
+        # sort the list
+        circles.sort(key=lambda x: x[2])
+        # return the closest ball
+        return [circles[-1][0][0], circles[-1][0][1]]
 
-def getDetector():
-    return detector
 
 def ball_to_middle(ball):
     if ball[0] < 690:
@@ -101,5 +85,3 @@ def ball_to_middle(ball):
         return [0, 0, 1]
     else:
         return [0, 0, 0]
-    
-    
