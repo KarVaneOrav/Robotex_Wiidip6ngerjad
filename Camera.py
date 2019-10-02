@@ -68,11 +68,11 @@ def green_finder(frame):
     contours, _hierarchy = cv2.findContours(frame, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     circles = map(cv2.minEnclosingCircle, contours)
 
-    if len(circles) == 0:
+    if not len(circles):
         return []
     else:
         # sort the list
-        circles.sort(key=lambda x: x[2])
+        circles.sort(key=lambda x: x[1])
         # return the closest ball
         return [circles[-1][0][0], circles[-1][0][1]]
 
