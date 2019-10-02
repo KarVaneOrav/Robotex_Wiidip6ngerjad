@@ -67,20 +67,16 @@ def processed_frame_green(color_frame, lowerLimits = lowerLimitsGreen,
 def green_finder(frame):
     contours, _hierarchy = cv2.findContours(frame, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     circles = map(cv2.minEnclosingCircle, contours)
-    print(circles)
-    if not circles:
-        print('empty')
-        return []
-    else:
-        print('not empty')
-        print(circles)
-        # sort the list
-        circles = sorted(circles, key=lambda x: x[1])
+    # return closest ball, gives exception if map object empty
+    # sort the list
+    circles = sorted(circles, key=lambda x: x[1])
+    try:
         # return the closest ball
-        print('sorted')
         circle = circles[-1]
-        print(circle[0])
         return circle[0]
+    except:
+        print('No balls')
+        return []
 
 
 def ball_to_middle(ball):
