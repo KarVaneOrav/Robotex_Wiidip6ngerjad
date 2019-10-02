@@ -40,7 +40,7 @@ try:
         else:
             if len(ball) == 0:
                 print("lost ball")
-                break
+                tasks['look'] = True
             elif ball[1] < 400:
                 action([0, 0.3, 0])
                 print("go")
