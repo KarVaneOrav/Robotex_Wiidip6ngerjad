@@ -7,7 +7,7 @@ import cv2
 # values for image processing
 greenThreshold = [37, 12, 109, 84, 124, 255]
 #greenKernelErode = np.ones((1, 1), np.uint8)
-#greenKernelDilate = np.ones((7, 7), np.uint8)
+greenKernelDilate = np.ones((3, 3), np.uint8)
 
 # colour detection limits
 lowerLimitsGreen = np.array([greenThreshold[0], greenThreshold[1], greenThreshold[2]])
@@ -60,7 +60,7 @@ def get_frame():
 
 
 def processed_frame_green(color_frame, lowerLimits = lowerLimitsGreen,
-                          upperLimits = upperLimitsGreen):
+                          upperLimits = upperLimitsGreen, kernelDilate = greenKernelDilate):
     #convert to hsv
     hsv_frame = cv2.cvtColor(color_frame, cv2.COLOR_BGR2HSV)
     
@@ -69,7 +69,7 @@ def processed_frame_green(color_frame, lowerLimits = lowerLimitsGreen,
 
     # in case morphing is needed
     #morphed = cv2.erode(thresholded,kernel1,iterations = 1)
-    #morphed = cv2.dilate(morphed, kernel2, iterations = 1)
+    morphed = cv2.dilate(thresholded, kernelDilate, iterations = 1)
 
     return thresholded
 

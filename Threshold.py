@@ -22,12 +22,12 @@ cv2.createTrackbar('hB', "Controls", bars[3], 255, partial(updateValue, 3))
 cv2.createTrackbar('hG', "Controls", bars[4], 255, partial(updateValue, 4))
 cv2.createTrackbar('hR', "Controls", bars[5], 255, partial(updateValue, 5))
 cv2.createTrackbar('Dilate', "Controls", bars[6], 20, partial(updateValue, 6))
-cv2.createTrackbar('Erode', "Controls", bars[7], 20, partial(updateValue, 7))
+#cv2.createTrackbar('Erode', "Controls", bars[7], 20, partial(updateValue, 7))
 
 try:
     while True:
         #kernel
-        #kernelDilate = np.ones((bars[6],bars[6]),np.uint8)
+        kernelDilate = np.ones((bars[6],bars[6]),np.uint8)
         #kernelErode = np.ones((bars[7],bars[7]),np.uint8)
         
         lowerLimits = np.array([bars[0], bars[1], bars[2]])
@@ -35,7 +35,7 @@ try:
         
         frame = Camera.get_frame()
         
-        processed_frame = Camera.processed_frame_green(frame, lowerLimits, upperLimits)
+        processed_frame = Camera.processed_frame_green(frame, lowerLimits, upperLimits, kernelDilate)
         
         # finding blobs
         keypoints = Camera.getDetector().detect(processed_frame)
