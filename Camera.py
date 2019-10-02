@@ -68,7 +68,7 @@ def green_finder(frame):
     contours, _hierarchy = cv2.findContours(frame, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     circles = map(cv2.minEnclosingCircle, contours)
 
-    if not len(circles):
+    if not circles:
         return []
     else:
         # sort the list
