@@ -8,42 +8,31 @@ def updateValue(bar, new_value):
 
 
 # trackbars
-bars = [20, 100, 30, 1, 30, 5]
+bars = [34,16,109,81,124,255, 2, 1]
 
 cv2.namedWindow('Controls', cv2.WINDOW_AUTOSIZE)
 
-cv2.createTrackbar('minDist', "Controls", bars[0], 100, partial(updateValue, 0))
-cv2.createTrackbar('param1', "Controls", bars[1], 255, partial(updateValue, 1))
-cv2.createTrackbar('param2', "Controls", bars[2], 255, partial(updateValue, 2))
-cv2.createTrackbar('minRadius', "Controls", bars[3], 255, partial(updateValue, 3))
-cv2.createTrackbar('maxRadius', "Controls", bars[4], 255, partial(updateValue, 4))
-cv2.createTrackbar('blur', "Controls", bars[5], 30, partial(updateValue, 5))
+cv2.createTrackbar('lB', "Controls", bars[0], 255, partial(updateValue, 0))
+cv2.createTrackbar('lG', "Controls", bars[1], 255, partial(updateValue, 1))
+cv2.createTrackbar('lR', "Controls", bars[2], 255, partial(updateValue, 2))
+cv2.createTrackbar('hB', "Controls", bars[3], 255, partial(updateValue, 3))
+cv2.createTrackbar('hG', "Controls", bars[4], 255, partial(updateValue, 4))
+cv2.createTrackbar('hR', "Controls", bars[5], 255, partial(updateValue, 5))
+cv2.createTrackbar('Dilate', "Controls", bars[6], 20, partial(updateValue, 6))
+cv2.createTrackbar('Erode', "Controls", bars[7], 20, partial(updateValue, 7))
 
 while True:
-    src = Camera.get_frame()
-    frame = Camera.processed_frame_green(src)
+    lowerLimits = np.array([bars[0], bars[1], bars[2]])
+    upperLimits = np.array([bars[3], bars[4], bars[5]])
 
-    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    frame = Camera.get_frame()
+    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
 
-    gray = cv2.medianBlur(gray, 5)
+    thresh = cv2.inRange(hsv, lowerLimits, upperLimits)
 
-    cv2.imshow("orig", gray)
+    cv2.imshow("orig", frame)
+    cv2.imshow("thresholded", thresh)
 
-    circles = cv2.HoughCircles(gray, cv2.HOUGH_GRADIENT, 1, bars[0],
-                              bars[1], bars[2],
-                              bars[3], bars[4])
-
-    if circles is not None:
-        circles = np.uint16(np.around(circles))
-        for i in circles[0, :]:
-            center = (i[0], i[1])
-            # circle center
-            cv2.circle(src, center, 1, (0, 100, 100), 3)
-            # circle outline
-            radius = i[2]
-            cv2.circle(src, center, radius, (255, 0, 255), 3)
-
-    cv2.imshow("detected circles", src)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 

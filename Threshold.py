@@ -11,7 +11,7 @@ def updateValue(bar, new_value):
 
 
 # trackbars
-bars = [11, 0, 46, 43, 255, 175, 2, 1]
+bars = [34,16,109,81,124,255, 2, 1]
 
 cv2.namedWindow('Controls', cv2.WINDOW_AUTOSIZE)
 
@@ -27,22 +27,24 @@ cv2.createTrackbar('Erode', "Controls", bars[7], 20, partial(updateValue, 7))
 try:
     while True:
         #kernel
-        kernelDilate = np.ones((bars[6],bars[6]),np.uint8)
-        kernelErode = np.ones((bars[7],bars[7]),np.uint8)
+        #kernelDilate = np.ones((bars[6],bars[6]),np.uint8)
+        #kernelErode = np.ones((bars[7],bars[7]),np.uint8)
         
         lowerLimits = np.array([bars[0], bars[1], bars[2]])
         upperLimits = np.array([bars[3], bars[4], bars[5]])
         
         frame = Camera.get_frame()
         
-        processed_frame = Camera.processed_frame_green(frame, lowerLimits, upperLimits, kernelErode, kernelDilate)
+        processed_frame = Camera.processed_frame_green(frame, lowerLimits, upperLimits)
         
         # finding blobs
         keypoints = Camera.getDetector().detect(processed_frame)
+        print(keypoints)
         frame = cv2.drawKeypoints(frame, keypoints, np.array([]), (0,0,255), cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
         # tagging blobs
         for i in keypoints:
             coordinate = (int(i.pt[0]), int(i.pt[1]))
+            print(coordinate)
             cv2.putText(frame, str(coordinate), coordinate, cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
 
         # Show images

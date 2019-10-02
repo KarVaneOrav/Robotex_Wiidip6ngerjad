@@ -51,20 +51,26 @@ def get_frame():
     
     # Convert images to numpy arrays
     color_frame = np.asanyarray(color_frame.get_data())
-    # crop from 1280, 720
-    cropped = color_frame[0:680, 50:1230]
+    # blur the frame
+    blurred = cv2.GaussianBlur(color_frame, (5, 5), 1)
+    # crop from 1280, 720 because corners are foggy
+    cropped = blurred[0:680, 50:1230]
     return cropped
 
-def processed_frame_green(color_frame, lowerLimits = lowerLimitsGreen, upperLimits = upperLimitsGreen,\
-                          kernel1=greenKernelErode, kernel2=greenKernelDilate):    
+
+def processed_frame_green(color_frame, lowerLimits = lowerLimitsGreen,
+                          upperLimits = upperLimitsGreen):
     #convert to hsv
     hsv_frame = cv2.cvtColor(color_frame, cv2.COLOR_BGR2HSV)
     
     # Our operations on the frame come here
     thresholded = cv2.inRange(hsv_frame, lowerLimits, upperLimits)
-    morphed = cv2.erode(thresholded,kernel1,iterations = 1)
-    morphed = cv2.dilate(morphed, kernel2, iterations = 1)
-    return morphed
+
+    # in case morphing is needed
+    #morphed = cv2.erode(thresholded,kernel1,iterations = 1)
+    #morphed = cv2.dilate(morphed, kernel2, iterations = 1)
+
+    return thresholded
 
 def green_finder(frame):
     coordinates = []
