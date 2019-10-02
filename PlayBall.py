@@ -34,10 +34,10 @@ try:
                     action([0, 0, 1])
             else:
                 turn = Camera.ball_to_middle(ball)
-                if turn == [0, 0, 0]:
-                    tasks["look"] = False
+                '''if turn == [0, 0, 0]:
+                    tasks["look"] = False'''
                 action(turn)
-        else:
+        '''else:
             if len(ball) == 0:
                 print("lost ball")
                 break
@@ -47,7 +47,7 @@ try:
             else:
                 action([0, 0, 0])
                 print("Done")
-                break
+                break'''
             
 
 except Exception as e:
