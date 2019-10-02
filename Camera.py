@@ -72,7 +72,6 @@ def green_finder(frame):
         coordinate = (int(i[0][0]), int(i[0][1]))
         cv2.putText(frame, str(coordinate), coordinate, cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
     cv2.imshow('RealSense', frame)
-    cv2.waitKey(0)
 
     # return closest ball, gives exception if map object empty
     # sort the list
