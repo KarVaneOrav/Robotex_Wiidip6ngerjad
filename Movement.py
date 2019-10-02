@@ -1,6 +1,6 @@
 from serial.tools import list_ports
 import serial
-from math import sqrt, atan2, cos, floor, pi
+from math import sqrt, atan2, cos, radians
 
 # Takes list of existing ports. Chooses the mainboard if there are no others.
 port = (str(list_ports.comports()[0]).split(' '))[0]
@@ -24,14 +24,15 @@ def omniDrive(robotSpeedX, robotSpeedY, robotAngularVelocity):
     wheelSpeedToMainboardUnits = gearboxReductionRatio * encoderEdgesPerMotorRevolution /\
                                  (2 * PI * wheelRadius * pidControlFrequency)
     wheelAngularSpeedMainboardUnits = floor(wheelLinearVelocity * wheelSpeedToMainboardUnits)
-    '''
     wheelSpeedToMainboardUnits = 90.991
+    '''
+
     
-    wheelAngularSpeedMainboardUnits0 = floor(-1 * (robotSpeed * cos(robotDirectionAngle - 0) + \
+    wheelAngularSpeedMainboardUnits0 = round(-1 * (robotSpeed * cos(robotDirectionAngle - radians(0)) +
                            0.14 * -robotAngularVelocity) * 90.991)
-    wheelAngularSpeedMainboardUnits1 = floor(-1 * (robotSpeed * cos(robotDirectionAngle - (120*pi/180)) + \
+    wheelAngularSpeedMainboardUnits1 = round(-1 * (robotSpeed * cos(robotDirectionAngle - radians(120)) +
                            0.14 * -robotAngularVelocity) * 90.991)
-    wheelAngularSpeedMainboardUnits2 = floor(-1 * (robotSpeed * cos(robotDirectionAngle - (240*pi/180)) + \
+    wheelAngularSpeedMainboardUnits2 = round(-1 * (robotSpeed * cos(robotDirectionAngle - radians(240)) +
                            0.14 * -robotAngularVelocity) * 90.991)
 
     move = 'sd:'+str(wheelAngularSpeedMainboardUnits0)+':'+str(wheelAngularSpeedMainboardUnits1)+':'+\
