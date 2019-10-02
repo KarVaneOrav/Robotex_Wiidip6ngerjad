@@ -19,7 +19,7 @@ pipeline = rs.pipeline()
 # Start streaming
 config = rs.config()
 config.enable_stream(rs.stream.color, 1280, 720, rs.format.bgr8, 30)
-profile = pipeline.start(config)
+pipeline.start(config)
 
 
 ####
