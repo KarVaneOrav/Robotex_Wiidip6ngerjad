@@ -39,12 +39,10 @@ try:
         
         # finding blobs
         keypoints = Camera.getDetector().detect(processed_frame)
-        print(keypoints)
         frame = cv2.drawKeypoints(frame, keypoints, np.array([]), (0,0,255), cv2.DRAW_MATCHES_FLAGS_DRAW_RICH_KEYPOINTS)
         # tagging blobs
         for i in keypoints:
             coordinate = (int(i.pt[0]), int(i.pt[1]))
-            print(coordinate)
             cv2.putText(frame, str(coordinate), coordinate, cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
 
         # Show images
