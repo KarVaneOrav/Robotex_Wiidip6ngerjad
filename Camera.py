@@ -44,8 +44,8 @@ def get_frame():
     color_frame = np.asanyarray(color_frame.get_data())
     # blur the frame
     blurred = cv2.GaussianBlur(color_frame, (3, 3), 2)
-    # crop from 1280, 720 because corners are foggy
-    cropped = blurred[0:680, 50:1230]
+    # crop from 1280, 720 because thrower could get in the way
+    cropped = blurred[0:680, 0:1280]
     return cropped
 
 

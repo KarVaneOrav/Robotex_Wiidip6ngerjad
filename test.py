@@ -25,9 +25,8 @@ while True:
     upperLimits = np.array([bars[3], bars[4], bars[5]])
 
     frame = Camera.get_frame()
-    hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
 
-    thresholded = cv2.inRange(hsv, lowerLimits, upperLimits)
+    thresholded = Camera.processed_frame_green(frame, lowerLimits, upperLimits)
 
     contours, _hierarchy = cv2.findContours(thresholded, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     circles = map(cv2.minEnclosingCircle, contours)
