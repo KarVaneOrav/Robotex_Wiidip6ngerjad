@@ -17,14 +17,21 @@ def readSerial():
 
 
 def move_to_ball(ball):
-    x = ball[0] - 590
-    return [x * 0.001, ball[1] * 0.001, 0]
+    speed = 1
+    x = -(590-ball[0])
+    angle = atan2(ball[1], x)
+    motors(speed, angle)
 
 
 def omniDrive(robotSpeedX, robotSpeedY, robotAngularVelocity):
+    # for more manual insertion
     robotSpeed = sqrt(robotSpeedX * robotSpeedX + robotSpeedY * robotSpeedY)
     robotDirectionAngle = atan2(robotSpeedY, robotSpeedX)
-    
+    motors(robotSpeed, robotDirectionAngle, robotAngularVelocity)
+
+
+def motors(robotSpeed, robotDirectionAngle, robotAngularVelocity = 0):
+    # the core of omnidrive, also reads serial
     '''
     wheelLinearVelocity = robotSpeed * cos(robotDirectionAngle - wheelAngle) + \
                            wheelDistanceFromCenter * robotAngularVelocity
@@ -35,7 +42,6 @@ def omniDrive(robotSpeedX, robotSpeedY, robotAngularVelocity):
     wheelSpeedToMainboardUnits = 90.991
     '''
 
-    
     wheelAngularSpeedMainboardUnits0 = round(-1 * (robotSpeed * cos(robotDirectionAngle - radians(0)) +
                            0.14 * -robotAngularVelocity) * 90.991)
     wheelAngularSpeedMainboardUnits1 = round(-1 * (robotSpeed * cos(robotDirectionAngle - radians(120)) +
@@ -47,6 +53,8 @@ def omniDrive(robotSpeedX, robotSpeedY, robotAngularVelocity):
            str(wheelAngularSpeedMainboardUnits2)+'\n'
     ser.write(move.encode('ascii'))
     print(move)
+
+    readSerial()
     
 def thrower():
     ser.write(b'd:1000\n')

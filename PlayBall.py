@@ -9,14 +9,16 @@ comTime = time.time()
 tasks = {"look": True, "move": False}
 
 
-def action(omni):
+def timer():
+    # sets communication to 60Hz
     global comTime
     
     if time.time() >= (comTime + frequency):
-        Movement.omniDrive(omni[0], omni[1], omni[2])
-        
         comTime = time.time()
-    Movement.readSerial()
+        return True
+
+    else:
+        return False
 
 
 try:
@@ -32,18 +34,20 @@ try:
         
         if tasks.get("look"):
             if len(ball) == 0:
-                    action([0, 0, 1])
+                    if timer():
+                        Movement.omniDrive(1, 1, 1)  # turns on the spot
             else:
                 tasks["look"] = False
                 tasks["move"] = True
 
         elif tasks.get("move"):
             if ball[1] > 400:
-                action([0, 0, 0])
+                Movement.omniDrive(0, 0, 0)  # stops
                 print("Done")
                 break
             else:
-                action(Movement.move_to_ball(ball))
+                if timer():
+                    Movement.move_to_ball(ball)
 
         else:
             print("Error in tasks logic")
