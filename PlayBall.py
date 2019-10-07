@@ -58,10 +58,10 @@ try:
 
         '''else:
             print("Error in tasks logic")
-            break'''
+            break
 
 
-            '''else:
+            else:
                 turn = Camera.ball_to_middle(ball)
                 if turn == [0, 0, 0]:
                     tasks["look"] = False
