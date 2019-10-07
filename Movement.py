@@ -4,14 +4,22 @@ from math import sqrt, atan2, cos, radians
 
 # Takes list of existing ports. Chooses the mainboard if there are no others.
 port = (str(list_ports.comports()[0]).split(' '))[0]
-ser=serial.Serial(port, 115200, timeout=0.00001)
+ser = serial.Serial(port, 115200, timeout=0.00001)
+
 
 def close():
     ser.close()
 
+
 def readSerial():
-    while (ser.inWaiting()):
+    while ser.inWaiting():
         ser.read()
+
+
+def move_to_ball(ball):
+    x = ball[0] - 590
+    return [x, ball[1], 0]
+
 
 def omniDrive(robotSpeedX, robotSpeedY, robotAngularVelocity):
     robotSpeed = sqrt(robotSpeedX * robotSpeedX + robotSpeedY * robotSpeedY)

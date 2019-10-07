@@ -6,7 +6,8 @@ import cv2
 frequency = 0.0166667
 comTime = time.time()
 
-tasks = {"look":True}
+tasks = {"look": True, "move": False}
+
 
 def action(omni):
     global comTime
@@ -16,6 +17,7 @@ def action(omni):
         
         comTime = time.time()
     Movement.readSerial()
+
 
 try:
     while True:
@@ -32,6 +34,23 @@ try:
             if len(ball) == 0:
                     action([0, 0, 1])
             else:
+                tasks["look"] = False
+                tasks["move"] = True
+
+        elif tasks.get("move"):
+            if ball[1] > 400:
+                action([0, 0, 0])
+                print("Done")
+                break
+            else:
+                action(Movement.move_to_ball(ball))
+
+        else:
+            print("Error in tasks logic")
+            break
+
+
+            '''else:
                 turn = Camera.ball_to_middle(ball)
                 if turn == [0, 0, 0]:
                     tasks["look"] = False
@@ -46,7 +65,7 @@ try:
             else:
                 action([0, 0, 0])
                 print("Done")
-                break
+                break'''
             
 
 except Exception as e:

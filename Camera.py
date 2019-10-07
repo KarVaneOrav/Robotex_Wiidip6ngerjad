@@ -31,6 +31,7 @@ def stop():
 
 
 def get_frame():
+    # returns the blurred and cropped vanilla frame
     while True:        
         # Wait for a coherent pair of frames: color
         frames = pipeline.wait_for_frames()
@@ -44,14 +45,16 @@ def get_frame():
     color_frame = np.asanyarray(color_frame.get_data())
     # blur the frame
     blurred = cv2.GaussianBlur(color_frame, (3, 3), 2)
-    # crop from 1280, 720 because thrower could get in the way
-    cropped = blurred[0:680, 0:1280]
+    # crop from 1280, 720 because corners are foggy
+    cropped = blurred[0:680, 50:1230]
     return cropped
 
 
 def processed_frame_green(color_frame, lowerLimits = lowerLimitsGreen,
                           upperLimits = upperLimitsGreen):
-    #convert to hsv
+    # takes a color frame and threshold values as input
+    # outputs frame as black and white
+    # convert to hsv
     hsv_frame = cv2.cvtColor(color_frame, cv2.COLOR_BGR2HSV)
     
     # Our operations on the frame come here
@@ -63,8 +66,9 @@ def processed_frame_green(color_frame, lowerLimits = lowerLimitsGreen,
 
     return thresholded
 
-
+#
 def green_finder(frame):
+    # finds the closest ball from a black and white frame. Returns an empty list if no balls, otherwise as [x, y]
     contours, _hierarchy = cv2.findContours(frame, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     circles = map(cv2.minEnclosingCircle, contours)
 
@@ -81,9 +85,12 @@ def green_finder(frame):
 
 
 def ball_to_middle(ball):
+    # turns the robot to the given direction. Input as [x, y]
+    # currently camera isnt in the middle
     if ball[0] < 690:
         return [0, 0, -1]
     elif ball[0] > 740:
         return [0, 0, 1]
     else:
         return [0, 0, 0]
+
