@@ -35,7 +35,7 @@ try:
         if len(ball) == 0:
             tasks["look"] = True
             if timer():
-                Movement.omniDrive(1, 1, 1)  # turns on the spot
+                Movement.omniDrive(0, 0, 1)  # turns on the spot
         else:
             tasks["look"] = False
             tasks["move"] = True
