@@ -31,16 +31,23 @@ try:
             break
         
         ball = Camera.green_finder(processed_frame)
-        
-        if tasks.get("look"):
+
+        if len(ball) == 0:
+            tasks["look"] = True
+            if timer():
+                Movement.omniDrive(1, 1, 1)  # turns on the spot
+        else:
+            tasks["look"] = False
+            tasks["move"] = True
+        '''if tasks.get("look"):
             if len(ball) == 0:
                     if timer():
                         Movement.omniDrive(1, 1, 1)  # turns on the spot
             else:
                 tasks["look"] = False
-                tasks["move"] = True
+                tasks["move"] = True'''
 
-        elif tasks.get("move"):
+        if tasks.get("move"):
             if ball[1] > 400:
                 Movement.omniDrive(0, 0, 0)  # stops
                 print("Done")
