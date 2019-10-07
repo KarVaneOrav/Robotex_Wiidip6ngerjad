@@ -56,9 +56,9 @@ try:
                 if timer():
                     Movement.move_to_ball(ball)
 
-        else:
+        '''else:
             print("Error in tasks logic")
-            break
+            break'''
 
 
             '''else:
