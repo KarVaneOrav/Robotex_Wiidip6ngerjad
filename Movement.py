@@ -20,7 +20,7 @@ def move_to_ball(ball):
     print(ball)
     speed = 1
     x = ball[0] - 590
-    angle = atan2(ball[1], x)
+    angle = atan2(x, ball[1])
     motors(speed, angle)
 
 
@@ -52,7 +52,7 @@ def motors(robotSpeed, robotDirectionAngle, robotAngularVelocity = 0):
 
     move = 'sd:'+str(wheelAngularSpeedMainboardUnits0)+':'+str(wheelAngularSpeedMainboardUnits1)+':'+\
            str(wheelAngularSpeedMainboardUnits2)+'\n'
-    ser.write(move.encode('ascii'))
+    ser.write(move.encode('utf-8'))
     print(move)
 
     readSerial()
