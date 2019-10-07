@@ -24,9 +24,9 @@ try:
         frame = Camera.get_frame()
         processed_frame = Camera.processed_frame_green(frame)
 
-        cv2.imshow('RealSense', frame)
+        '''cv2.imshow('RealSense', frame)
         if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
+            break'''
         
         ball = Camera.green_finder(processed_frame)
 

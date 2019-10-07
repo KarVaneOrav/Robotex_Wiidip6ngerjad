@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="39b78f02-c27e-4874-a048-5aee4c62ec90" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Movement.py" beforeDir="false" afterPath="$PROJECT_DIR$/Movement.py" afterDir="false" />
-    </list>
+    <list default="true" id="39b78f02-c27e-4874-a048-5aee4c62ec90" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +42,7 @@
           <entry key="Python Console" value="179" />
           <entry key="dummy" value="1" />
           <entry key="ini" value="1" />
-          <entry key="py" value="3635" />
+          <entry key="py" value="3638" />
           <entry key="txt" value="11" />
         </counts>
       </usages-collector>
@@ -53,7 +50,7 @@
         <counts>
           <entry key="Ini" value="1" />
           <entry key="PLAIN_TEXT" value="12" />
-          <entry key="Python" value="3814" />
+          <entry key="Python" value="3817" />
         </counts>
       </usages-collector>
     </session>
@@ -64,11 +61,11 @@
         <entry file="file://$PROJECT_DIR$/Movement.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="235">
-              <caret line="22" column="27" selection-start-line="22" selection-start-column="27" selection-end-line="22" selection-end-column="27" />
+              <caret line="22" column="29" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="29" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
-                <marker date="1570462420908" expanded="true" signature="414:508" ph="..." />
-                <marker date="1570462420908" expanded="true" signature="505:508" ph="..." />
+                <marker date="1570462523799" expanded="true" signature="414:508" ph="..." />
+                <marker date="1570462523799" expanded="true" signature="505:508" ph="..." />
               </folding>
             </state>
           </provider>
@@ -295,20 +292,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1567943690172</updated>
-    </task>
-    <task id="LOCAL-00017" summary="&#10;f">
-      <created>1569962810844</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1569962810844</updated>
-    </task>
-    <task id="LOCAL-00018" summary="&#10;f">
-      <created>1569963034284</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1569963034284</updated>
     </task>
     <task id="LOCAL-00019" summary="&#10;f">
       <created>1569963672738</created>
@@ -639,7 +622,21 @@
       <option name="project" value="LOCAL" />
       <updated>1570461788258</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="&#10;f">
+      <created>1570462425599</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1570462425599</updated>
+    </task>
+    <task id="LOCAL-00067" summary="&#10;f">
+      <created>1570462527333</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1570462527333</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TodoView">
@@ -745,11 +742,11 @@
     <entry file="file://$PROJECT_DIR$/Movement.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="235">
-          <caret line="22" column="27" selection-start-line="22" selection-start-column="27" selection-end-line="22" selection-end-column="27" />
+          <caret line="22" column="29" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="29" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
-            <marker date="1570462420908" expanded="true" signature="414:508" ph="..." />
-            <marker date="1570462420908" expanded="true" signature="505:508" ph="..." />
+            <marker date="1570462523799" expanded="true" signature="414:508" ph="..." />
+            <marker date="1570462523799" expanded="true" signature="505:508" ph="..." />
           </folding>
         </state>
       </provider>
