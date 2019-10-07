@@ -20,7 +20,8 @@ def move_to_ball(ball):
     print(ball)
     speed = 0.5
     x = ball[0] - 590
-    angle = atan2(ball[1], x)
+    y = 680 - ball[1]
+    angle = atan2(y, x)
     motors(speed, angle)
 
 
