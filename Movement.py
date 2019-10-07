@@ -18,7 +18,7 @@ def readSerial():
 
 def move_to_ball(ball):
     x = ball[0] - 590
-    return [x, ball[1], 0]
+    return [x * 0.001, ball[1] * 0.001, 0]
 
 
 def omniDrive(robotSpeedX, robotSpeedY, robotAngularVelocity):
