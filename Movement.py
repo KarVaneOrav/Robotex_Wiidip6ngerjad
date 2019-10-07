@@ -17,8 +17,9 @@ def readSerial():
 
 
 def move_to_ball(ball):
+    print(ball)
     speed = 1
-    x = -(590-ball[0])
+    x = ball[0] - 590
     angle = atan2(ball[1], x)
     motors(speed, angle)
 
