@@ -34,7 +34,7 @@ try:
         upperLimits = np.array([bars[3], bars[4], bars[5]])
         
         frame = Camera.get_frame()
-        hsv = Camera.to_hsv()
+        hsv = Camera.to_hsv(frame)
 
         # for balls
         # processed_frame = Camera.process_balls(hsv, lowerLimits, upperLimits)
