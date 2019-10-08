@@ -6,6 +6,8 @@ import cv2
 frequency = 0.0166667
 comTime = time.time()
 
+Camera.get_target_basket('blue')
+
 
 def timer():
     # sets communication to 60Hz
@@ -21,8 +23,11 @@ def timer():
 
 try:
     while True:
+        # to show vanilla frame
         frame = Camera.get_frame()
-        processed_frame = Camera.processed_frame_green(frame)
+
+        hsv_frame = Camera.to_hsv(frame)
+        processed_frame = Camera.process_balls(frame)
 
         '''cv2.imshow('RealSense', frame)
         if cv2.waitKey(1) & 0xFF == ord('q'):

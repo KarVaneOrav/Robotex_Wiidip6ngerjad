@@ -26,7 +26,7 @@ while True:
 
     frame = Camera.get_frame()
 
-    thresholded = Camera.processed_frame_green(frame, lowerLimits, upperLimits)
+    thresholded = Camera.process_balls(frame, lowerLimits, upperLimits)
 
     contours, _hierarchy = cv2.findContours(thresholded, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     circles = map(cv2.minEnclosingCircle, contours)

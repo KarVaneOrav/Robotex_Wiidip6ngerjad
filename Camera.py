@@ -4,14 +4,22 @@ import pyrealsense2 as rs
 import numpy as np
 import cv2
 
-# values for image processing
-greenThreshold = [14, 163, 93, 124, 255, 255, 2]
+# values for image processing green
+green = [14, 163, 93, 124, 255, 255]
 # greenKernelErode = np.ones((1, 1), np.uint8)
 # greenKernelDilate = np.ones((3, 3), np.uint8)
-
 # colour detection limits
-lowerLimitsGreen = np.array([greenThreshold[0], greenThreshold[1], greenThreshold[2]])
-upperLimitsGreen = np.array([greenThreshold[3], greenThreshold[4], greenThreshold[5]])
+lowerLimitsGreen = np.array([green[0], green[1], green[2]])
+upperLimitsGreen = np.array([green[3], green[4], green[5]])
+
+# values to process pink
+pink = [14, 163, 93, 124, 255, 255, 1]
+# values to process blue
+blue = [14, 163, 93, 124, 255, 255, 1]
+# values for processing
+lowerLimitsTarget = None
+upperLimitsTarget = None
+targetKernelDilate = None
 
 # Configure depth and color streams
 pipeline = rs.pipeline()
@@ -28,6 +36,21 @@ pipeline.start(config)
 ####
 def stop():
     pipeline.stop()
+
+
+def get_target_basket(opponent):
+    global lowerLimitsTarget
+    global upperLimitsTarget
+    global targetKernelDilate
+
+    if opponent == 'pink':
+        target = pink
+    else:
+        target = blue
+
+    lowerLimitsTarget = np.array([target[0], target[1], target[2]])
+    upperLimitsTarget = np.array([target[3], target[4], target[5]])
+    targetKernelDilate = np.ones((target[6], target[6]), np.uint8)
 
 
 def get_frame():
@@ -50,23 +73,29 @@ def get_frame():
     return cropped
 
 
-def processed_frame_green(color_frame, lowerLimits = lowerLimitsGreen,
-                          upperLimits = upperLimitsGreen):
-    # takes a color frame and threshold values as input
-    # outputs frame as black and white
-    # convert to hsv
-    hsv_frame = cv2.cvtColor(color_frame, cv2.COLOR_BGR2HSV)
-    
-    # Our operations on the frame come here
+def to_hsv(color_frame):
+    # turns color frame to hsv
+    return cv2.cvtColor(color_frame, cv2.COLOR_BGR2HSV)
+
+
+def process_balls(hsv_frame, lowerLimits = lowerLimitsGreen, upperLimits = upperLimitsGreen):
+    # takes a hsv frame as input, outputs balls as white
     thresholded = cv2.inRange(hsv_frame, lowerLimits, upperLimits)
 
     # in case morphing is needed
-    # morphed = cv2.erode(thresholded,kernel1,iterations = 1)
+    # morphed = cv2.erode(thresholded,kernelErode,iterations = 1)
     # morphed = cv2.dilate(thresholded, kernelDilate, iterations = 1)
-
     return thresholded
 
-#
+
+def process_basket(hsv_frame, lowerLimits = lowerLimitsTarget, upperLimits = upperLimitsTarget
+                   , dilate = targetKernelDilate):
+    # takes a hsv frame as input, outputs basket as white
+    thresholded = cv2.inRange(hsv_frame, lowerLimits, upperLimits)
+    morphed = cv2.dilate(thresholded, dilate, iterations=1)
+    return morphed
+
+
 def green_finder(frame):
     # finds the closest ball from a black and white frame. Returns an empty list if no balls, otherwise as [x, y]
     contours, _hierarchy = cv2.findContours(frame, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
@@ -93,4 +122,3 @@ def ball_to_middle(ball):
         return [0, 0, 1]
     else:
         return [0, 0, 0]
-
