@@ -1,6 +1,7 @@
 from serial.tools import list_ports
 import serial
 from math import sqrt, atan2, cos, radians
+import Camera
 
 # Takes list of existing ports. Chooses the mainboard if there are no others.
 port = (str(list_ports.comports()[0]).split(' '))[0]
@@ -11,7 +12,7 @@ def close():
     ser.close()
 
 
-def readSerial():
+def read_serial():
     while ser.inWaiting():
         ser.read()
 
@@ -25,8 +26,12 @@ def move_to_ball(ball):
     motors(speed, angle)
 
 
-def omniDrive(robotSpeedX, robotSpeedY, robotAngularVelocity):
+def omni_drive(values):
     # for more manual insertion
+    robotSpeedX = values[0]
+    robotSpeedY = values[1]
+    robotAngularVelocity = values[2]
+
     robotSpeed = sqrt(robotSpeedX * robotSpeedX + robotSpeedY * robotSpeedY)
     robotDirectionAngle = atan2(robotSpeedY, robotSpeedX)
     motors(robotSpeed, robotDirectionAngle, robotAngularVelocity)
@@ -56,7 +61,17 @@ def motors(robotSpeed, robotDirectionAngle, robotAngularVelocity = 0):
     ser.write(move.encode('utf-8'))
     print(move)
 
-    readSerial()
+    read_serial()
+
+
+def rotate_ball(ball):
+    # sets the ball and the basket in a line
+    toMiddle = Camera.ball_to_middle(ball)
+    if toMiddle != [0, 0, 0]:
+        omni_drive(toMiddle)
+    else:  # rotate
+        ser.write(b'sd:30:0:0')
+
     
 def thrower():
     ser.write(b'd:1000\n')

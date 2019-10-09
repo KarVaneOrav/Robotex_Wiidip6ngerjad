@@ -13,9 +13,9 @@ lowerLimitsGreen = np.array([green[0], green[1], green[2]])
 upperLimitsGreen = np.array([green[3], green[4], green[5]])
 
 # values to process pink
-pink = [14, 163, 93, 124, 255, 255, 1]
+pink = [95, 203, 61, 255, 255, 255, 3]
 # values to process blue
-blue = [14, 163, 93, 124, 255, 255, 1]
+blue = [35, 0, 29, 255, 91, 255, 3]
 # values for processing
 lowerLimitsTarget = None
 upperLimitsTarget = None
@@ -114,7 +114,7 @@ def green_finder(frame):
 
 
 def ball_to_middle(ball):
-    # turns the robot to the given direction. Input as [x, y]
+    # turns the robot to the given direction. Input as [x, y] output as speeds [x, y, angular]
     # currently camera isnt in the middle
     if ball[0] < 690:
         return [0, 0, -1]

@@ -37,13 +37,11 @@ try:
 
         if len(ball) == 0:
             if timer():
-                Movement.omniDrive(0, 0, 1)  # turns on the spot
+                Movement.omni_drive([0, 0, 1])  # turns on the spot
 
         else:
             if ball[1] > 400:
-                Movement.omniDrive(0, 0, 0)  # stops
-                print("Done")
-                break
+                Movement.rotate_ball(ball)
             else:
                 if timer():
                     Movement.move_to_ball(ball)
