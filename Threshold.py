@@ -53,7 +53,7 @@ try:
         # tag middle blob for baskets
         if circles:
             circles = sorted(circles, key=lambda x: x[0])
-            spot = circles[round(len(circles))/2][0]
+            spot = circles[round(len(circles)/2)][0]
             cv2.putText(frame, str(spot), (int(spot[0]), int(spot[1])), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
 
         # Show images
