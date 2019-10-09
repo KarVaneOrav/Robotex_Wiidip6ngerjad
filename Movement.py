@@ -18,7 +18,6 @@ def read_serial():
 
 
 def move_to_ball(ball):
-    print(ball)
     speed = 0.5
     x = ball[0] - 590
     y = 680 - ball[1]

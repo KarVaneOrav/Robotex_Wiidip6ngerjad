@@ -5,7 +5,7 @@ import numpy as np
 import cv2
 
 # values for image processing green
-green = [14, 163, 93, 124, 255, 255]
+green = [16, 163, 93, 124, 255, 255]
 # greenKernelErode = np.ones((1, 1), np.uint8)
 # greenKernelDilate = np.ones((3, 3), np.uint8)
 # colour detection limits
@@ -107,7 +107,9 @@ def green_finder(frame):
     try:
         # return the closest ball
         circle = circles[-1]
-        return [int(circle[0][0]), int(circle[0][1])]
+        ball = [int(circle[0][0]), int(circle[0][1])]
+        print(ball)
+        return ball
     except:
         print('No balls')
         return []
