@@ -33,11 +33,11 @@ try:
 
         if ball:
             cv2.putText(frame, str(ball), tuple(ball), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
-        cv2.imshow('RealSense', frame)
+        cv2.imshow('RealSense', processed_frame)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
 
-        if len(ball) == 0:
+        if not ball:
             if timer():
                 Movement.omni_drive([0, 0, 1])  # turns on the spot
 
