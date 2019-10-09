@@ -27,9 +27,9 @@ try:
         frame = Camera.get_frame()
 
         hsv_frame = Camera.to_hsv(frame)
-        processed_frame = Camera.process_balls(frame)
+        processed_frame = Camera.process_balls(hsv_frame)
         
-        ball = Camera.green_finder(processed_frame)
+        ball = Camera.green_finder(frame)
 
         if ball:
             cv2.putText(frame, str(ball), tuple(ball), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
