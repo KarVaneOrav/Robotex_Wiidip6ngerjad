@@ -70,6 +70,7 @@ def rotate_ball(ball):
     elif ball[0] > 740:
         ser.write(b'sd:30:10:10\n')
     else:
+        print("here")
         ser.write(b'sd:30:0:0\n')
 
     read_serial()
