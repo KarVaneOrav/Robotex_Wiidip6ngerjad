@@ -78,7 +78,7 @@ def to_hsv(color_frame):
     return cv2.cvtColor(color_frame, cv2.COLOR_BGR2HSV)
 
 
-def process_balls(hsv_frame, lowerLimits = lowerLimitsGreen, upperLimits = upperLimitsGreen):
+def process_balls(hsv_frame, lowerLimits=lowerLimitsGreen, upperLimits=upperLimitsGreen):
     # takes a hsv frame as input, outputs balls as white
     thresholded = cv2.inRange(hsv_frame, lowerLimits, upperLimits)
 
@@ -88,8 +88,8 @@ def process_balls(hsv_frame, lowerLimits = lowerLimitsGreen, upperLimits = upper
     return thresholded
 
 
-def process_basket(hsv_frame, lowerLimits = lowerLimitsTarget, upperLimits = upperLimitsTarget
-                   , dilate = targetKernelDilate):
+def process_basket(hsv_frame, lowerLimits=lowerLimitsTarget, upperLimits=upperLimitsTarget
+                   , dilate=targetKernelDilate):
     # takes a hsv frame as input, outputs basket as white
     thresholded = cv2.inRange(hsv_frame, lowerLimits, upperLimits)
     morphed = cv2.dilate(thresholded, dilate, iterations=1)

@@ -37,10 +37,10 @@ try:
         hsv = Camera.to_hsv(frame)
 
         # for balls
-        # processed_frame = Camera.process_balls(hsv, lowerLimits, upperLimits)
+        processed_frame = Camera.process_balls(hsv, lowerLimits, upperLimits)
 
         # for baskets
-        processed_frame = Camera.process_basket(hsv, lowerLimits, upperLimits, kernelDilate)
+        # processed_frame = Camera.process_basket(hsv, lowerLimits, upperLimits, kernelDilate)
 
         contours, _hierarchy = cv2.findContours(processed_frame, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
         circles = map(cv2.minEnclosingCircle, contours)
