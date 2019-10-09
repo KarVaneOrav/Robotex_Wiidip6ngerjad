@@ -116,9 +116,8 @@ def green_finder(frame):
         ball = [int(circle[0][0]), int(circle[0][1])]
         print("ball: " + str(ball))
         return ball
-    except Exception as e:
+    except:
         print('No balls')
-        print(e)
         return []
 
 '''
