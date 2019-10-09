@@ -1,7 +1,6 @@
 from serial.tools import list_ports
 import serial
 from math import sqrt, atan2, cos, radians
-import Camera
 
 # Takes list of existing ports. Chooses the mainboard if there are no others.
 port = (str(list_ports.comports()[0]).split(' '))[0]
@@ -65,12 +64,15 @@ def motors(robotSpeed, robotDirectionAngle, robotAngularVelocity = 0):
 
 def rotate_ball(ball):
     # sets the ball and the basket in a line
+    rotate = 'sd:30:0:0\n'
+    left = 'sd:30:-10:-10\n'
+    right = 'sd:30:10:10\n'
     if ball[0] < 690:
-        ser.write(b'sd:30:-10:-10\n')
+        ser.write(left.encode('utf-8'))
     elif ball[0] > 740:
-        ser.write(b'sd:30:10:10\n')
+        ser.write(right.encode('utf-8'))
     else:
-        ser.write(b'sd:30:0:0\n')
+        ser.write(rotate.encode('utf-8'))
 
     read_serial()
 
