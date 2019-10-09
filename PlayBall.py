@@ -8,6 +8,8 @@ comTime = time.time()
 
 Camera.get_target_basket('blue')
 
+tasks = {"look": True, "rotate":  False}
+
 
 def timer():
     # sets communication to 60Hz
@@ -37,38 +39,32 @@ try:
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
 
-        if not ball:
-            if timer():
-                Movement.omni_drive([0, 0, 1])  # turns on the spot
+        if tasks["look"]:
+            if ball:
+                if ball[1] < 400:
+                    if timer():
+                        Movement.move_to_ball(ball)
+                else:
+                    Movement.omni_drive([0, 0, 0])
+                    tasks["look"] = False
+                    tasks["rotate"] = True
 
-        else:
-            if ball[1] > 400:
-                Movement.rotate_ball(ball)
+            elif not ball:
+                if timer():
+                    Movement.omni_drive([0, 0, 1])  # turns on the spot
+
+        elif tasks["rotate"]:
+            if not ball:
+                tasks["rotate"] = False
+                tasks["look"] = True
+                continue
             else:
                 if timer():
-                    Movement.move_to_ball(ball)
+                    Movement.rotate_ball(ball)
 
-        '''else:
+        else:
             print("Error in tasks logic")
             break
-
-
-            else:
-                turn = Camera.ball_to_middle(ball)
-                if turn == [0, 0, 0]:
-                    tasks["look"] = False
-                action(turn)
-        else:
-            if len(ball) == 0:
-                print("lost ball")
-                tasks['look'] = True
-            elif ball[1] < 400:
-                action([0, 0.3, 0])
-                print("go")
-            else:
-                action([0, 0, 0])
-                print("Done")
-                break'''
             
 
 except Exception as e:
