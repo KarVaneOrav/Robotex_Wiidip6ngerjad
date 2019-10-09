@@ -96,6 +96,12 @@ def process_basket(hsv_frame, lowerLimits=lowerLimitsTarget, upperLimits=upperLi
     return morphed
 
 
+def basket_finder(frame):
+    # input processed image, outputs a keypoint on the target
+    contours, _hierarchy = cv2.findContours(frame, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    keypoints = map(cv2.minEnclosingCircle, contours)
+
+
 def green_finder(frame):
     # finds the closest ball from a black and white frame. Returns an empty list if no balls, otherwise as [x, y]
     contours, _hierarchy = cv2.findContours(frame, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)

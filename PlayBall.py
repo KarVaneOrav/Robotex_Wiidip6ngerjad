@@ -54,7 +54,7 @@ try:
                     Movement.omni_drive([0, 0, 1])  # turns on the spot
 
         elif tasks["rotate"]:
-            if not ball:
+            if not ball or ball[1] < 400:
                 tasks["rotate"] = False
                 tasks["look"] = True
                 continue
