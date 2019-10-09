@@ -53,9 +53,8 @@ try:
         # tag middle blob for baskets
         try:
             circles = sorted(circles, key=lambda x: x[0])
-            spot = circles[round(len(circles)/2)][0]
-            spot[0] = int(spot[0])
-            spot[1] = int(spot[1])
+            circle = circles[round(len(circles)/2)]
+            spot = [int(circle[0][0]), int(circle[0][1])]
             cv2.putText(frame, str(spot), (int(spot[0]), int(spot[1])), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
         except Exception as e:
             print("no targets")
