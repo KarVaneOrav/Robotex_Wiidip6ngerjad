@@ -72,6 +72,8 @@ def rotate_ball(ball):
     else:  # rotate
         ser.write(b'sd:30:0:0')
 
+    read_serial()
+
     
 def thrower():
     ser.write(b'd:1000\n')
