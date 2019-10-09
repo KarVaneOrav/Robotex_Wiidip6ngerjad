@@ -28,12 +28,13 @@ try:
 
         hsv_frame = Camera.to_hsv(frame)
         processed_frame = Camera.process_balls(frame)
-
-        '''cv2.imshow('RealSense', frame)
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break'''
         
         ball = Camera.green_finder(processed_frame)
+
+        cv2.putText(frame, str(ball), ball, cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+        cv2.imshow('RealSense', frame)
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
 
         if len(ball) == 0:
             if timer():

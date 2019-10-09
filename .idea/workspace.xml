@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="39b78f02-c27e-4874-a048-5aee4c62ec90" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/other.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Camera.py" beforeDir="false" afterPath="$PROJECT_DIR$/Camera.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PlayBall.py" beforeDir="false" afterPath="$PROJECT_DIR$/PlayBall.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Threshold.py" beforeDir="false" afterPath="$PROJECT_DIR$/Threshold.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -36,29 +32,29 @@
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="ini" value="1" />
-          <entry key="py" value="10" />
+          <entry key="py" value="11" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Ini" value="1" />
-          <entry key="Python" value="10" />
+          <entry key="Python" value="11" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="Python Console" value="179" />
-          <entry key="dummy" value="1" />
+          <entry key="dummy" value="8" />
           <entry key="ini" value="1" />
-          <entry key="py" value="4550" />
+          <entry key="py" value="4945" />
           <entry key="txt" value="11" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Ini" value="1" />
-          <entry key="PLAIN_TEXT" value="12" />
-          <entry key="Python" value="4729" />
+          <entry key="PLAIN_TEXT" value="19" />
+          <entry key="Python" value="5124" />
         </counts>
       </usages-collector>
     </session>
@@ -70,10 +66,11 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Movement.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="357">
-                  <caret line="23" column="23" selection-start-line="23" selection-start-column="23" selection-end-line="23" selection-end-column="23" />
+                <state relative-caret-position="493">
+                  <caret line="72" column="31" lean-forward="true" selection-start-line="72" selection-start-column="31" selection-end-line="72" selection-end-column="31" />
                   <folding>
                     <element signature="e#0#35#0" expanded="true" />
+                    <marker date="1570619035064" expanded="true" signature="2371:2532" ph="..." />
                   </folding>
                 </state>
               </provider>
@@ -94,31 +91,31 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Threshold.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="592">
-                  <caret line="56" column="8" selection-start-line="56" selection-start-column="8" selection-end-line="56" selection-end-column="8" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/Camera.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="459">
-                  <caret line="94" column="59" lean-forward="true" selection-start-line="94" selection-start-column="59" selection-end-line="94" selection-end-column="59" />
-                  <folding>
-                    <marker date="1570552744361" expanded="true" signature="1014:1302" ph="..." />
-                    <marker date="1570552744361" expanded="true" signature="1959:2018" ph="..." />
-                    <marker date="1570552744361" expanded="true" signature="2634:2783" ph="..." />
-                  </folding>
+                <state relative-caret-position="507">
+                  <caret line="51" lean-forward="true" selection-start-line="50" selection-start-column="12" selection-end-line="51" />
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Camera.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="204">
+                  <caret line="15" column="37" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
+                  <folding>
+                    <marker date="1570619035082" expanded="true" signature="1011:1299" ph="..." />
+                    <marker date="1570619035082" expanded="true" signature="1956:2015" ph="..." />
+                    <marker date="1570619035082" expanded="true" signature="2631:2780" ph="..." />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/PlayBall.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="136">
-                  <caret line="8" column="32" lean-forward="true" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
+                <state relative-caret-position="218">
+                  <caret line="34" column="38" lean-forward="true" selection-start-line="34" selection-start-column="38" selection-end-line="34" selection-end-column="38" />
                   <folding>
                     <element signature="e#0#13#0" expanded="true" />
                   </folding>
@@ -131,10 +128,10 @@
       <split-second>
         <leaf>
           <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/Threshold.py">
+            <entry file="file://$PROJECT_DIR$/Camera.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="184">
-                  <caret line="29" column="51" selection-start-line="29" selection-start-column="51" selection-end-line="29" selection-end-column="51" />
+                <state relative-caret-position="493">
+                  <caret line="116" column="79" selection-start-line="116" selection-start-column="79" selection-end-line="116" selection-end-column="79" />
                 </state>
               </provider>
             </entry>
@@ -162,10 +159,10 @@
         <option value="$PROJECT_DIR$/config.ini" />
         <option value="$PROJECT_DIR$/Kaamera.py" />
         <option value="$PROJECT_DIR$/test.py" />
+        <option value="$PROJECT_DIR$/Threshold.py" />
+        <option value="$PROJECT_DIR$/Camera.py" />
         <option value="$PROJECT_DIR$/Movement.py" />
         <option value="$PROJECT_DIR$/PlayBall.py" />
-        <option value="$PROJECT_DIR$/Camera.py" />
-        <option value="$PROJECT_DIR$/Threshold.py" />
       </list>
     </option>
   </component>
@@ -175,8 +172,8 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="-7" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="793" />
     <option name="width" value="814" />
     <option name="height" value="867" />
   </component>
@@ -320,27 +317,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1567943690172</updated>
-    </task>
-    <task id="LOCAL-00022" summary="&#10;f">
-      <created>1569964495393</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1569964495393</updated>
-    </task>
-    <task id="LOCAL-00023" summary="&#10;f">
-      <created>1569964762331</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1569964762331</updated>
-    </task>
-    <task id="LOCAL-00024" summary="&#10;f">
-      <created>1569964864916</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1569964864916</updated>
     </task>
     <task id="LOCAL-00025" summary="&#10;f">
       <created>1569965573770</created>
@@ -664,7 +640,28 @@
       <option name="project" value="LOCAL" />
       <updated>1570464342889</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="&#10;f">
+      <created>1570552754411</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1570552754413</updated>
+    </task>
+    <task id="LOCAL-00072" summary="&#10;f">
+      <created>1570552809463</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1570552809463</updated>
+    </task>
+    <task id="LOCAL-00073" summary="&#10;f">
+      <created>1570619042200</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1570619042200</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TodoView">
@@ -733,16 +730,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Movement.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="23" column="23" selection-start-line="23" selection-start-column="23" selection-end-line="23" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
@@ -753,32 +740,43 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PlayBall.py">
+    <entry file="file://$PROJECT_DIR$/Camera.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="32" lean-forward="true" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
+        <state relative-caret-position="204">
+          <caret line="15" column="37" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
           <folding>
-            <element signature="e#0#13#0" expanded="true" />
+            <marker date="1570619035082" expanded="true" signature="1011:1299" ph="..." />
+            <marker date="1570619035082" expanded="true" signature="1956:2015" ph="..." />
+            <marker date="1570619035082" expanded="true" signature="2631:2780" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Camera.py">
+    <entry file="file://$PROJECT_DIR$/Movement.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="94" column="59" lean-forward="true" selection-start-line="94" selection-start-column="59" selection-end-line="94" selection-end-column="59" />
+        <state relative-caret-position="493">
+          <caret line="72" column="31" lean-forward="true" selection-start-line="72" selection-start-column="31" selection-end-line="72" selection-end-column="31" />
           <folding>
-            <marker date="1570552744361" expanded="true" signature="1014:1302" ph="..." />
-            <marker date="1570552744361" expanded="true" signature="1959:2018" ph="..." />
-            <marker date="1570552744361" expanded="true" signature="2634:2783" ph="..." />
+            <element signature="e#0#35#0" expanded="true" />
+            <marker date="1570619035064" expanded="true" signature="2371:2532" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Threshold.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="29" column="51" selection-start-line="29" selection-start-column="51" selection-end-line="29" selection-end-column="51" />
+        <state relative-caret-position="507">
+          <caret line="51" lean-forward="true" selection-start-line="50" selection-start-column="12" selection-end-line="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PlayBall.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="34" column="38" lean-forward="true" selection-start-line="34" selection-start-column="38" selection-end-line="34" selection-end-column="38" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
