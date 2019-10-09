@@ -65,9 +65,10 @@ def motors(robotSpeed, robotDirectionAngle, robotAngularVelocity = 0):
 
 def rotate_ball(ball):
     # sets the ball and the basket in a line
-    toMiddle = Camera.ball_to_middle(ball)
-    if toMiddle != [0, 0, 0]:
-        omni_drive(toMiddle)
+    if ball[0] < 690:
+        ser.write(b'sd:30:-10:-10')
+    elif ball[0] > 740:
+        ser.write(b'sd:30:10:10')
     else:  # rotate
         ser.write(b'sd:30:0:0')
 
