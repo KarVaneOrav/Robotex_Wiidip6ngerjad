@@ -62,9 +62,7 @@ try:
             else:  # starts rotating
                 if timer():
                     print("rotating")
-                    Movement.get().write(b'sd:30:0:0\n')
-                    Movement.read_serial()
-                    #Movement.rotate_ball(ball)
+                    Movement.rotate_ball(ball)
 
         else:
             print("Error in tasks logic")
