@@ -31,7 +31,8 @@ try:
         
         ball = Camera.green_finder(processed_frame)
 
-        cv2.putText(frame, str(ball), tuple(ball), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+        if ball:
+            cv2.putText(frame, str(ball), tuple(ball), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
         cv2.imshow('RealSense', frame)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
