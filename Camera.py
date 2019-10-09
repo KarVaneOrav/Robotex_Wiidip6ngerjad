@@ -109,14 +109,14 @@ def green_finder(frame):
 
     # return closest ball, gives exception if map object empty
     # sort the list
-    if circles:
+    try:
         circles = sorted(circles, key=lambda x: x[1])
         # return the closest ball
         circle = circles[-1]
         ball = [int(circle[0][0]), int(circle[0][1])]
         print("ball: " + ball)
         return ball
-    else:
+    except:
         print('No balls')
         return []
 

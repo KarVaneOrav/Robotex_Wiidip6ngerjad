@@ -51,10 +51,12 @@ try:
             cv2.putText(frame, str(coordinate), coordinate, cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
         '''
         # tag middle blob for baskets
-        if circles:
+        try:
             circles = sorted(circles, key=lambda x: x[0])
             spot = circles[round(len(circles)/2)][0]
             cv2.putText(frame, str(spot), (int(spot[0]), int(spot[1])), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+        except:
+            print("no targets")
 
         # Show images
         cv2.imshow('Processed', processed_frame)
