@@ -64,15 +64,13 @@ def motors(robotSpeed, robotDirectionAngle, robotAngularVelocity = 0):
 
 def rotate_ball(ball):
     # sets the ball and the basket in a line
-    rotate = 'sd:30:0:0\n'
-    left = 'sd:30:-10:-10\n'
-    right = 'sd:30:10:10\n'
+    read_serial()
     if ball[0] < 690:
-        ser.write(left.encode('utf-8'))
+        ser.write(b'sd:30:-10:-10\n')
     elif ball[0] > 740:
-        ser.write(right.encode('utf-8'))
+        ser.write(b'sd:30:10:10\n')
     else:
-        ser.write(rotate.encode('utf-8'))
+        ser.write(b'sd:30:0:0\n')
 
     read_serial()
 
