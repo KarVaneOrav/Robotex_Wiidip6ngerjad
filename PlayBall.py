@@ -60,6 +60,7 @@ try:
                 continue
             else:
                 if timer():
+                    print("rotating")
                     Movement.rotate_ball(ball)
 
         else:
