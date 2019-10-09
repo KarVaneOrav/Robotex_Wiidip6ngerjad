@@ -62,7 +62,8 @@ try:
             else:  # starts rotating
                 if timer():
                     print("rotating")
-                    Movement.test()
+                    Movement.get().write(b'sd:30:0:0\n')
+                    Movement.read_serial()
                     #Movement.rotate_ball(ball)
 
         else:
