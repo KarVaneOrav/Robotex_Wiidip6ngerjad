@@ -63,18 +63,14 @@ def get_frame():
             continue
         else:
             break
-    
-    # Convert images to numpy arrays
-    color_frame = np.asanyarray(color_frame.get_data())
-    # blur the frame
-    blurred = cv2.GaussianBlur(color_frame, (3, 3), 2)
-    # crop from 1280, 720 because corners are foggy
-    cropped = blurred[0:680, 50:1230]
+
+    color_frame = np.asanyarray(color_frame.get_data())  # Convert images to numpy arrays
+    blurred = cv2.GaussianBlur(color_frame, (3, 3), 2)  # blur the frame
+    cropped = blurred[0:680, 50:1230]  # crop from 1280, 720 because corners are foggy
     return cropped
 
 
-def to_hsv(color_frame):
-    # turns color frame to hsv
+def to_hsv(color_frame):  # turns color frame to hsv
     return cv2.cvtColor(color_frame, cv2.COLOR_BGR2HSV)
 
 
@@ -114,11 +110,8 @@ def green_finder(frame):
     contours, _hierarchy = cv2.findContours(frame, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     circles = map(cv2.minEnclosingCircle, contours)
 
-    # return closest ball, gives exception if map object empty
-    # sort the list
-    circles = sorted(circles, key=lambda x: x[1])
-    try:
-        # return the closest ball
+    circles = sorted(circles, key=lambda x: x[1])  # sort the list
+    try:  # return the closest ball
         circle = circles[-1]
         ball = [int(circle[0][0]), int(circle[0][1])]
         print("ball: " + str(ball))
