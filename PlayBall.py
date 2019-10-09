@@ -41,8 +41,8 @@ try:
 
         if tasks["look"]:
             print("looking")
-            if ball:
-                if ball[1] < 400:
+            if ball:  # if sees a ball
+                if ball[1] < 400:  # if ball is too far
                     if timer():
                         Movement.move_to_ball(ball)
                 else:
@@ -50,16 +50,16 @@ try:
                     tasks["look"] = False
                     tasks["rotate"] = True
 
-            elif not ball:
+            else:  # if sees no balls
                 if timer():
                     Movement.omni_drive([0, 0, 1])  # turns on the spot
 
         elif tasks["rotate"]:
-            if not ball or ball[1] < 400:
+            if not ball or ball[1] < 400:  # if loses the ball or gets too far
                 tasks["rotate"] = False
                 tasks["look"] = True
                 continue
-            else:
+            else:  # starts rotating
                 if timer():
                     print("rotating")
                     Movement.rotate_ball(ball)
