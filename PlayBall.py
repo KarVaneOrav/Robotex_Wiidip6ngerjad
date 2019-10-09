@@ -62,7 +62,8 @@ try:
             else:  # starts rotating
                 if timer():
                     print("rotating")
-                    Movement.rotate_ball(ball)
+                    Movement.test()
+                    #Movement.rotate_ball(ball)
 
         else:
             print("Error in tasks logic")
