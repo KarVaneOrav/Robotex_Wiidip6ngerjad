@@ -45,20 +45,19 @@ try:
         contours, _hierarchy = cv2.findContours(processed_frame, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
         circles = map(cv2.minEnclosingCircle, contours)
 
-        '''# tagging all blobs
+        # tagging all blobs
         for i in circles:
             coordinate = (int(i[0][0]), int(i[0][1]))
             cv2.putText(frame, str(coordinate), coordinate, cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
-        '''
-        # tag middle blob for baskets
+
+        '''# tag middle blob for baskets
         try:
             circles = sorted(circles, key=lambda x: x[0])
             circle = circles[round(len(circles)/2)]
             spot = [int(circle[0][0]), int(circle[0][1])]
             cv2.putText(frame, str(spot), (int(spot[0]), int(spot[1])), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
-        except Exception as e:
-            print("no targets")
-            print(e)
+        except:
+            print("no targets")'''
 
         # Show images
         cv2.imshow('Processed', processed_frame)
