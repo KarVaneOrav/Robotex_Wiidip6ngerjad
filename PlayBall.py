@@ -40,6 +40,7 @@ try:
             break
 
         if tasks["look"]:
+            print("looking")
             if ball:
                 if ball[1] < 400:
                     if timer():
