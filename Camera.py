@@ -114,7 +114,7 @@ def green_finder(frame):
         # return the closest ball
         circle = circles[-1]
         ball = [int(circle[0][0]), int(circle[0][1])]
-        print("ball: " + ball)
+        print("ball: " + str(ball))
         return ball
     except Exception as e:
         print('No balls')
