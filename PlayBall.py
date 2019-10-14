@@ -61,7 +61,7 @@ try:
                 tasks["look"] = True
                 continue
             else:  # starts rotating
-                basket = Camera.get_target_basket(hsv_frame)
+                basket = Camera.basket_finder(hsv_frame)
                 if timer():
                     print("rotating")
                     Movement.rotate_ball(ball, basket)

@@ -42,7 +42,6 @@ def get_target_basket(opponent):
     global lowerLimitsTarget
     global upperLimitsTarget
     global targetKernelDilate
-    #print(opponent)
     if opponent:
         target = blue
     else:
