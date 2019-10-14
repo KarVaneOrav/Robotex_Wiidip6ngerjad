@@ -45,8 +45,11 @@ def get_target_basket(opponent):
 
     if opponent == 'pink':
         target = pink
-    else:
+    elif opponent == 'blue':
         target = blue
+    else:
+        print("Unknown target")
+        raise Exception
 
     lowerLimitsTarget = np.array([target[0], target[1], target[2]])
     upperLimitsTarget = np.array([target[3], target[4], target[5]])
