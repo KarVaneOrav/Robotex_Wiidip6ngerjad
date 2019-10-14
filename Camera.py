@@ -119,14 +119,3 @@ def green_finder(frame):
     except:
         print('No balls')
         return []
-
-'''
-def ball_to_middle(ball):
-    # turns the robot to the given direction. Input as [x, y] output as speeds [x, y, angular]
-    # currently camera isnt in the middle
-    if ball[0] < 690:
-        return [0, 0, -1]
-    elif ball[0] > 740:
-        return [0, 0, 1]
-    else:
-        return [0, 0, 0]'''

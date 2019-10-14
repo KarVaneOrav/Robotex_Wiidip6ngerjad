@@ -60,9 +60,10 @@ try:
                 tasks["look"] = True
                 continue
             else:  # starts rotating
+                basket = Camera.get_target_basket(processed_frame)
                 if timer():
                     print("rotating")
-                    Movement.rotate_ball(ball)
+                    Movement.rotate_ball(ball, basket)
 
         else:
             print("Error in tasks logic")
