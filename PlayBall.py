@@ -71,9 +71,9 @@ try:
             break
             
 
-except Exception as e:
-    print(e)
-    print("Shitty end")
+#except Exception as e:
+#    print(e)
+#    print("Shitty end")
 finally:
     Camera.stop()
     Movement.close()
