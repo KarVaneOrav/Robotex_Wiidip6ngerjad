@@ -69,11 +69,7 @@ try:
         else:
             print("Error in tasks logic")
             break
-            
 
-#except Exception as e:
-#    print(e)
-#    print("Shitty end")
 finally:
     Camera.stop()
     Movement.close()

@@ -17,9 +17,9 @@ pink = [95, 203, 61, 255, 255, 255, 3]
 # values to process blue
 blue = [35, 0, 29, 255, 91, 255, 3]
 # values for processing
-lowerLimitsTarget = None
-upperLimitsTarget = None
-targetKernelDilate = None
+lowerLimitsTarget = []
+upperLimitsTarget = []
+targetKernelDilate = []
 
 # Configure depth and color streams
 pipeline = rs.pipeline()
