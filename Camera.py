@@ -12,7 +12,7 @@ green = [16, 163, 93, 124, 255, 255]
 lowerLimitsGreen = np.array([green[0], green[1], green[2]])
 upperLimitsGreen = np.array([green[3], green[4], green[5]])
 
-# values to process pink
+# values to process pink !!! change values below in function
 pink = [95, 203, 61, 255, 255, 255, 3]
 # values to process blue
 blue = [35, 0, 29, 255, 91, 255, 3]
@@ -43,9 +43,9 @@ def get_target_basket(opponent):
     global upperLimitsTarget
     global targetKernelDilate
     if opponent:
-        target = blue
+        target = [35, 0, 29, 255, 91, 255, 3]  # blue
     else:
-        target = pink
+        target = [95, 203, 61, 255, 255, 255, 3]  # pink
 
     lowerLimitsTarget = np.array([target[0], target[1], target[2]])
     upperLimitsTarget = np.array([target[3], target[4], target[5]])
@@ -86,8 +86,6 @@ def process_balls(hsv_frame, lowerLimits=lowerLimitsGreen, upperLimits=upperLimi
 def process_basket(hsv_frame, lowerLimits=lowerLimitsTarget, upperLimits=upperLimitsTarget
                    , dilate=targetKernelDilate):
     # takes a hsv frame as input, outputs basket as white
-    print(lowerLimits)
-    print(upperLimits)
     thresholded = cv2.inRange(hsv_frame, lowerLimits, upperLimits)
     morphed = cv2.dilate(thresholded, dilate, iterations=1)
     return morphed
