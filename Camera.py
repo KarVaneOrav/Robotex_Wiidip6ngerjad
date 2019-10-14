@@ -43,13 +43,10 @@ def get_target_basket(opponent):
     global upperLimitsTarget
     global targetKernelDilate
 
-    if opponent == 'pink':
-        target = pink
-    elif opponent == 'blue':
+    if opponent:
         target = blue
     else:
-        print("Unknown target")
-        raise Exception
+        target = pink
 
     lowerLimitsTarget = np.array([target[0], target[1], target[2]])
     upperLimitsTarget = np.array([target[3], target[4], target[5]])

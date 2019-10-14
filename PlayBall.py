@@ -6,7 +6,8 @@ import cv2
 frequency = 0.0166667
 comTime = time.time()
 
-Camera.get_target_basket('blue')
+# 1 for blue, 0 for pink
+Camera.get_target_basket(1)
 
 tasks = {"look": True, "rotate":  False}
 
