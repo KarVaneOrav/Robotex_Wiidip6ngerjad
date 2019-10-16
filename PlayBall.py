@@ -18,9 +18,7 @@ pink = [95, 203, 61, 255, 255, 255, 3]
 # values to process blue
 blue = [35, 0, 29, 255, 91, 255, 3]
 # values for processing
-targetValues = {'lowerLimits': None
-    , 'upperLimits': None
-    , 'kernelDilate': None}
+targetValues = {'lowerLimits': None, 'upperLimits': None, 'kernelDilate': None}
 
 
 tasks = {"look": True, "rotate":  False}
@@ -53,6 +51,7 @@ def timer():
 
 try:
     set_target_basket(opponent)
+    print(targetValues)
 
     while True:
         # to show vanilla frame
