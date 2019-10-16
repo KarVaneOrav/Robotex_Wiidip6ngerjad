@@ -17,9 +17,7 @@ pink = [95, 203, 61, 255, 255, 255, 3]
 # values to process blue
 blue = [35, 0, 29, 255, 91, 255, 3]
 # values for processing
-lowerLimitsTarget = []
-upperLimitsTarget = []
-targetKernelDilate = []
+targetValues = {'lowerLimitsTarget': None, 'upperLimitsTarget': None, 'targetKernelDilate': None}
 
 # Configure depth and color streams
 pipeline = rs.pipeline()
@@ -37,19 +35,16 @@ pipeline.start(config)
 def stop():
     pipeline.stop()
 
-
+# tuleb ümber teha, sest siin failis neid muutujaid muuta ei anna
 def get_target_basket(opponent):
-    global lowerLimitsTarget
-    global upperLimitsTarget
-    global targetKernelDilate
     if opponent:
         target = [35, 0, 29, 255, 91, 255, 3]  # blue
     else:
         target = [95, 203, 61, 255, 255, 255, 3]  # pink
 
-    lowerLimitsTarget = np.array([target[0], target[1], target[2]])
-    upperLimitsTarget = np.array([target[3], target[4], target[5]])
-    targetKernelDilate = np.ones((target[6], target[6]), np.uint8)
+    targetValues['lowerLimitsTarget'] = np.array([target[0], target[1], target[2]])
+    targetValues['upperLimitsTarget'] = np.array([target[3], target[4], target[5]])
+    targetValues['targetKernelDilate'] = np.ones((target[6], target[6]), np.uint8)
 
 
 def get_frame():
@@ -83,8 +78,9 @@ def process_balls(hsv_frame, lowerLimits=lowerLimitsGreen, upperLimits=upperLimi
     return thresholded
 
 
-def process_basket(hsv_frame, lowerLimits=lowerLimitsTarget, upperLimits=upperLimitsTarget
-                   , dilate=targetKernelDilate):
+def process_basket(hsv_frame, lowerLimits=targetValues.get('lowerLimitsTarget')
+                   , upperLimits=targetValues.get('upperLimitsTarget')
+                   , dilate=targetValues.get('targetKernelDilate')):
     # takes a hsv frame as input, outputs basket as white
     thresholded = cv2.inRange(hsv_frame, lowerLimits, upperLimits)
     morphed = cv2.dilate(thresholded, dilate, iterations=1)
