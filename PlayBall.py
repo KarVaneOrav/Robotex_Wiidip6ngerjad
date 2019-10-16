@@ -32,9 +32,9 @@ def set_target_basket(opponent):
     else:
         target = pink
 
-    targetValues['lowerLimitsTarget'] = np.array([target[0], target[1], target[2]])
-    targetValues['upperLimitsTarget'] = np.array([target[3], target[4], target[5]])
-    targetValues['targetKernelDilate'] = np.ones((target[6], target[6]), np.uint8)
+    targetValues['lowerLimits'] = np.array([target[0], target[1], target[2]])
+    targetValues['upperLimits'] = np.array([target[3], target[4], target[5]])
+    targetValues['targetKerne'] = np.ones((target[6], target[6]), np.uint8)
 
 
 def timer():
