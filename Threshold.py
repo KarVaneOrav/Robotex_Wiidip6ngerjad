@@ -12,6 +12,7 @@ def updateValue(bar, new_value):
 
 # trackbars
 bars = [16, 163, 93, 124, 255, 255, 2]
+values = {'lowerLimits': None, 'upperLimits': None, 'kernelDilate': None}
 
 cv2.namedWindow('Controls', cv2.WINDOW_AUTOSIZE)
 
@@ -27,17 +28,17 @@ cv2.createTrackbar('Dilate', "Controls", bars[6], 20, partial(updateValue, 6))
 try:
     while True:
         # kernel
-        kernelDilate = np.ones((bars[6], bars[6]), np.uint8)
+        values['kernelDilate'] = np.ones((bars[6], bars[6]), np.uint8)
         # kernelErode = np.ones((bars[7],bars[7]),np.uint8)
         
-        lowerLimits = np.array([bars[0], bars[1], bars[2]])
-        upperLimits = np.array([bars[3], bars[4], bars[5]])
+        values['lowerLimits'] = np.array([bars[0], bars[1], bars[2]])
+        values['upperLimits'] = np.array([bars[3], bars[4], bars[5]])
         
         frame = Camera.get_frame()
         hsv = Camera.to_hsv(frame)
 
         # for balls
-        processed_frame = Camera.process_balls(hsv, lowerLimits, upperLimits)
+        processed_frame = Camera.process_balls(hsv, values)
 
         # for baskets
         # processed_frame = Camera.process_basket(hsv, lowerLimits, upperLimits, kernelDilate)

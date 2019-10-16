@@ -4,21 +4,6 @@ import pyrealsense2 as rs
 import numpy as np
 import cv2
 
-# values for image processing green
-green = [16, 163, 93, 124, 255, 255]
-# greenKernelErode = np.ones((1, 1), np.uint8)
-# greenKernelDilate = np.ones((3, 3), np.uint8)
-# colour detection limits
-lowerLimitsGreen = np.array([green[0], green[1], green[2]])
-upperLimitsGreen = np.array([green[3], green[4], green[5]])
-
-# values to process pink !!! change values below in function
-pink = [95, 203, 61, 255, 255, 255, 3]
-# values to process blue
-blue = [35, 0, 29, 255, 91, 255, 3]
-# values for processing
-targetValues = {'lowerLimitsTarget': None, 'upperLimitsTarget': None, 'targetKernelDilate': None}
-
 # Configure depth and color streams
 pipeline = rs.pipeline()
 # Start streaming
@@ -34,17 +19,6 @@ pipeline.start(config)
 ####
 def stop():
     pipeline.stop()
-
-# tuleb ümber teha, sest siin failis neid muutujaid muuta ei anna
-def get_target_basket(opponent):
-    if opponent:
-        target = [35, 0, 29, 255, 91, 255, 3]  # blue
-    else:
-        target = [95, 203, 61, 255, 255, 255, 3]  # pink
-
-    targetValues['lowerLimitsTarget'] = np.array([target[0], target[1], target[2]])
-    targetValues['upperLimitsTarget'] = np.array([target[3], target[4], target[5]])
-    targetValues['targetKernelDilate'] = np.ones((target[6], target[6]), np.uint8)
 
 
 def get_frame():
@@ -68,8 +42,11 @@ def to_hsv(color_frame):  # turns color frame to hsv
     return cv2.cvtColor(color_frame, cv2.COLOR_BGR2HSV)
 
 
-def process_balls(hsv_frame, lowerLimits=lowerLimitsGreen, upperLimits=upperLimitsGreen):
+def process_balls(hsv_frame, values):
     # takes a hsv frame as input, outputs balls as white
+    lowerLimits = values.get('lowerLimits')
+    upperLimits = values.get('upperLimits')
+
     thresholded = cv2.inRange(hsv_frame, lowerLimits, upperLimits)
 
     # in case morphing is needed
@@ -78,18 +55,20 @@ def process_balls(hsv_frame, lowerLimits=lowerLimitsGreen, upperLimits=upperLimi
     return thresholded
 
 
-def process_basket(hsv_frame, lowerLimits=targetValues.get('lowerLimitsTarget')
-                   , upperLimits=targetValues.get('upperLimitsTarget')
-                   , dilate=targetValues.get('targetKernelDilate')):
+def process_basket(hsv_frame, values):
     # takes a hsv frame as input, outputs basket as white
+    lowerLimits = values.get('lowerLimits')
+    upperLimits = values.get('upperLimits')
+    dilate = values.get('kernelDilate')
+
     thresholded = cv2.inRange(hsv_frame, lowerLimits, upperLimits)
     morphed = cv2.dilate(thresholded, dilate, iterations=1)
     return morphed
 
 
-def basket_finder(hsv_frame):
+def basket_finder(hsv_frame, values):
     # input processed image, outputs a keypoint on the target
-    processed_frame = process_basket(hsv_frame)
+    processed_frame = process_basket(hsv_frame, values)
     contours, _hierarchy = cv2.findContours(processed_frame, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     keypoints = map(cv2.minEnclosingCircle, contours)
     try:
