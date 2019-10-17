@@ -21,7 +21,7 @@ def timer():
 # angle 0 = right 90 = forward
 while True:
     cv2.namedWindow('rgb_img', cv2.WINDOW_NORMAL)
-    key = cv2.waitKey(1)
+    key = cv2.waitKey(0)
     if key != -1:
         print(key)
     if timer():
