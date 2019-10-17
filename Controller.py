@@ -21,7 +21,8 @@ def timer():
 while True:
     cv2.namedWindow('rgb_img', cv2.WINDOW_NORMAL)
     key = cv2.waitKey(1)
-
+    if key != -1:
+        print(key)
     if timer():
         if key == 119:
             Movement.motors(0.5, 0, 0)
