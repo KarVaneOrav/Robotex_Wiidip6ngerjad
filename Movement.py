@@ -80,6 +80,28 @@ def rotate_ball(ball, basket):
     ser.write(('sd:'+back+':'+other+':'+other+'\n').encode('utf-8'))
     read_serial()
 
+
+def controller(key):
+    if key == 0:  # arrows
+        return True
+    elif key == 119:  # w
+        motors(0.3, 1.57, 0)
+    elif key == 97:  # a
+        motors(0.3, 3.14, 0)
+    elif key == 115:  # s
+        motors(0.3, 4.71, 0)
+    elif key == 100:  # d
+        motors(0.3, 0, 0)
+    elif key == 111:  # o
+        motors(0, 0, 2)
+    elif key == 112:  # p
+        motors(0, 0, -2)
+    else:
+        motors(0, 0, 0)
+
+    return False  # if still controlling
+
+
     
 def thrower():
     ser.write(b'd:1000\n')

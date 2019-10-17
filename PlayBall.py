@@ -21,11 +21,6 @@ blue = [35, 0, 29, 255, 91, 255, 3]
 targetValues = {'lowerLimits': None, 'upperLimits': None, 'kernelDilate': None}
 
 
-tasks = {"look": True, "rotate":  False}
-frequency = 0.0166667
-comTime = time.time()
-
-
 def set_target_basket(opponent):
     if opponent == 'blue':
         target = blue
@@ -49,6 +44,12 @@ def timer():
         return False
 
 
+tasks = {"controller": False, "look": True, "rotate":  False}
+current_task = "look"
+frequency = 0.0166667
+comTime = time.time()
+end_control = False
+
 try:
     set_target_basket(opponent)
     print(targetValues)
@@ -65,10 +66,26 @@ try:
         if ball:
             cv2.putText(frame, str(ball), tuple(ball), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
         cv2.imshow('RealSense', processed_frame_green)
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
 
-        if tasks["look"]:
+        key = cv2.waitKey(1)
+        if key == 113:
+            break
+        elif key == 0 and not tasks['controller']:  # if key is pressed and already not controlling
+            tasks[current_task] = False
+            tasks["controller"] = True
+            current_task = 'controller'
+
+        if tasks['controller']:
+            print("Controlling by remote")
+            if timer():
+                end_control = Movement.controller(key)
+            if end_control:
+                tasks[current_task] = False
+                tasks['look'] = True
+                current_task = 'look'
+                end_control = False
+
+        elif tasks["look"]:
             print("looking")
             if ball:  # if sees a ball
                 if ball[1] < 400:  # if ball is too far
@@ -76,22 +93,24 @@ try:
                         Movement.move_to_ball(ball)
                 else:
                     Movement.omni_drive([0, 0, 0])
-                    tasks["look"] = False
+                    tasks[current_task] = False
                     tasks["rotate"] = True
+                    current_task = "rotate"
 
             else:  # if sees no balls
                 if timer():
                     Movement.omni_drive([0, 0, 1])  # turns on the spot
 
         elif tasks["rotate"]:
+            print("rotating")
             if not ball or ball[1] < 400:  # if loses the ball or gets too far
-                tasks["rotate"] = False
+                tasks[current_task] = False
                 tasks["look"] = True
+                current_task = 'look'
                 continue
             else:  # starts rotating
                 basket = Camera.basket_finder(hsv_frame, targetValues)
                 if timer():
-                    print("rotating")
                     Movement.rotate_ball(ball, basket)
 
         else:
