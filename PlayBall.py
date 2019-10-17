@@ -12,7 +12,7 @@ green = [16, 163, 93, 124, 255, 255]
 greenValues = {'lowerLimits': np.array([green[0], green[1], green[2]])
     , 'upperLimits': np.array([green[3], green[4], green[5]])}
 
-opponent = 'blue'  # 'blue' or 'pink'
+opponent = 'pink'  # 'blue' or 'pink'
 # values to process pink
 pink = [95, 203, 61, 255, 255, 255, 3]
 # values to process blue
