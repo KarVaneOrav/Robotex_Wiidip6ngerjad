@@ -116,6 +116,7 @@ try:
                     tasks[current_task] = False
                     tasks['throw'] = True
                     current_task = 'throw'
+                    start_throw = False
 
         else:
             print("Error in tasks logic")
