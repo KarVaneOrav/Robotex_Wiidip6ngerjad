@@ -110,5 +110,5 @@ def controller(key):
     
 def thrower():
     # get distance, calculate speed, insert speed and drive forward, when stop?
-    ser.write(b'd:2153\n')
+    ser.write(b'd:1900\n')
     read_serial()

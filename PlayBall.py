@@ -123,6 +123,9 @@ try:
             print("throwing")
             if throwing_cycle < 10:
                 if timer():
+                    '''siin jookseb kokku mainboard
+                    ehk sellest et saadame 2 käsku korraga
+                    '''
                     Movement.omni_drive([0, 0.2, 0])
                     Movement.thrower()
                     throwing_cycle += 1
