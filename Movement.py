@@ -82,7 +82,7 @@ def rotate_ball(ball, basket):
 
 
 def controller(key):
-    if key == 0:  # arrows
+    if key == 27:  # esc
         return True
     elif key == 119:  # w
         motors(0.3, 1.57, 0)

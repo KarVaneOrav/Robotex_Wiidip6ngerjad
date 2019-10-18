@@ -70,7 +70,7 @@ try:
         key = cv2.waitKey(1)
         if key == 113:
             break
-        elif key == 0 and not tasks['controller']:  # if key is pressed and already not controlling
+        elif key == 99 and not tasks['controller']:  # if 'c' is pressed and already not controlling
             tasks[current_task] = False
             tasks["controller"] = True
             current_task = 'controller'
