@@ -50,6 +50,7 @@ frequency = 0.0166667
 comTime = time.time()
 end_control = False
 start_throw = False
+throwing_cycle = 0
 
 try:
     set_target_basket(opponent)
@@ -92,7 +93,7 @@ try:
                     if timer():
                         Movement.move_to_ball(ball)
                 else:
-                    Movement.omni_drive([0, 0, 0])
+                    Movement.omni_drive([0, 0, 0])  # stop
                     tasks[current_task] = False
                     tasks["rotate"] = True
                     current_task = "rotate"
@@ -117,6 +118,21 @@ try:
                     tasks['throw'] = True
                     current_task = 'throw'
                     start_throw = False
+
+        elif tasks['throw']:
+            print("throwing")
+            if throwing_cycle < 10:
+                if timer():
+                    Movement.omni_drive([0, 0.2, 0])
+                    Movement.thrower()
+                    throwing_cycle += 1
+            else:
+                Movement.omni_drive([0, 0, 0])
+                throwing_cycle = 0
+                tasks[current_task] = False
+                tasks['look'] = True
+                current_task = 'look'
+
 
         else:
             print("Error in tasks logic")
