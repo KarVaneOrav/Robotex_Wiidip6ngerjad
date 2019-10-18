@@ -44,15 +44,15 @@ def timer():
         return False
 
 
-tasks = {"controller": False, "look": True, "rotate":  False}
+tasks = {"controller": False, "look": True, "rotate":  False, 'throw': False}
 current_task = "look"
 frequency = 0.0166667
 comTime = time.time()
 end_control = False
+start_throw = False
 
 try:
     set_target_basket(opponent)
-    print(targetValues)
 
     while True:
         # to show vanilla frame
@@ -111,7 +111,11 @@ try:
             else:  # starts rotating
                 basket = Camera.basket_finder(hsv_frame, targetValues)
                 if timer():
-                    Movement.rotate_ball(ball, basket)
+                    start_throw = Movement.rotate_ball(ball, basket)
+                if start_throw:
+                    tasks[current_task] = False
+                    tasks['throw'] = True
+                    current_task = 'throw'
 
         else:
             print("Error in tasks logic")

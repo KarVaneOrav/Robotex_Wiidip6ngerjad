@@ -80,6 +80,11 @@ def rotate_ball(ball, basket):
     ser.write(('sd:'+back+':'+other+':'+other+'\n').encode('utf-8'))
     read_serial()
 
+    if back == other:  # if both '0' start throwing
+        return True
+    else:
+        return False
+
 
 def controller(key):
     if key == 27:  # esc
@@ -104,4 +109,5 @@ def controller(key):
 
     
 def thrower():
-    ser.write(b'd:1000\n')
+    ser.write(b'd:2153\n')
+    read_serial()
