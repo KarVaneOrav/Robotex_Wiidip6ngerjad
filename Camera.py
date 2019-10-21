@@ -8,14 +8,10 @@ import cv2
 def load_preset(file):
     with open(file, 'r') as f:
         text = f.read()
-    print(text)
 
     try:
         devices = rs.context().query_devices()
-        print(devices)
-        print(len(devices))
         dev = devices[0]
-        print(dev)
         advnc_mode = rs.rs400_advanced_mode(dev)
         json_string = text.replace("'", '\"')
         advnc_mode.load_json(json_string)
@@ -109,7 +105,6 @@ def green_finder(frame):
     try:  # return the closest ball
         circle = circles[-1]
         ball = [int(circle[0][0]), int(circle[0][1])]
-        print("ball: " + str(ball))
         return ball
     except:
         print('No balls')

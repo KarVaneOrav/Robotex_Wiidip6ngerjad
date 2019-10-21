@@ -86,6 +86,7 @@ try:
             print("Controlling by remote")
             if key == 113:
                 throwing = not throwing
+                print("throwing " + str(throwing))
             elif timer(frequency):
                 end_control = Movement.controller(key)
             if timer(thrower_frequency) and throwing:
