@@ -16,7 +16,7 @@ def stop():  # stop pipeline at the end
     pipeline.stop()
 
 
-'''def load_preset(file):
+def load_preset(file):
     try:
         dev = None
         devices = rs.context().query_devices()
@@ -33,7 +33,7 @@ def stop():  # stop pipeline at the end
         if dev != None:
             print("preset loaded")
         else:
-            print("Preset loading failed")'''
+            print("Preset loading failed")
 
 
 def get_frame():
