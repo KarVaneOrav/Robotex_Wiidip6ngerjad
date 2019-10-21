@@ -84,7 +84,7 @@ try:
 
         if tasks['controller']:
             print("Controlling by remote")
-            if key == 113:
+            if key == 116:
                 throwing = not throwing
                 print("throwing " + str(throwing))
             elif timer(frequency):
