@@ -28,8 +28,8 @@ def load_preset(file):
         advnc_mode = rs.rs400_advanced_mode(dev)
         json_string = str(file).replace("'", '\"')
         advnc_mode.load_json(json_string)
-    except Exception as p:
-        print(p)
+    finally:
+        print("preset loaded")
 
 
 def get_frame():
