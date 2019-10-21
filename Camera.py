@@ -22,7 +22,7 @@ def load_preset(file):
         dev = None
         devices = rs.context().query_devices()
         for d in devices:
-            if dev.supports(rs.camera_info.product_id) and str(dev.get_info(rs.camera_info.product_id)) in DS5_product_ids:
+            if devices.supports(rs.camera_info.product_id) and str(devices.get_info(rs.camera_info.product_id)) in DS5_product_ids:
                 dev = d
         print(dev)
         advnc_mode = rs.rs400_advanced_mode(dev)
