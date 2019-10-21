@@ -21,6 +21,8 @@ def load_preset(file):
     try:
         dev = None
         devices = rs.context().query_devices()
+        print(devices)
+        print(len(devices))
         for d in devices:
             if devices.supports(rs.camera_info.product_id):  # and str(devices.get_info(rs.camera_info.product_id)) in DS5_product_ids:
                 dev = d
