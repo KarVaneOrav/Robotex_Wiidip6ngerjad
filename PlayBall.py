@@ -84,6 +84,8 @@ try:
 
         if tasks['controller']:
             print("Controlling by remote")
+            if key == 113:
+                throwing = not throwing
             if timer(frequency):
                 end_control = Movement.controller(key)
             if end_control:
@@ -91,6 +93,7 @@ try:
                 tasks['look'] = True
                 current_task = 'look'
                 end_control = False
+                throwing = False
 
         elif tasks["look"]:
             print("looking")

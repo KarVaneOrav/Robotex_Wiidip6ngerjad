@@ -26,7 +26,7 @@ def load_preset(file):
             print("Preset loading failed")
 
 
-load_preset('preset.json')
+load_preset('preset.json')  # load camera settings
 
 # Configure depth and color streams
 pipeline = rs.pipeline()
