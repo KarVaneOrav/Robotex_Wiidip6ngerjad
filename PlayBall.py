@@ -3,6 +3,7 @@ import Movement
 import time
 import cv2
 import numpy as np
+Camera.load_preset('preset.json')  # load camera settings
 
 # values for image processing green
 green = [16, 163, 93, 124, 255, 255]

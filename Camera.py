@@ -10,7 +10,6 @@ pipeline = rs.pipeline()
 config = rs.config()
 config.enable_stream(rs.stream.color, 1280, 720, rs.format.bgr8, 30)
 pipeline.start(config)
-load_preset()
 
 
 def stop():  # stop pipeline at the end
