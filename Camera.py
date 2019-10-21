@@ -18,6 +18,7 @@ def stop():  # stop pipeline at the end
 
 def load_preset(file):
     dev = rs.context().query_devices()
+    print(dev)
     advnc_mode = rs.rs400_advanced_mode(dev)
     json_string = str(file).replace("'", '\"')
     advnc_mode.load_json(json_string)
