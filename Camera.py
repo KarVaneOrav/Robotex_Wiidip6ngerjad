@@ -30,7 +30,10 @@ def load_preset(file):
         json_string = str(file).replace("'", '\"')
         advnc_mode.load_json(json_string)
     finally:
-        print("preset loaded")
+        if dev != None:
+            print("preset loaded")
+        else:
+            print("Preset loading failed")
 
 
 def get_frame():
