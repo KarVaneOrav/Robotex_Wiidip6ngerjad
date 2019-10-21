@@ -10,15 +10,18 @@ pipeline = rs.pipeline()
 config = rs.config()
 config.enable_stream(rs.stream.color, 1280, 720, rs.format.bgr8, 30)
 pipeline.start(config)
+load_preset()
 
 
-####
-
-# stop pipeline at the end
-
-####
-def stop():
+def stop():  # stop pipeline at the end
     pipeline.stop()
+
+
+def load_preset(file):
+    dev = rs.context().query_devices()
+    advnc_mode = rs.rs400_advanced_mode(dev)
+    json_string = str(file).replace("'", '\"')
+    advnc_mode.load_json(json_string)
 
 
 def get_frame():
