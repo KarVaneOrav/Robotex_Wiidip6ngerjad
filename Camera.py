@@ -24,6 +24,7 @@ def load_preset(file):
         for d in devices:
             if devices.supports(rs.camera_info.product_id) and str(devices.get_info(rs.camera_info.product_id)) in DS5_product_ids:
                 dev = d
+                break
         print(dev)
         advnc_mode = rs.rs400_advanced_mode(dev)
         json_string = str(file).replace("'", '\"')
