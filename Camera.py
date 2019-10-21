@@ -17,16 +17,14 @@ def stop():  # stop pipeline at the end
 
 
 def load_preset(file):
-    DS5_product_ids = ["0AD1", "0AD2", "0AD3", "0AD4", "0AD5", "0AF6", "0AFE", "0AFF", "0B00", "0B01", "0B03", "0B07"]
     try:
         dev = None
         devices = rs.context().query_devices()
         print(devices)
         print(len(devices))
         for d in devices:
-            if devices.supports(rs.camera_info.product_id):  # and str(devices.get_info(rs.camera_info.product_id)) in DS5_product_ids:
-                dev = d
-                break
+            dev = d
+            break
         print(dev)
         advnc_mode = rs.rs400_advanced_mode(dev)
         json_string = str(file).replace("'", '\"')
