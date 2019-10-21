@@ -4,6 +4,30 @@ import pyrealsense2 as rs
 import numpy as np
 import cv2
 
+
+def load_preset(file):
+    with open(file, 'r') as f:
+        text = f.read()
+    print(text)
+
+    try:
+        devices = rs.context().query_devices()
+        print(devices)
+        print(len(devices))
+        dev = devices[0]
+        print(dev)
+        advnc_mode = rs.rs400_advanced_mode(dev)
+        json_string = text.replace("'", '\"')
+        advnc_mode.load_json(json_string)
+    finally:
+        if dev != None:
+            print("preset loaded")
+        else:
+            print("Preset loading failed")
+
+
+load_preset('preset.json')
+
 # Configure depth and color streams
 pipeline = rs.pipeline()
 # Start streaming
@@ -14,29 +38,6 @@ pipeline.start(config)
 
 def stop():  # stop pipeline at the end
     pipeline.stop()
-
-
-def load_preset(file):
-    with open(file, 'r') as f:
-        text = f.read()
-        
-    try:
-        dev = None
-        devices = rs.context().query_devices()
-        print(devices)
-        print(len(devices))
-        for d in devices:
-            dev = d
-            break
-        print(dev)
-        advnc_mode = rs.rs400_advanced_mode(dev)
-        json_string = text.replace("'", '\"')
-        advnc_mode.load_json(json_string)
-    finally:
-        if dev != None:
-            print("preset loaded")
-        else:
-            print("Preset loading failed")
 
 
 def get_frame():
