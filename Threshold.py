@@ -2,7 +2,7 @@ import cv2
 from functools import partial
 import Camera
 import numpy as np
-Camera.load_preset('preset.json')  # load camera settings
+#Camera.load_preset('preset.json')  # load camera settings
 
 
 # A callback function for every trackbar
