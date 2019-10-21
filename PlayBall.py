@@ -33,25 +33,31 @@ def set_target_basket(opponent):
     targetValues['targetKerne'] = np.ones((target[6], target[6]), np.uint8)
 
 
-def timer():
+def timer(pause):
     # sets communication to 60Hz
     global comTime
-    
-    if time.time() >= (comTime + frequency):
+    if time.time() >= (comTime + pause):
         comTime = time.time()
         return True
-
     else:
         return False
+
+
+def timer_thrower():
+    global comTime
+
+
 
 
 tasks = {"controller": False, "look": True, "rotate":  False, 'throw': False}
 current_task = "look"
 frequency = 0.0166667
+thrower_frequency = 0.002
 comTime = time.time()
 end_control = False
 start_throw = False
 throwing_cycle = 0
+throwing = False
 
 try:
     set_target_basket(opponent)
@@ -79,7 +85,7 @@ try:
 
         if tasks['controller']:
             print("Controlling by remote")
-            if timer():
+            if timer(frequency):
                 end_control = Movement.controller(key)
             if end_control:
                 tasks[current_task] = False
@@ -91,7 +97,7 @@ try:
             print("looking")
             if ball:  # if sees a ball
                 if ball[1] < 400:  # if ball is too far
-                    if timer():
+                    if timer(frequency):
                         Movement.move_to_ball(ball)
                 else:
                     Movement.omni_drive([0, 0, 0])  # stop
@@ -100,7 +106,7 @@ try:
                     current_task = "rotate"
 
             else:  # if sees no balls
-                if timer():
+                if timer(frequency):
                     Movement.omni_drive([0, 0, 1])  # turns on the spot
 
         elif tasks["rotate"]:
@@ -112,7 +118,7 @@ try:
                 continue
             else:  # starts rotating
                 basket = Camera.basket_finder(hsv_frame, targetValues)
-                if timer():
+                if timer(frequency):
                     start_throw = Movement.rotate_ball(ball, basket)
                 if start_throw:
                     tasks[current_task] = False
@@ -123,7 +129,7 @@ try:
         elif tasks['throw']:
             print("throwing")
             if throwing_cycle < 10:
-                if timer():
+                if timer(frequency):
                     '''siin jookseb kokku mainboard
                     ehk sellest et saadame 2 käsku korraga
                     '''
