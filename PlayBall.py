@@ -52,9 +52,10 @@ start_throw = False
 throwing_cycle = 0
 throwing = False
 
+print("throwing1")
+Movement.thrower(1100)  # init thrower motor
+
 try:
-    print("throwing1")
-    Movement.thrower(1100)  # init thrower motor
     set_target_basket(opponent)
 
     while True:
