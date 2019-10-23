@@ -3,14 +3,15 @@ import cv2
 import time
 
 frequency = 0.0166667
+throwing_frequency = 0.002
 comTime = time.time()
 
 
-def timer():
+def timer(freq):
     # sets communication to 60Hz
     global comTime
 
-    if time.time() >= (comTime + frequency):
+    if time.time() >= (comTime + freq):
         comTime = time.time()
         return True
 
@@ -18,13 +19,18 @@ def timer():
         return False
 
 
+throwing = False
+Movement.thrower(1100)
+
 # angle 0 = right 90 = forward (convert to rad)
 while True:
     cv2.namedWindow('rgb_img', cv2.WINDOW_NORMAL)
-    key = cv2.waitKey(0)
+    key = cv2.waitKey(1)
     if key != -1:
         print(key)
-    if timer():
+    if key == 116:
+        throwing = not throwing
+    if timer(frequency):
         if key == 113:
             break
         elif key == 119:  # w
@@ -41,6 +47,9 @@ while True:
             Movement.motors(0, 0, -2)
         else:
             Movement.motors(0, 0, 0)
+
+    if timer(throwing_frequency) and throwing:
+        Movement.thrower(1900)
 
 cv2.destroyAllWindows()
 Movement.close()

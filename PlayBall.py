@@ -82,6 +82,7 @@ try:
             print("throwing " + str(throwing))
             if key == 116:  # 't' to start thrower
                 throwing = not throwing
+                print("throwing inverted")
             if timer(frequency):
                 end_control = Movement.controller(key)
             if timer(thrower_frequency) and throwing:
