@@ -28,9 +28,9 @@ while True:
     key = cv2.waitKey(1)
     if key != -1:
         print(key)
-    if key == 116:
+    if key == 116:  # t
         throwing = not throwing
-    if timer(frequency):
+    elif timer(frequency):
         if key == 113:
             break
         elif key == 119:  # w
