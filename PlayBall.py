@@ -53,6 +53,7 @@ throwing_cycle = 0
 throwing = False
 
 try:
+    print("throwing1")
     Movement.thrower(1100)  # init thrower motor
     set_target_basket(opponent)
 
@@ -87,7 +88,7 @@ try:
                 end_control = Movement.controller(key)
             if timer(thrower_frequency) and throwing:
                 Movement.thrower(1900)
-                print("throw")
+                print("throw2")
             if end_control:
                 tasks[current_task] = False
                 tasks['look'] = True
@@ -138,6 +139,7 @@ try:
                     Movement.omni_drive([0, 0.2, 0])
                     throwing_cycle += 1
                 if timer(thrower_frequency):
+                    print("throw3")
                     Movement.thrower(1900)
             else:
                 Movement.omni_drive([0, 0, 0])
