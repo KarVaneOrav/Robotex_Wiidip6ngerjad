@@ -25,33 +25,27 @@ Movement.thrower(1100)
 # angle 0 = right 90 = forward (convert to rad)
 while True:
     cv2.namedWindow('rgb_img', cv2.WINDOW_NORMAL)
-    key = cv2.waitKey(1)
+    key = cv2.waitKey(0)
     if key != -1:
         print(key)
     if key == 116:  # t
         throwing = not throwing
-    elif key == 113:
-        break
-    elif key == 119:  # w
-        if timer(frequency):
+    elif timer(frequency):
+        if key == 113:
+            break
+        elif key == 119:  # w
             Movement.motors(0.3, 1.57, 0)
-    elif key == 97:  # a
-        if timer(frequency):
+        elif key == 97:  # a
             Movement.motors(0.3, 3.14, 0)
-    elif key == 115:  # s
-        if timer(frequency):
+        elif key == 115:  # s
             Movement.motors(0.3, 4.71, 0)
-    elif key == 100:  # d
-        if timer(frequency):
+        elif key == 100:  # d
             Movement.motors(0.3, 0, 0)
-    elif key == 111:  # o
-        if timer(frequency):
+        elif key == 111:  # o
             Movement.motors(0, 0, 2)
-    elif key == 112:  # p
-        if timer(frequency):
+        elif key == 112:  # p
             Movement.motors(0, 0, -2)
-    else:
-        if timer(frequency):
+        else:
             Movement.motors(0, 0, 0)
 
     if timer(throwing_frequency) and throwing:
