@@ -135,8 +135,9 @@ try:
                     ehk sellest et saadame 2 käsku korraga
                     '''
                     Movement.omni_drive([0, 0.2, 0])
-                    Movement.thrower(1900)
                     throwing_cycle += 1
+                if timer(thrower_frequency):
+                    Movement.thrower(1900)
             else:
                 Movement.omni_drive([0, 0, 0])
                 throwing_cycle = 0
