@@ -8,21 +8,17 @@ import numpy as np
 green = [16, 163, 93, 124, 255, 255]
 # greenKernelErode = np.ones((1, 1), np.uint8)
 # greenKernelDilate = np.ones((3, 3), np.uint8)
-# colour detection limits
-greenValues = {'lowerLimits': np.array([green[0], green[1], green[2]])
-    , 'upperLimits': np.array([green[3], green[4], green[5]])}
+greenValues = {'lowerLimits': np.array([green[0], green[1], green[2]]),
+               'upperLimits': np.array([green[3], green[4], green[5]])}
 
 opponent = 'pink'  # 'blue' or 'pink'
-# values to process pink
-pink = [95, 203, 61, 255, 255, 255, 3]
-# values to process blue
-blue = [35, 0, 29, 255, 91, 255, 3]
-# values for processing
+pink = [95, 203, 61, 255, 255, 255, 3]  # values to process pink
+blue = [35, 0, 29, 255, 91, 255, 3]  # values to process blue
 targetValues = {'lowerLimits': None, 'upperLimits': None, 'kernelDilate': None}
 
 
-def set_target_basket(opponent):
-    if opponent == 'blue':
+def set_target_basket(op):
+    if op == 'blue':
         target = blue
     else:
         target = pink
@@ -46,8 +42,6 @@ def timer_thrower():
     global comTime
 
 
-
-
 tasks = {"controller": False, "look": True, "rotate":  False, 'throw': False}
 current_task = "look"
 frequency = 0.0166667
@@ -59,6 +53,7 @@ throwing_cycle = 0
 throwing = False
 
 try:
+    Movement.thrower(1100)  # init thrower motor
     set_target_basket(opponent)
 
     while True:
@@ -84,13 +79,13 @@ try:
 
         if tasks['controller']:
             print("Controlling by remote")
-            if key == 116:
+            if key == 116:  # 't' to start thrower
                 throwing = not throwing
                 print("throwing " + str(throwing))
-            elif timer(frequency):
+            if timer(frequency):
                 end_control = Movement.controller(key)
             if timer(thrower_frequency) and throwing:
-                Movement.thrower()
+                Movement.thrower(1900)
             if end_control:
                 tasks[current_task] = False
                 tasks['look'] = True
@@ -139,7 +134,7 @@ try:
                     ehk sellest et saadame 2 käsku korraga
                     '''
                     Movement.omni_drive([0, 0.2, 0])
-                    Movement.thrower()
+                    Movement.thrower(1900)
                     throwing_cycle += 1
             else:
                 Movement.omni_drive([0, 0, 0])
@@ -147,7 +142,6 @@ try:
                 tasks[current_task] = False
                 tasks['look'] = True
                 current_task = 'look'
-
 
         else:
             print("Error in tasks logic")

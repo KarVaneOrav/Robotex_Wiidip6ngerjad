@@ -47,12 +47,12 @@ def motors(robotSpeed, robotDirectionAngle, robotAngularVelocity = 0):
     wheelSpeedToMainboardUnits = 90.991
     '''
 
-    wheelAngularSpeedMainboardUnits0 = round(-1 * (robotSpeed * cos(robotDirectionAngle - radians(0)) +
-                           0.14 * -robotAngularVelocity) * 90.991)
-    wheelAngularSpeedMainboardUnits1 = round(-1 * (robotSpeed * cos(robotDirectionAngle - radians(120)) +
-                           0.14 * -robotAngularVelocity) * 90.991)
-    wheelAngularSpeedMainboardUnits2 = round(-1 * (robotSpeed * cos(robotDirectionAngle - radians(240)) +
-                           0.14 * -robotAngularVelocity) * 90.991)
+    wheelAngularSpeedMainboardUnits0 = round(-1 * (robotSpeed * cos(robotDirectionAngle - radians(0))
+                                                   + 0.14 * -robotAngularVelocity) * 90.991)
+    wheelAngularSpeedMainboardUnits1 = round(-1 * (robotSpeed * cos(robotDirectionAngle - radians(120))
+                                                   + 0.14 * -robotAngularVelocity) * 90.991)
+    wheelAngularSpeedMainboardUnits2 = round(-1 * (robotSpeed * cos(robotDirectionAngle - radians(240))
+                                                   + 0.14 * -robotAngularVelocity) * 90.991)
 
     move = 'sd:'+str(wheelAngularSpeedMainboardUnits0)+':'+str(wheelAngularSpeedMainboardUnits1)+':'+\
            str(wheelAngularSpeedMainboardUnits2)+'\n'
@@ -107,7 +107,6 @@ def controller(key):
     return False  # if still controlling
 
 
-    
-def thrower():
-    # get distance, calculate speed, insert speed and drive forward, when stop?
-    ser.write(b'd:1900\n')
+def thrower(speed):
+    # speeds from 1035 to 2153
+    ser.write(('d:' + str(speed) + '\n').encode('utf-8'))
