@@ -86,6 +86,7 @@ try:
                 end_control = Movement.controller(key)
             if timer(thrower_frequency) and throwing:
                 Movement.thrower(1900)
+                print("throw")
             if end_control:
                 tasks[current_task] = False
                 tasks['look'] = True
