@@ -30,22 +30,28 @@ while True:
         print(key)
     if key == 116:  # t
         throwing = not throwing
-    elif timer(frequency):
-        if key == 113:
-            break
-        elif key == 119:  # w
+    elif key == 113:
+        break
+    elif key == 119:  # w
+        if timer(frequency):
             Movement.motors(0.3, 1.57, 0)
-        elif key == 97:  # a
+    elif key == 97:  # a
+        if timer(frequency):
             Movement.motors(0.3, 3.14, 0)
-        elif key == 115:  # s
+    elif key == 115:  # s
+        if timer(frequency):
             Movement.motors(0.3, 4.71, 0)
-        elif key == 100:  # d
+    elif key == 100:  # d
+        if timer(frequency):
             Movement.motors(0.3, 0, 0)
-        elif key == 111:  # o
+    elif key == 111:  # o
+        if timer(frequency):
             Movement.motors(0, 0, 2)
-        elif key == 112:  # p
+    elif key == 112:  # p
+        if timer(frequency):
             Movement.motors(0, 0, -2)
-        else:
+    else:
+        if timer(frequency):
             Movement.motors(0, 0, 0)
 
     if timer(throwing_frequency) and throwing:
