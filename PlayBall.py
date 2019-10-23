@@ -46,6 +46,7 @@ tasks = {"controller": False, "look": True, "rotate":  False, 'throw': False}
 current_task = "look"
 frequency = 0.0166667
 thrower_frequency = 0.002
+comTime = time.time()
 end_control = False
 start_throw = False
 throwing_cycle = 0
@@ -54,10 +55,7 @@ throwing = False
 try:
     print("throwing1")
     Movement.thrower(1100)  # init thrower motor
-    time.sleep(0.5)
-    Movement.thrower(0)
     set_target_basket(opponent)
-    comTime = time.time()
 
     while True:
         # to show vanilla frame
@@ -86,7 +84,6 @@ try:
             if key == 116:  # 't' to start thrower
                 throwing = not throwing
                 print("throwing inverted")
-                Movement.thrower(0)
             if timer(frequency):
                 end_control = Movement.controller(key)
             if timer(thrower_frequency) and throwing:
@@ -98,7 +95,6 @@ try:
                 current_task = 'look'
                 end_control = False
                 throwing = False
-                Movement.thrower(0)
 
         elif tasks["look"]:
             print("looking")
@@ -151,7 +147,6 @@ try:
                 tasks[current_task] = False
                 tasks['look'] = True
                 current_task = 'look'
-                Movement.thrower(0)
 
         else:
             print("Error in tasks logic")
