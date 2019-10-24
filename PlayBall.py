@@ -70,10 +70,6 @@ try:
             cv2.putText(frame, str(ball), tuple(ball), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
         cv2.imshow('RealSense', processed_frame_green)
 
-        if timer(thrower_frequency) and throwing:
-            Movement.thrower(1900)
-            print("throw2")
-
         key = cv2.waitKey(1)
         if key == 113:
             break
@@ -148,6 +144,10 @@ try:
         else:
             print("Error in tasks logic")
             break
+
+        if timer(thrower_frequency) and throwing:
+            Movement.thrower(1900)
+            print("throw2")
 
 finally:
     Camera.stop()
