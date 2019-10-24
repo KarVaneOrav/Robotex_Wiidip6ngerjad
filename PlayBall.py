@@ -70,6 +70,10 @@ try:
             cv2.putText(frame, str(ball), tuple(ball), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
         cv2.imshow('RealSense', processed_frame_green)
 
+        if timer(thrower_frequency) and throwing:
+            Movement.thrower(1900)
+            print("throw2")
+
         key = cv2.waitKey(1)
         if key == 113:
             break
@@ -86,9 +90,6 @@ try:
                 print("throwing inverted")
             if timer(frequency):
                 end_control = Movement.controller(key)
-            if timer(thrower_frequency) and throwing:
-                Movement.thrower(1900)
-                print("throw2")
             if end_control:
                 tasks[current_task] = False
                 tasks['look'] = True
@@ -128,25 +129,21 @@ try:
                     tasks['throw'] = True
                     current_task = 'throw'
                     start_throw = False
+                    throwing = True
 
         elif tasks['throw']:
             print("throwing")
             if throwing_cycle < 10:
                 if timer(frequency):
-                    '''siin jookseb kokku mainboard
-                    ehk sellest et saadame 2 käsku korraga
-                    '''
                     Movement.omni_drive([0, 0.2, 0])
                     throwing_cycle += 1
-                if timer(thrower_frequency):
-                    print("throw3")
-                    Movement.thrower(1900)
             else:
                 Movement.omni_drive([0, 0, 0])
                 throwing_cycle = 0
                 tasks[current_task] = False
                 tasks['look'] = True
                 current_task = 'look'
+                throwing = False
 
         else:
             print("Error in tasks logic")
