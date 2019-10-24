@@ -46,7 +46,6 @@ tasks = {"controller": False, "look": True, "rotate":  False, 'throw': False}
 current_task = "look"
 frequency = 0.0166667
 thrower_frequency = 0.002
-comTime = time.time()
 end_control = False
 start_throw = False
 throwing_cycle = 0
@@ -56,6 +55,7 @@ try:
     print("throwing1")
     Movement.thrower(1100)  # init thrower motor
     set_target_basket(opponent)
+    comTime = time.time()
 
     while True:
         # to show vanilla frame
