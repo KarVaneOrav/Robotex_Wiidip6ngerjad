@@ -21,6 +21,9 @@ greenValues = {'lowerLimits': np.array([green[0], green[1], green[2]]),
                'upperLimits': np.array([green[3], green[4], green[5]])}
 
 try:
+    print("throwing1")
+    Movement.thrower(1100)  # init thrower motor
+
     while True:
         frame = Camera.get_frame()  # to show vanilla frame
         hsv_frame = Camera.to_hsv(frame)
