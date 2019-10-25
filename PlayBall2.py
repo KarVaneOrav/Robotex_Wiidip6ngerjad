@@ -28,10 +28,10 @@ try:
 
         ball = Camera.green_finder(processed_frame_green)
         if ball:
-            cv2.putText(processed_frame_green, str(ball), tuple(ball),
+            cv2.putText(frame, str(ball), tuple(ball),
                         cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
 
-        cv2.imshow('RealSense', processed_frame_green)
+        cv2.imshow('RealSense', frame)
         key = cv2.waitKey(1)
         if key == 113:
             break
