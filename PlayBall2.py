@@ -25,12 +25,19 @@ greenValues = {'lowerLimits': np.array([green[0], green[1], green[2]]),
 targetValues = {'lowerLimits': None, 'upperLimits': None, 'kernelDilate': None}
 
 tasks = {"controller": False, "look": True, "rotate":  False, 'throw': False}
+current_task = 'look'
 frequency = 0.0166667  # send movement signals at 60Hz
 thrower_frequency = 0.002
 ball = []
 basket = []
+
 rotating_counter = 0
+rotating_limit = 20
 pause_counter = 0
+pause_limit = 10
+
+end_control = False
+throwing = False
 
 try:
     print("throwing1")
@@ -39,18 +46,39 @@ try:
     comTime = time.time()
 
     while True:
-        frame = Camera.get_frame()  # to show vanilla frame
+        frame = Camera.get_frame()
         hsv_frame = Camera.to_hsv(frame)
         processed_frame_green = Camera.process_balls(hsv_frame, greenValues)
 
-        ball = Camera.green_finder(processed_frame_green)
+        ball = Camera.green_finder(processed_frame_green)  # returns closest ball
         basket = []
 
         key = cv2.waitKey(1)
         if key == 113:
             break
+        elif key == 99 and not tasks['controller']:  # if 'c' is pressed and already not controlling
+            tasks[current_task] = False
+            tasks["controller"] = True
+            current_task = 'controller'
 
-        if tasks['look']:
+        if tasks['controller']:
+            print("Controlling by remote")
+            print("throwing " + str(throwing))
+            if key == 116:  # 't' to start thrower
+                throwing = not throwing
+            if timer(frequency):
+                end_control = Movement.controller(key)
+            if timer(thrower_frequency) and throwing:
+                Movement.thrower(1900)
+                print("throw2")
+            if end_control:
+                tasks[current_task] = False
+                tasks['look'] = True
+                current_task = 'look'
+                end_control = False
+                throwing = False
+
+        elif tasks['look']:
             print("looking")
             if ball:
                 rotating_counter = 0
@@ -61,8 +89,8 @@ try:
                 else:
                     Movement.omni_drive([0, 0, 0])  # stop
             else:
-                if rotating_counter >= 20:  # take pauses to process
-                    if pause_counter >= 10:
+                if rotating_counter >= rotating_limit:  # take pauses to process
+                    if pause_counter >= pause_limit:
                         rotating_counter = 0
                         pause_counter = 0
                     elif timer(frequency):
