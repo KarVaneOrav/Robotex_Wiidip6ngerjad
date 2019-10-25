@@ -35,14 +35,12 @@ try:
     Movement.thrower(1100)  # init thrower motor
 
     while True:
-        ball = []
-        basket = []
-
         frame = Camera.get_frame()  # to show vanilla frame
         hsv_frame = Camera.to_hsv(frame)
         processed_frame_green = Camera.process_balls(hsv_frame, greenValues)
 
         ball = Camera.green_finder(processed_frame_green)
+        basket = []
 
         key = cv2.waitKey(1)
         if key == 113:
@@ -54,6 +52,8 @@ try:
                 if ball[1] < 400:  # if ball is too far
                     if timer(frequency):
                         Movement.move_to_ball(ball)
+                else:
+                    Movement.omni_drive([0, 0, 0])  # stop
             else:
                 if timer(frequency):
                     Movement.omni_drive([0, 0, 1])  # turns on the spot
