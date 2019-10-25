@@ -11,7 +11,7 @@ green = [16, 163, 93, 124, 255, 255]
 greenValues = {'lowerLimits': np.array([green[0], green[1], green[2]]),
                'upperLimits': np.array([green[3], green[4], green[5]])}
 
-opponent = 'pink'  # 'blue' or 'pink'
+opponent = 'blue'  # 'blue' or 'pink'
 pink = [95, 203, 61, 255, 255, 255, 3]  # values to process pink
 blue = [35, 0, 29, 255, 91, 255, 3]  # values to process blue
 targetValues = {'lowerLimits': None, 'upperLimits': None, 'kernelDilate': None}
@@ -46,6 +46,7 @@ tasks = {"controller": False, "look": True, "rotate":  False, 'throw': False}
 current_task = "look"
 frequency = 0.0166667
 thrower_frequency = 0.002
+comTime = time.time()
 end_control = False
 start_throw = False
 throwing_cycle = 0
@@ -55,7 +56,6 @@ try:
     print("throwing1")
     Movement.thrower(1100)  # init thrower motor
     set_target_basket(opponent)
-    comTime = time.time()
 
     while True:
         # to show vanilla frame
@@ -86,6 +86,9 @@ try:
                 print("throwing inverted")
             if timer(frequency):
                 end_control = Movement.controller(key)
+            if timer(thrower_frequency) and throwing:
+                Movement.thrower(1900)
+                print("throw2")
             if end_control:
                 tasks[current_task] = False
                 tasks['look'] = True
@@ -125,29 +128,29 @@ try:
                     tasks['throw'] = True
                     current_task = 'throw'
                     start_throw = False
-                    throwing = True
 
         elif tasks['throw']:
             print("throwing")
             if throwing_cycle < 10:
                 if timer(frequency):
+                    '''siin jookseb kokku mainboard
+                    ehk sellest et saadame 2 käsku korraga
+                    '''
                     Movement.omni_drive([0, 0.2, 0])
                     throwing_cycle += 1
+                if timer(thrower_frequency):
+                    print("throw3")
+                    Movement.thrower(1900)
             else:
                 Movement.omni_drive([0, 0, 0])
                 throwing_cycle = 0
                 tasks[current_task] = False
                 tasks['look'] = True
                 current_task = 'look'
-                throwing = False
 
         else:
             print("Error in tasks logic")
             break
-
-        if timer(thrower_frequency) and throwing:
-            Movement.thrower(1900)
-            print("throw2")
 
 finally:
     Camera.stop()
