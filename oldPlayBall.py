@@ -58,8 +58,7 @@ try:
     set_target_basket(opponent)
 
     while True:
-        # to show vanilla frame
-        frame = Camera.get_frame()
+        frame = Camera.get_frame()  # to show vanilla frame
 
         hsv_frame = Camera.to_hsv(frame)
         processed_frame_green = Camera.process_balls(hsv_frame, greenValues)
