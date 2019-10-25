@@ -103,6 +103,9 @@ try:
                         Movement.move_to_ball(ball)
                 else:
                     Movement.omni_drive([0, 0, 0])  # stop
+                    tasks[current_task] = False
+                    tasks["rotate"] = True
+                    current_task = "rotate"
             else:
                 if rotating_counter >= rotating_limit:  # take pauses to process
                     if pause_counter >= pause_limit:
