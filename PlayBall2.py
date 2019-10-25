@@ -29,6 +29,8 @@ frequency = 0.0166667  # send movement signals at 60Hz
 thrower_frequency = 0.002
 ball = []
 basket = []
+rotating_counter = 0
+pause_counter = 0
 
 try:
     print("throwing1")
@@ -51,14 +53,25 @@ try:
         if tasks['look']:
             print("looking")
             if ball:
+                rotating_counter = 0
+                pause_counter = 0
                 if ball[1] < 400:  # if ball is too far
                     if timer(frequency):
                         Movement.move_to_ball(ball)
                 else:
                     Movement.omni_drive([0, 0, 0])  # stop
             else:
-                if timer(frequency):
-                    Movement.omni_drive([0, 0, 0.5])  # turns on the spot
+                if rotating_counter >= 20:  # take pauses to process
+                    if pause_counter >= 10:
+                        rotating_counter = 0
+                        pause_counter = 0
+                    elif timer(frequency):
+                        Movement.omni_drive([0, 0, 0])
+                        pause_counter += 1
+                elif timer(frequency):
+                    Movement.omni_drive([0, 0, 1])  # turns on the spot
+                    rotating_counter += 1
+
         else:
             print("Error in tasks logic")
             break
