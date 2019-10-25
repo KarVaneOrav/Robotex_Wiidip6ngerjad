@@ -20,6 +20,18 @@ def timer(pause):
         return False
 
 
+def set_target_basket(op):
+    global targetValues
+    if op == 'blue':
+        target = blue
+    else:
+        target = pink
+
+    targetValues['lowerLimits'] = np.array([target[0], target[1], target[2]])
+    targetValues['upperLimits'] = np.array([target[3], target[4], target[5]])
+    targetValues['targetKerne'] = np.ones((target[6], target[6]), np.uint8)
+
+
 greenValues = {'lowerLimits': np.array([green[0], green[1], green[2]]),
                'upperLimits': np.array([green[3], green[4], green[5]])}
 targetValues = {'lowerLimits': None, 'upperLimits': None, 'kernelDilate': None}
@@ -41,6 +53,7 @@ throwing = False
 start_throw = False
 
 try:
+    set_target_basket(opponent)
     print("throwing1")
     Movement.thrower(1100)  # init thrower motor
     time.sleep(0.5)
