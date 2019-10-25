@@ -4,8 +4,7 @@ import time
 import cv2
 import numpy as np
 
-# values for image processing green
-green = [16, 163, 93, 124, 255, 255]
+green = [16, 163, 93, 124, 255, 255]  # threshold values
 # greenKernelErode = np.ones((1, 1), np.uint8)
 # greenKernelDilate = np.ones((3, 3), np.uint8)
 greenValues = {'lowerLimits': np.array([green[0], green[1], green[2]]),
