@@ -55,8 +55,7 @@ start_throw = False
 try:
     set_target_basket(opponent)
     print("throwing1")
-    Movement.thrower(1100)  # init thrower motor
-    time.sleep(0.5)
+    Movement.thrower(1000)  # init thrower motor
     comTime = time.time()
 
     while True:
@@ -98,7 +97,7 @@ try:
             if ball:
                 rotating_counter = 0
                 pause_counter = 0
-                if ball[1] < 400:  # if ball is too far
+                if ball[1] < 300:  # if ball is too far
                     if timer(frequency):
                         Movement.move_to_ball(ball)
                 else:
@@ -120,7 +119,7 @@ try:
 
         elif tasks['rotate']:
             print("rotating")
-            if not ball or ball[1] < 400:  # if loses the ball or gets too far
+            if not ball or ball[1] < 300:  # if loses the ball or gets too far
                 tasks[current_task] = False
                 tasks["look"] = True
                 current_task = 'look'
