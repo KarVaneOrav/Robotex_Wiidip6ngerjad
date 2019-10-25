@@ -91,6 +91,7 @@ try:
                 current_task = 'look'
                 end_control = False
                 throwing = False
+                Movement.thrower(1000)
 
         elif tasks['look']:
             print("looking")
