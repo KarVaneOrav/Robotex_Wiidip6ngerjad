@@ -33,6 +33,7 @@ basket = []
 try:
     print("throwing1")
     Movement.thrower(1100)  # init thrower motor
+    time.sleep(1)
     comTime = time.time()
 
     while True:
@@ -57,7 +58,7 @@ try:
                     Movement.omni_drive([0, 0, 0])  # stop
             else:
                 if timer(frequency):
-                    Movement.omni_drive([0, 0, 1])  # turns on the spot
+                    Movement.omni_drive([0, 0, 0.5])  # turns on the spot
         else:
             print("Error in tasks logic")
             break
