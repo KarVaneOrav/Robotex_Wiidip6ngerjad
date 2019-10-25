@@ -38,11 +38,12 @@ pause_limit = 10
 
 end_control = False
 throwing = False
+start_throw = False
 
 try:
     print("throwing1")
     Movement.thrower(1100)  # init thrower motor
-    time.sleep(1)
+    time.sleep(0.5)
     comTime = time.time()
 
     while True:
@@ -100,6 +101,23 @@ try:
                 elif timer(frequency):
                     Movement.omni_drive([0, 0, 1])  # turns on the spot
                     rotating_counter += 1
+
+        elif tasks['rotate']:
+            print("rotating")
+            if not ball or ball[1] < 400:  # if loses the ball or gets too far
+                tasks[current_task] = False
+                tasks["look"] = True
+                current_task = 'look'
+                continue
+            else:  # starts rotating
+                basket = Camera.basket_finder(hsv_frame, targetValues)
+                if timer(frequency):
+                    start_throw = Movement.rotate_ball(ball, basket)
+                '''if start_throw:
+                    tasks[current_task] = False
+                    tasks['throw'] = True
+                    current_task = 'throw'
+                    start_throw = False'''
 
         else:
             print("Error in tasks logic")
