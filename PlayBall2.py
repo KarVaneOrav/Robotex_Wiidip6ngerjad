@@ -66,6 +66,7 @@ try:
             print("throwing " + str(throwing))
             if key == 116:  # 't' to start thrower
                 throwing = not throwing
+                Movement.thrower(1000)
             if timer(frequency):
                 end_control = Movement.controller(key)
             if timer(thrower_frequency) and throwing:
