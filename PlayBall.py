@@ -48,7 +48,7 @@ rotating_limit = 20  # how much robot rotates at a time
 pause_counter = 0
 pause_limit = 10  # how long robot waits after rotating
 throwing_cycle = 0
-throwing_dur = 30  # how long robot tries to throw the ball
+throwing_dur = 60  # how long robot tries to throw the ball
 
 end_control = False
 throwing = False
