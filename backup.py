@@ -4,27 +4,10 @@ import time
 import cv2
 import numpy as np
 
-green = [16, 163, 93, 124, 255, 255]  # threshold values
-# greenKernelErode = np.ones((1, 1), np.uint8)
-# greenKernelDilate = np.ones((3, 3), np.uint8)
-greenValues = {'lowerLimits': np.array([green[0], green[1], green[2]]),
-               'upperLimits': np.array([green[3], green[4], green[5]])}
-
+green = [16, 163, 93, 124, 255, 255]  # threshold values, morph values
+pink = [95, 203, 61, 255, 255, 255, 3]
+blue = [35, 0, 29, 255, 91, 255, 3]
 opponent = 'blue'  # 'blue' or 'pink'
-pink = [95, 203, 61, 255, 255, 255, 3]  # values to process pink
-blue = [35, 0, 29, 255, 91, 255, 3]  # values to process blue
-targetValues = {'lowerLimits': None, 'upperLimits': None, 'kernelDilate': None}
-
-
-def set_target_basket(op):
-    if op == 'blue':
-        target = blue
-    else:
-        target = pink
-
-    targetValues['lowerLimits'] = np.array([target[0], target[1], target[2]])
-    targetValues['upperLimits'] = np.array([target[3], target[4], target[5]])
-    targetValues['targetKerne'] = np.ones((target[6], target[6]), np.uint8)
 
 
 def timer(pause):
@@ -37,36 +20,53 @@ def timer(pause):
         return False
 
 
-def timer_thrower():
-    global comTime
+def set_target_basket(op):
+    global targetValues
+    if op == 'blue':
+        target = blue
+    else:
+        target = pink
 
+    targetValues['lowerLimits'] = np.array([target[0], target[1], target[2]])
+    targetValues['upperLimits'] = np.array([target[3], target[4], target[5]])
+    targetValues['targetKerne'] = np.ones((target[6], target[6]), np.uint8)
+
+
+greenValues = {'lowerLimits': np.array([green[0], green[1], green[2]]),
+               'upperLimits': np.array([green[3], green[4], green[5]])}
+targetValues = {'lowerLimits': None, 'upperLimits': None, 'kernelDilate': None}
 
 tasks = {"controller": False, "look": True, "rotate":  False, 'throw': False}
-current_task = "look"
-frequency = 0.0166667
+current_task = 'look'
+frequency = 0.0166667  # send movement signals at 60Hz
 thrower_frequency = 0.002
-comTime = time.time()
-end_control = False
-start_throw = False
+ball = []
+basket = []
+
+rotating_counter = 0
+rotating_limit = 20  # how much robot rotates at a time
+pause_counter = 0
+pause_limit = 10  # how long robot waits after rotating
 throwing_cycle = 0
+throwing_dur = 30  # how long robot tries to throw the ball
+
+end_control = False
 throwing = False
+start_throw = False
 
 try:
-    print("throwing1")
-    Movement.thrower(1100)  # init thrower motor
     set_target_basket(opponent)
+    print("throwing1")
+    Movement.thrower(1000)  # init thrower motor
+    comTime = time.time()
 
     while True:
-        frame = Camera.get_frame()  # to show vanilla frame
-
+        frame = Camera.get_frame()
         hsv_frame = Camera.to_hsv(frame)
         processed_frame_green = Camera.process_balls(hsv_frame, greenValues)
-        
-        ball = Camera.green_finder(processed_frame_green)
 
-        if ball:
-            cv2.putText(frame, str(ball), tuple(ball), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
-        cv2.imshow('RealSense', processed_frame_green)
+        ball = Camera.green_finder(processed_frame_green)  # returns closest ball
+        basket = []
 
         key = cv2.waitKey(1)
         if key == 113:
@@ -81,7 +81,7 @@ try:
             print("throwing " + str(throwing))
             if key == 116:  # 't' to start thrower
                 throwing = not throwing
-                print("throwing inverted")
+                Movement.thrower(1000)
             if timer(frequency):
                 end_control = Movement.controller(key)
             if timer(thrower_frequency) and throwing:
@@ -93,11 +93,14 @@ try:
                 current_task = 'look'
                 end_control = False
                 throwing = False
+                Movement.thrower(1000)
 
-        elif tasks["look"]:
+        elif tasks['look']:
             print("looking")
-            if ball:  # if sees a ball
-                if ball[1] < 400:  # if ball is too far
+            if ball:
+                rotating_counter = 0
+                pause_counter = 0
+                if ball[1] < 500:  # if ball is too far
                     if timer(frequency):
                         Movement.move_to_ball(ball)
                 else:
@@ -105,14 +108,21 @@ try:
                     tasks[current_task] = False
                     tasks["rotate"] = True
                     current_task = "rotate"
-
-            else:  # if sees no balls
-                if timer(frequency):
+            else:
+                if rotating_counter >= rotating_limit:  # take pauses to process
+                    if pause_counter >= pause_limit:
+                        rotating_counter = 0
+                        pause_counter = 0
+                    elif timer(frequency):
+                        Movement.omni_drive([0, 0, 0])
+                        pause_counter += 1
+                elif timer(frequency):
                     Movement.omni_drive([0, 0, 1])  # turns on the spot
+                    rotating_counter += 1
 
-        elif tasks["rotate"]:
+        elif tasks['rotate']:
             print("rotating")
-            if not ball or ball[1] < 400:  # if loses the ball or gets too far
+            if not ball or ball[1] < 500:  # if loses the ball or gets too far
                 tasks[current_task] = False
                 tasks["look"] = True
                 current_task = 'look'
@@ -129,18 +139,14 @@ try:
 
         elif tasks['throw']:
             print("throwing")
-            if throwing_cycle < 10:
+            if throwing_cycle < throwing_dur:
                 if timer(frequency):
-                    '''siin jookseb kokku mainboard
-                    ehk sellest et saadame 2 käsku korraga
-                    '''
                     Movement.omni_drive([0, 0.2, 0])
                     throwing_cycle += 1
                 if timer(thrower_frequency):
-                    print("throw3")
                     Movement.thrower(1900)
             else:
-                Movement.omni_drive([0, 0, 0])
+                Movement.thrower(1000)
                 throwing_cycle = 0
                 tasks[current_task] = False
                 tasks['look'] = True
@@ -150,6 +156,14 @@ try:
             print("Error in tasks logic")
             break
 
+        if ball:
+            cv2.putText(frame, str(ball), tuple(ball),
+                        cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+        if basket:
+            cv2.putText(frame, str(basket), tuple(basket),
+                        cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
+
+        cv2.imshow('RealSense', frame)
 finally:
     Camera.stop()
     Movement.close()
