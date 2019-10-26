@@ -139,7 +139,11 @@ try:
 
         elif tasks['throw']:
             print("throwing")
-            if throwing_cycle < throwing_dur:
+            if throwing_cycle < 3:  # thrower speedup phase
+                if timer(thrower_frequency):
+                    Movement.thrower(1900)
+                    throwing_cycle += 1
+            elif throwing_cycle < throwing_dur:
                 if timer(frequency):
                     Movement.omni_drive([0, 0.2, 0])
                     throwing_cycle += 1
