@@ -48,7 +48,7 @@ rotating_limit = 20  # how much robot rotates at a time
 pause_counter = 0
 pause_limit = 10  # how long robot waits after rotating
 throwing_cycle = 0
-throwing_dur = 30  # how long robot tries to throw the ball
+throwing_dur = 60  # how long robot tries to throw the ball
 
 end_control = False
 throwing = False
@@ -139,7 +139,11 @@ try:
 
         elif tasks['throw']:
             print("throwing")
-            if throwing_cycle < throwing_dur:
+            if throwing_cycle < 10:  # thrower speedup phase
+                if timer(thrower_frequency):
+                    Movement.thrower(1900)
+                    throwing_cycle += 1
+            elif throwing_cycle < throwing_dur:
                 if timer(frequency):
                     Movement.omni_drive([0, 0.2, 0])
                     throwing_cycle += 1
