@@ -44,9 +44,11 @@ ball = []
 basket = []
 
 rotating_counter = 0
-rotating_limit = 20
+rotating_limit = 20  # how much robot rotates at a time
 pause_counter = 0
-pause_limit = 10
+pause_limit = 10  # how long robot waits after rotating
+throwing_cycle = 0
+throwing_dur = 10  # how long robot tries to throw the ball
 
 end_control = False
 throwing = False
@@ -129,11 +131,26 @@ try:
                 basket = Camera.basket_finder(hsv_frame, targetValues)
                 if timer(frequency):
                     start_throw = Movement.rotate_ball(ball, basket)
-                '''if start_throw:
+                if start_throw:
                     tasks[current_task] = False
                     tasks['throw'] = True
                     current_task = 'throw'
-                    start_throw = False'''
+                    start_throw = False
+
+        elif tasks['throw']:
+            print("throwing")
+            if throwing_cycle < throwing_dur:
+                if timer(frequency):
+                    Movement.omni_drive([0, 0.2, 0])
+                    throwing_cycle += 1
+                if timer(thrower_frequency):
+                    Movement.thrower(1900)
+            else:
+                Movement.thrower(1000)
+                throwing_cycle = 0
+                tasks[current_task] = False
+                tasks['look'] = True
+                current_task = 'look'
 
         else:
             print("Error in tasks logic")
