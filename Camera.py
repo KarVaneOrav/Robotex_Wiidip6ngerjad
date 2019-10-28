@@ -57,7 +57,7 @@ def get_frame():
             break
 
     color_frame = np.asanyarray(color_frame.get_data())  # Convert images to numpy arrays
-    depth_frame = np.asanyarray(depth_frame.get_data())
+    #depth_frame = np.asanyarray(depth_frame.get_data())
 
     blurred = cv2.GaussianBlur(color_frame, (3, 3), 2)  # blur the frame
     cropped_color = blurred[0:680, 50:1230]  # crop from 1280, 720 because corners are foggy
