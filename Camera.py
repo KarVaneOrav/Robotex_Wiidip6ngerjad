@@ -9,6 +9,7 @@ def load_preset(file):
     with open(file, 'r') as f:
         text = f.read()
 
+    dev = None
     try:
         devices = rs.context().query_devices()
         dev = devices[0]
@@ -16,7 +17,7 @@ def load_preset(file):
         json_string = text.replace("'", '\"')
         advnc_mode.load_json(json_string)
     finally:
-        if dev != None:
+        if dev is not None:
             print("preset loaded")
         else:
             print("Preset loading failed")
