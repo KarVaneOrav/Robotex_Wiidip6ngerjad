@@ -59,9 +59,10 @@ try:
             circle = circles[round(len(circles)/2)]
             spot = [int(circle[0][0]), int(circle[0][1])]
             cv2.putText(frame, str(spot), (int(spot[0]), int(spot[1])), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
-            distance = depth_frame[spot[0], spot[1]].astype(float)
+            #distance = depth_frame[spot[0], spot[1]].astype(float)
+            distance = depth_frame.get_distance(spot[0], spot[1])
             print(distance)
-            print("Dist: " + str(distance * depth_scale))
+            #print("Dist: " + str(distance * depth_scale))
         except Exception as e:
             print(e)
             print("no targets")

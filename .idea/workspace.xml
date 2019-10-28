@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="39b78f02-c27e-4874-a048-5aee4c62ec90" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Camera.py" beforeDir="false" afterPath="$PROJECT_DIR$/Camera.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -48,7 +48,7 @@
           <entry key="Python Console" value="258" />
           <entry key="dummy" value="17" />
           <entry key="ini" value="1" />
-          <entry key="py" value="12518" />
+          <entry key="py" value="12625" />
           <entry key="txt" value="13" />
         </counts>
       </usages-collector>
@@ -56,7 +56,7 @@
         <counts>
           <entry key="Ini" value="1" />
           <entry key="PLAIN_TEXT" value="30" />
-          <entry key="Python" value="12776" />
+          <entry key="Python" value="12883" />
         </counts>
       </usages-collector>
     </session>
@@ -116,7 +116,7 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/Camera.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="272">
+                <state relative-caret-position="323">
                   <caret line="43" column="22" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="22" />
                   <folding>
                     <element signature="e#25#50#0" expanded="true" />
@@ -148,8 +148,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/test.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="153">
-                  <caret line="28" column="26" selection-start-line="28" selection-start-column="26" selection-end-line="28" selection-end-column="26" />
+                <state relative-caret-position="272">
+                  <caret line="62" column="65" selection-start-line="62" selection-start-column="65" selection-end-line="62" selection-end-column="65" />
                   <folding>
                     <element signature="e#0#10#0" expanded="true" />
                   </folding>
@@ -362,27 +362,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1567943690172</updated>
-    </task>
-    <task id="LOCAL-00164" summary="&#10;f">
-      <created>1571826301238</created>
-      <option name="number" value="00164" />
-      <option name="presentableId" value="LOCAL-00164" />
-      <option name="project" value="LOCAL" />
-      <updated>1571826301238</updated>
-    </task>
-    <task id="LOCAL-00165" summary="&#10;f">
-      <created>1571826628837</created>
-      <option name="number" value="00165" />
-      <option name="presentableId" value="LOCAL-00165" />
-      <option name="project" value="LOCAL" />
-      <updated>1571826628837</updated>
-    </task>
-    <task id="LOCAL-00166" summary="&#10;f">
-      <created>1571827134320</created>
-      <option name="number" value="00166" />
-      <option name="presentableId" value="LOCAL-00166" />
-      <option name="project" value="LOCAL" />
-      <updated>1571827134320</updated>
     </task>
     <task id="LOCAL-00167" summary="&#10;f">
       <created>1571827393327</created>
@@ -706,7 +685,28 @@
       <option name="project" value="LOCAL" />
       <updated>1572264825406</updated>
     </task>
-    <option name="localTasksCounter" value="213" />
+    <task id="LOCAL-00213" summary="&#10;f">
+      <created>1572266322508</created>
+      <option name="number" value="00213" />
+      <option name="presentableId" value="LOCAL-00213" />
+      <option name="project" value="LOCAL" />
+      <updated>1572266322508</updated>
+    </task>
+    <task id="LOCAL-00214" summary="&#10;f">
+      <created>1572266429962</created>
+      <option name="number" value="00214" />
+      <option name="presentableId" value="LOCAL-00214" />
+      <option name="project" value="LOCAL" />
+      <updated>1572266429962</updated>
+    </task>
+    <task id="LOCAL-00215" summary="&#10;f">
+      <created>1572266560885</created>
+      <option name="number" value="00215" />
+      <option name="presentableId" value="LOCAL-00215" />
+      <option name="project" value="LOCAL" />
+      <updated>1572266560885</updated>
+    </task>
+    <option name="localTasksCounter" value="216" />
     <servers />
   </component>
   <component name="TodoView">
@@ -815,7 +815,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Camera.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
+        <state relative-caret-position="323">
           <caret line="43" column="22" selection-start-line="43" selection-start-column="22" selection-end-line="43" selection-end-column="22" />
           <folding>
             <element signature="e#25#50#0" expanded="true" />
@@ -829,8 +829,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="28" column="26" selection-start-line="28" selection-start-column="26" selection-end-line="28" selection-end-column="26" />
+        <state relative-caret-position="272">
+          <caret line="62" column="65" selection-start-line="62" selection-start-column="65" selection-end-line="62" selection-end-column="65" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
