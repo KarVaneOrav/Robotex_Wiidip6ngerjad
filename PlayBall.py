@@ -61,7 +61,7 @@ try:
     comTime = time.time()
 
     while True:
-        frame = Camera.get_frame()
+        depth_frame, frame = Camera.get_frame()
         hsv_frame = Camera.to_hsv(frame)
         processed_frame_green = Camera.process_balls(hsv_frame, greenValues)
 
