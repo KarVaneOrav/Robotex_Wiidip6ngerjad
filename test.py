@@ -61,7 +61,7 @@ try:
             cv2.putText(frame, str(spot), (int(spot[0]), int(spot[1])), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
             #distance = depth_frame[spot[0], spot[1]].astype(float)
             distance = depth_frame.get_distance(spot[0], spot[1])
-            print(distance)
+            print(round(distance, 2))
             #print("Dist: " + str(distance * depth_scale))
         except Exception as e:
             print(e)
