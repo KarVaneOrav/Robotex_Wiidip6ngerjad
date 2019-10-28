@@ -37,20 +37,21 @@ def stop():  # stop pipeline at the end
 
 
 def get_frame():
-    # returns the blurred and cropped vanilla frame
+    # returns the blurred and cropped vanilla frame and the depth frame
     while True:        
-        # Wait for a coherent pair of frames: color
+        # Wait for a coherent pair of frames
         frames = pipeline.wait_for_frames()
         color_frame = frames.get_color_frame()
-        if not color_frame:
+        depth_frame = frames.get_depth_frame()
+        if not color_frame or not depth_frame:
             continue
         else:
             break
 
     color_frame = np.asanyarray(color_frame.get_data())  # Convert images to numpy arrays
     blurred = cv2.GaussianBlur(color_frame, (3, 3), 2)  # blur the frame
-    cropped = blurred[0:680, 50:1230]  # crop from 1280, 720 because corners are foggy
-    return cropped
+    cropped_color = blurred[0:680, 50:1230]  # crop from 1280, 720 because corners are foggy
+    return depth_frame, cropped_color
 
 
 def to_hsv(color_frame):  # turns color frame to hsv
