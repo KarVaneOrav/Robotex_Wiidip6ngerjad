@@ -59,7 +59,8 @@ try:
             cv2.putText(frame, str(spot), (int(spot[0]), int(spot[1])), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
             distance = depth_frame.get_distance(spot[0], spot[1])
             print("Dist: " + str(distance))
-        except:
+        except Exception as e:
+            print(e)
             print("no targets")
 
         # Show images
