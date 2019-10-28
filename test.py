@@ -70,7 +70,7 @@ try:
         # Show images
         cv2.imshow('Processed', processed_frame)
         cv2.imshow('Original', frame)
-        cv2.imshow('depth', depth_frame)
+        #cv2.imshow('depth', depth_frame)
 
         if cv2.waitKey(1) & 0xFF == ord('s'):
             with open("threshold.txt", "a") as f:
