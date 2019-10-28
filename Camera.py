@@ -31,17 +31,11 @@ pipeline = rs.pipeline()
 config = rs.config()
 config.enable_stream(rs.stream.color, 1280, 720, rs.format.bgr8, 30)
 config.enable_stream(rs.stream.depth, 1280, 720, rs.format.z16, 30)
-profile = pipeline.start(config)
+pipeline.start(config)
 
 
 def stop():  # stop pipeline at the end
     pipeline.stop()
-
-
-def get_depth_scale():
-    depth_sensor = profile.get_device().first_depth_sensor()
-    depth_scale = depth_sensor.get_depth_scale()
-    return depth_scale
 
 
 def get_frame():
@@ -57,8 +51,6 @@ def get_frame():
             break
 
     color_frame = np.asanyarray(color_frame.get_data())  # Convert images to numpy arrays
-    #depth_frame = np.asanyarray(depth_frame.get_data())
-
     blurred = cv2.GaussianBlur(color_frame, (3, 3), 2)  # blur the frame
     cropped_color = blurred[0:680, 50:1230]  # crop from 1280, 720 because corners are foggy
     return depth_frame, cropped_color

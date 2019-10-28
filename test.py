@@ -25,8 +25,6 @@ cv2.createTrackbar('hR', "Controls", bars[5], 255, partial(updateValue, 5))
 cv2.createTrackbar('Dilate', "Controls", bars[6], 20, partial(updateValue, 6))
 # cv2.createTrackbar('Erode', "Controls", bars[7], 20, partial(updateValue, 7))
 
-depth_scale = Camera.get_depth_scale()
-print("Depth scale is: ", depth_scale)
 try:
     while True:
         # kernel
@@ -59,10 +57,8 @@ try:
             circle = circles[round(len(circles)/2)]
             spot = [int(circle[0][0]), int(circle[0][1])]
             cv2.putText(frame, str(spot), (int(spot[0]), int(spot[1])), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
-            #distance = depth_frame[spot[0], spot[1]].astype(float)
             distance = depth_frame.get_distance(spot[0], spot[1])
             print(round(distance, 2))
-            #print("Dist: " + str(distance * depth_scale))
         except Exception as e:
             print(e)
             print("no targets")
@@ -70,7 +66,6 @@ try:
         # Show images
         cv2.imshow('Processed', processed_frame)
         cv2.imshow('Original', frame)
-        #cv2.imshow('depth', depth_frame)
 
         if cv2.waitKey(1) & 0xFF == ord('s'):
             with open("threshold.txt", "a") as f:
