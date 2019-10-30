@@ -95,6 +95,7 @@ try:
 
         elif tasks['look']:
             print("looking")
+            Movement.thrower(1000)  # just in case thrower stays on
             if ball:
                 rotating_counter = 0
                 pause_counter = 0
@@ -138,12 +139,8 @@ try:
         elif tasks['throw']:
             print("throwing")
             basket = Camera.basket_finder(hsv_frame, targetValues)
-            if not basket or not ball:
-                Movement.thrower(1000)
-                throwing_cycle = 0
-                tasks[current_task] = False
-                tasks['look'] = True
-                current_task = 'look'
+            if not basket:
+                continue
             distance = round(depth_frame.get_distance(basket[0], basket[1]), 1)
             thrower_speed = Movement.thrower_speed(distance)
             print("Distance:", distance, "; Speed:", thrower_speed)
