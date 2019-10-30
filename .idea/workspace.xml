@@ -23,24 +23,25 @@
         <counts>
           <entry key="project.closed" value="7" />
           <entry key="project.open.time.1" value="1" />
+          <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.11" value="2" />
           <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.13" value="2" />
           <entry key="project.open.time.14" value="2" />
           <entry key="project.open.time.20" value="1" />
-          <entry key="project.opened" value="9" />
+          <entry key="project.opened" value="10" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="ini" value="1" />
-          <entry key="py" value="33" />
+          <entry key="py" value="35" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Ini" value="1" />
-          <entry key="Python" value="33" />
+          <entry key="Python" value="35" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -48,7 +49,7 @@
           <entry key="Python Console" value="258" />
           <entry key="dummy" value="17" />
           <entry key="ini" value="1" />
-          <entry key="py" value="12651" />
+          <entry key="py" value="12752" />
           <entry key="txt" value="13" />
         </counts>
       </usages-collector>
@@ -56,7 +57,7 @@
         <counts>
           <entry key="Ini" value="1" />
           <entry key="PLAIN_TEXT" value="30" />
-          <entry key="Python" value="12909" />
+          <entry key="Python" value="13010" />
         </counts>
       </usages-collector>
     </session>
@@ -68,8 +69,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Threshold.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="272">
-                  <caret line="51" column="70" lean-forward="true" selection-start-line="51" selection-start-column="70" selection-end-line="51" selection-end-column="70" />
+                <state relative-caret-position="816">
+                  <caret line="51" column="70" selection-start-line="51" selection-start-column="70" selection-end-line="51" selection-end-column="70" />
                   <folding>
                     <element signature="e#0#10#0" expanded="true" />
                   </folding>
@@ -92,8 +93,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/backup.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="136">
-                  <caret line="8" column="35" lean-forward="true" selection-start-line="8" selection-start-column="35" selection-end-line="8" selection-end-column="35" />
+                <state relative-caret-position="68">
+                  <caret line="39" column="21" selection-start-line="39" selection-start-column="21" selection-end-line="39" selection-end-column="21" />
                   <folding>
                     <element signature="e#0#13#0" expanded="true" />
                   </folding>
@@ -104,7 +105,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Movement.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="561">
+                <state relative-caret-position="1853">
                   <caret line="111" column="57" selection-start-line="111" selection-start-column="57" selection-end-line="111" selection-end-column="57" />
                   <folding>
                     <element signature="e#0#35#0" expanded="true" />
@@ -113,16 +114,28 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Camera.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="408">
-                  <caret line="33" column="22" lean-forward="true" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
+                <state relative-caret-position="-799">
+                  <caret line="33" column="22" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
                   <folding>
                     <element signature="e#25#50#0" expanded="true" />
                     <marker date="1572269709097" expanded="true" signature="904:906" ph="..." />
                     <marker date="1572269709097" expanded="true" signature="2567:2572" ph="..." />
                     <marker date="1572269709097" expanded="true" signature="2567:3095" ph="..." />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/test.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-170">
+                  <caret line="26" selection-start-line="26" selection-end-line="26" />
+                  <folding>
+                    <element signature="e#0#10#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -135,22 +148,10 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/PlayBall.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="306">
-                  <caret line="63" column="40" selection-start-line="63" selection-start-column="40" selection-end-line="63" selection-end-column="40" />
+                <state relative-caret-position="408">
+                  <caret line="143" column="40" selection-start-line="143" selection-start-column="40" selection-end-line="143" selection-end-column="40" />
                   <folding>
                     <element signature="e#0#13#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/test.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-260">
-                  <caret line="26" selection-start-line="26" selection-end-line="26" />
-                  <folding>
-                    <element signature="e#0#10#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -183,9 +184,9 @@
         <option value="$PROJECT_DIR$/Controller.py" />
         <option value="$PROJECT_DIR$/oldPlayBall.py" />
         <option value="$PROJECT_DIR$/PlayBall2.py" />
-        <option value="$PROJECT_DIR$/backup.py" />
         <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/Camera.py" />
+        <option value="$PROJECT_DIR$/backup.py" />
         <option value="$PROJECT_DIR$/PlayBall.py" />
       </list>
     </option>
@@ -361,20 +362,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1567943690172</updated>
-    </task>
-    <task id="LOCAL-00172" summary="&#10;f">
-      <created>1571831186382</created>
-      <option name="number" value="00172" />
-      <option name="presentableId" value="LOCAL-00172" />
-      <option name="project" value="LOCAL" />
-      <updated>1571831186383</updated>
-    </task>
-    <task id="LOCAL-00173" summary="&#10;f">
-      <created>1571831920051</created>
-      <option name="number" value="00173" />
-      <option name="presentableId" value="LOCAL-00173" />
-      <option name="project" value="LOCAL" />
-      <updated>1571831920051</updated>
     </task>
     <task id="LOCAL-00174" summary="&#10;f">
       <created>1571832444185</created>
@@ -705,7 +692,21 @@
       <option name="project" value="LOCAL" />
       <updated>1572269713064</updated>
     </task>
-    <option name="localTasksCounter" value="221" />
+    <task id="LOCAL-00221" summary="&#10;f">
+      <created>1572277533558</created>
+      <option name="number" value="00221" />
+      <option name="presentableId" value="LOCAL-00221" />
+      <option name="project" value="LOCAL" />
+      <updated>1572277533558</updated>
+    </task>
+    <task id="LOCAL-00222" summary="&#10;f">
+      <created>1572277704119</created>
+      <option name="number" value="00222" />
+      <option name="presentableId" value="LOCAL-00222" />
+      <option name="project" value="LOCAL" />
+      <updated>1572277704119</updated>
+    </task>
+    <option name="localTasksCounter" value="223" />
     <servers />
   </component>
   <component name="TodoView">
@@ -721,7 +722,7 @@
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.061053984" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.05655527" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -762,6 +763,16 @@
     <entry file="file://$PROJECT_DIR$/Kaamera.py" />
     <entry file="file://$PROJECT_DIR$/Näidised/config.py" />
     <entry file="file://$PROJECT_DIR$/Näidised/threshold.py" />
+    <entry file="file://$PROJECT_DIR$/Threshold.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="816">
+          <caret line="51" column="70" selection-start-line="51" selection-start-column="70" selection-end-line="51" selection-end-column="70" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Controller.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
@@ -774,7 +785,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Movement.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
+        <state relative-caret-position="1853">
           <caret line="111" column="57" selection-start-line="111" selection-start-column="57" selection-end-line="111" selection-end-column="57" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
@@ -784,38 +795,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/backup.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="35" lean-forward="true" selection-start-line="8" selection-start-column="35" selection-end-line="8" selection-end-column="35" />
+        <state relative-caret-position="68">
+          <caret line="39" column="21" selection-start-line="39" selection-start-column="21" selection-end-line="39" selection-end-column="21" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Threshold.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="51" column="70" lean-forward="true" selection-start-line="51" selection-start-column="70" selection-end-line="51" selection-end-column="70" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-260">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Camera.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="33" column="22" lean-forward="true" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
+        <state relative-caret-position="-799">
+          <caret line="33" column="22" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
           <folding>
             <element signature="e#25#50#0" expanded="true" />
             <marker date="1572269709097" expanded="true" signature="904:906" ph="..." />
@@ -825,10 +816,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-170">
+          <caret line="26" selection-start-line="26" selection-end-line="26" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/PlayBall.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="63" column="40" selection-start-line="63" selection-start-column="40" selection-end-line="63" selection-end-column="40" />
+        <state relative-caret-position="408">
+          <caret line="143" column="40" selection-start-line="143" selection-start-column="40" selection-end-line="143" selection-end-column="40" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
