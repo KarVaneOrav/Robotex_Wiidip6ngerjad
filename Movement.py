@@ -107,6 +107,16 @@ def controller(key):
     return False  # if still controlling
 
 
+def thrower_speed(distance):
+    if distance > 3.4:
+        return 2153
+    elif distance < 0.6:
+        return 1500
+    else:
+        # int((x-in_min) * (out_max-out_min) / (in_max-in_min) + out_min)
+        return int((distance-0.6) * (2153-1470) / (3.4-0.6) + 1470)
+
+
 def thrower(speed):
     # speeds from 1035 to 2153
     ser.write(('d:' + str(speed) + '\n').encode('utf-8'))

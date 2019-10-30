@@ -56,7 +56,6 @@ start_throw = False
 
 try:
     set_target_basket(opponent)
-    print("throwing1")
     Movement.thrower(1000)  # init thrower motor
     comTime = time.time()
 
@@ -86,7 +85,6 @@ try:
                 end_control = Movement.controller(key)
             if timer(thrower_frequency) and throwing:
                 Movement.thrower(1900)
-                print("throw2")
             if end_control:
                 tasks[current_task] = False
                 tasks['look'] = True
@@ -141,17 +139,18 @@ try:
             print("throwing")
             basket = Camera.basket_finder(hsv_frame, targetValues)
             distance = round(depth_frame.get_distance(basket[0], basket[1]), 1)
-            print("Distance:", distance)
+            thrower_speed = Movement.thrower_speed(distance)
+            print("Distance:", distance, "; Speed:", thrower_speed)
             if throwing_cycle < 10:  # thrower speedup phase
                 if timer(thrower_frequency):
-                    Movement.thrower(1900)
+                    Movement.thrower(thrower_speed)
                     throwing_cycle += 1
             elif throwing_cycle < throwing_dur:
                 if timer(frequency):
                     Movement.omni_drive([0, 0.2, 0])
                     throwing_cycle += 1
                 if timer(thrower_frequency):
-                    Movement.thrower(1900)
+                    Movement.thrower(thrower_speed)
             else:
                 Movement.thrower(1000)
                 throwing_cycle = 0
