@@ -6,6 +6,10 @@ from math import sqrt, atan2, cos, radians
 port = (str(list_ports.comports()[0]).split(' '))[0]
 ser = serial.Serial(port, 115200, timeout=0.00001)
 
+speeds = {3.2: 2153, 2.9: 2050, 2.8: 2000, 2.6: 1950, 2.4: 1850, 2.3: 1790,
+          2.2: 1750, 2.0: 1705, 1.8: 1670, 1.6: 1650, 1.4: 1600, 1.2: 1570,
+          1.0: 1535, 0.8: 1500, 0.6: 1470}
+
 
 def close():
     ser.close()
@@ -113,8 +117,18 @@ def thrower_speed(distance):
     elif distance < 0.6:
         return 1500
     else:
-        # int((x-in_min) * (out_max-out_min) / (in_max-in_min) + out_min)
-        return int((distance-0.6) * (2153-1470) / (3.4-0.6) + 1470)
+        speed = speeds.get(distance)
+        if speed is None:
+            distance_max = distance_min = distance
+            while speeds.get(distance_min) is None:
+                distance -= 0.1
+            while speeds.get(distance_max) is None:
+                distance_max += 0.1
+            # int((x-in_min) * (out_max-out_min) / (in_max-in_min) + out_min)
+            return int((distance-distance_min) * (speeds.get(distance_max)-speeds.get(distance_min)) /
+                       (distance_max-distance_min) + speeds.get(distance_min))
+        else:
+            return speed
 
 
 def thrower(speed):
