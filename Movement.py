@@ -132,8 +132,8 @@ def thrower_speed(distance):
                 speed_max = speeds.get(distance_max)
                 print("Speed_max", speed_max)
             # int((x-in_min) * (out_max-out_min) / (in_max-in_min) + out_min)
-            return int((distance-distance_min) * (speeds.get(distance_max)-speeds.get(distance_min)) /
-                       (distance_max-distance_min) + speeds.get(distance_min))
+            return int((distance-distance_min) * (speed_max-speed_min) /
+                       (distance_max-distance_min) + speed_min)
         else:
             return speed
 
