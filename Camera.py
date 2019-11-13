@@ -53,7 +53,7 @@ def get_frame():
     color_frame = np.asanyarray(color_frame.get_data())  # Convert images to numpy arrays
     blurred = cv2.GaussianBlur(color_frame, (3, 3), 2)  # blur the frame
     cropped_color = blurred[0:680, 50:1230]  # crop from 1280, 720 because corners are foggy
-    return depth_frame, cropped_color
+    return cv2.rotate(depth_frame, cv2.ROTATE_90_CLOCKWISE), cv2.rotate(cropped_color, cv2.ROTATE_90_CLOCKWISE)
 
 
 def to_hsv(color_frame):  # turns color frame to hsv
