@@ -49,7 +49,7 @@ while True:
             Movement.motors(0, 0, 0)
 
     if timer(throwing_frequency) and throwing:
-        Movement.thrower(1900)
+        Movement.thrower(200)
 
 cv2.destroyAllWindows()
 Movement.close()

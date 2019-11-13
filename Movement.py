@@ -130,7 +130,6 @@ def thrower_speed(distance):
                 distance_max = round(distance_max + 0.1, 1)
                 speed_max = speeds.get(distance_max, 1)
                 print("Speed_max", speed_max, "distance_min", distance_max)
-                #a = input("Max input")
             # int((x-in_min) * (out_max-out_min) / (in_max-in_min) + out_min)
             return int((distance-distance_min) * (speed_max-speed_min) /
                        (distance_max-distance_min) + speed_min)
@@ -139,5 +138,5 @@ def thrower_speed(distance):
 
 
 def thrower(speed):
-    # speeds from 1035 to 2153
+    # speeds from 130 to 268
     ser.write(('d:' + str(speed) + '\n').encode('utf-8'))
