@@ -68,15 +68,15 @@ def motors(robotSpeed, robotDirectionAngle, robotAngularVelocity = 0):
 
 def rotate_ball(ball, basket):
     # sets the ball and the basket in a line
-    if not basket or basket[0] > 740:
+    if not basket or basket[0] > 610:
         back = '30'
-    elif basket[0] < 690:
+    elif basket[0] < 570:
         back = '-30'
     else:
         back = '0'
-    if ball[0] < 690:
+    if ball[0] < 570:
         other = '-10'
-    elif ball[0] > 740:
+    elif ball[0] > 610:
         other = '10'
     else:
         other = '0'
