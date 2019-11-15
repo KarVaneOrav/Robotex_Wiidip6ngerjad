@@ -146,14 +146,14 @@ try:
             print("Distance:", distance, "; Speed:", thrower_speed)
             if throwing_cycle < 10:  # thrower speedup phase
                 if timer(thrower_frequency):
-                    #Movement.thrower(thrower_speed)
+                    Movement.thrower(thrower_speed)
                     throwing_cycle += 1
             elif throwing_cycle < throwing_dur:
                 if timer(frequency):
                     Movement.omni_drive([0, 0.2, 0])
                     throwing_cycle += 1
                 if timer(thrower_frequency):
-                    #Movement.thrower(thrower_speed)
+                    Movement.thrower(thrower_speed)
             else:
                 Movement.thrower(1000)
                 throwing_cycle = 0
