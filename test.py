@@ -5,9 +5,11 @@ import serial
 def ss(son):
     global mes
     global tekst
+    global i
     print(son)
     mes = ''
     tekst = ''
+    i = 0
 
 
 port = (str(list_ports.comports()[0]).split(' '))[0]
