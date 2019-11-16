@@ -17,7 +17,7 @@ a = ''
 s = "START"
 p = "PING"
 st = "STOP"
-tekst = ''
+tekst = 'ssdsd'
 
 while True:
     while ser.inWaiting():
