@@ -20,9 +20,11 @@ st = "STOP"
 
 while True:
     while ser.inWaiting():
-        a += ser.read()
+        tekst += ser.read()
 
-    tekst = a.decode()
+    print(tekst)
+
+    #tekst = a.decode()
     if st in tekst:
         ss(st)
     elif a in tekst:
