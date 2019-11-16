@@ -17,10 +17,11 @@ a = ''
 s = "START"
 p = "PING"
 st = "STOP"
-tekst = i
+tekst = ''
 
 while True:
     i += 1
+    print(i)
     while ser.inWaiting():
         tekst += ser.read()
 
