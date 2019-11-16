@@ -3,34 +3,33 @@ import serial
 
 
 def ss(son):
-    global a
+    global mes
     global tekst
     print(son)
-    a = ''
+    mes = ''
     tekst = ''
 
 
 port = (str(list_ports.comports()[0]).split(' '))[0]
 ser = serial.Serial(port, 9600, timeout=0.00001)
 i = 0
-a = ''
 s = "START"
 p = "PING"
 st = "STOP"
-tekst = ''
+mes = ''
 
 while True:
     i += 1
     print(i)
     while ser.inWaiting():
-        tekst += ser.read()
+        mes += ser.read()
 
+    tekst = str(mes)
     print(tekst)
 
-    #tekst = a.decode()
     if st in tekst:
         ss(st)
-    elif a in tekst:
-        ss(a)
+    elif s in tekst:
+        ss(s)
     elif p in tekst:
         ss(p)
