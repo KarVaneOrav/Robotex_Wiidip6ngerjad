@@ -2,7 +2,7 @@ from serial.tools import list_ports
 import serial
 
 port = (str(list_ports.comports()[0]).split(' '))[0]
-ser = serial.Serial(port, 9600, timeout=0.00001)
+ser = serial.Serial(port, baudrate=9600, timeout=0.01)
 
 mes = None
 while True:
