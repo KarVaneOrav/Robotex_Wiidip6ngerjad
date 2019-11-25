@@ -1,6 +1,6 @@
 import cv2
 from functools import partial
-import Camera
+import camera
 import numpy as np
 
 
@@ -34,11 +34,11 @@ try:
         values['lowerLimits'] = np.array([bars[0], bars[1], bars[2]])
         values['upperLimits'] = np.array([bars[3], bars[4], bars[5]])
         
-        d, frame = Camera.get_frame()
-        hsv = Camera.to_hsv(frame)
+        d, frame = camera.get_frame()
+        hsv = camera.to_hsv(frame)
 
         # for balls
-        processed_frame = Camera.process_balls(hsv, values)
+        processed_frame = camera.process_balls(hsv, values)
 
         # for baskets
         # processed_frame = Camera.process_basket(hsv, lowerLimits, upperLimits, kernelDilate)
@@ -74,5 +74,5 @@ try:
 finally:
 
     # Stop streaming
-    Camera.stop()
+    camera.stop()
     cv2.destroyAllWindows()

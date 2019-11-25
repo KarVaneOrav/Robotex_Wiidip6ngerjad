@@ -1,4 +1,4 @@
-import Movement
+import mainboard
 import cv2
 import time
 
@@ -20,7 +20,7 @@ def timer(freq):
 
 
 throwing = False
-Movement.thrower(1100)
+mainboard.thrower(1100)
 
 # angle 0 = right 90 = forward (convert to rad)
 while True:
@@ -34,22 +34,22 @@ while True:
         if key == 113:
             break
         elif key == 119:  # w
-            Movement.motors(0.3, 1.57, 0)
+            mainboard.motors(0.3, 1.57, 0)
         elif key == 97:  # a
-            Movement.motors(0.3, 3.14, 0)
+            mainboard.motors(0.3, 3.14, 0)
         elif key == 115:  # s
-            Movement.motors(0.3, 4.71, 0)
+            mainboard.motors(0.3, 4.71, 0)
         elif key == 100:  # d
-            Movement.motors(0.3, 0, 0)
+            mainboard.motors(0.3, 0, 0)
         elif key == 111:  # o
-            Movement.motors(0, 0, 2)
+            mainboard.motors(0, 0, 2)
         elif key == 112:  # p
-            Movement.motors(0, 0, -2)
+            mainboard.motors(0, 0, -2)
         else:
-            Movement.motors(0, 0, 0)
+            mainboard.motors(0, 0, 0)
 
     if timer(throwing_frequency) and throwing:
-        Movement.thrower(200)
+        mainboard.thrower(200)
 
 cv2.destroyAllWindows()
-Movement.close()
+mainboard.close()

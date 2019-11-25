@@ -12,3 +12,6 @@ while True:
         tekst = str(mes)
         print(tekst)
         mes = None
+
+    if START:
+        move

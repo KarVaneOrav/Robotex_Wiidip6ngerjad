@@ -1,5 +1,5 @@
-import Camera
-import Movement
+import camera
+import mainboard
 import time
 import cv2
 import numpy as np
@@ -57,15 +57,15 @@ start_throw = False
 try:
     set_target_basket(opponent)
     print("throwing1")
-    Movement.thrower(1000)  # init thrower motor
+    mainboard.thrower(1000)  # init thrower motor
     comTime = time.time()
 
     while True:
-        depth_frame, frame = Camera.get_frame()
-        hsv_frame = Camera.to_hsv(frame)
-        processed_frame_green = Camera.process_balls(hsv_frame, greenValues)
+        depth_frame, frame = camera.get_frame()
+        hsv_frame = camera.to_hsv(frame)
+        processed_frame_green = camera.process_balls(hsv_frame, greenValues)
 
-        ball = Camera.green_finder(processed_frame_green)  # returns closest ball
+        ball = camera.green_finder(processed_frame_green)  # returns closest ball
         basket = []
 
         key = cv2.waitKey(1)
@@ -81,11 +81,11 @@ try:
             print("throwing " + str(throwing))
             if key == 116:  # 't' to start thrower
                 throwing = not throwing
-                Movement.thrower(1000)
+                mainboard.thrower(1000)
             if timer(frequency):
-                end_control = Movement.controller(key)
+                end_control = mainboard.controller(key)
             if timer(thrower_frequency) and throwing:
-                Movement.thrower(1900)
+                mainboard.thrower(1900)
                 print("throw2")
             if end_control:
                 tasks[current_task] = False
@@ -93,7 +93,7 @@ try:
                 current_task = 'look'
                 end_control = False
                 throwing = False
-                Movement.thrower(1000)
+                mainboard.thrower(1000)
 
         elif tasks['look']:
             print("looking")
@@ -102,9 +102,9 @@ try:
                 pause_counter = 0
                 if ball[1] < 500:  # if ball is too far
                     if timer(frequency):
-                        Movement.move_to_ball(ball)
+                        mainboard.move_to_ball(ball)
                 else:
-                    Movement.omni_drive([0, 0, 0])  # stop
+                    mainboard.omni_drive([0, 0, 0])  # stop
                     tasks[current_task] = False
                     tasks["rotate"] = True
                     current_task = "rotate"
@@ -114,10 +114,10 @@ try:
                         rotating_counter = 0
                         pause_counter = 0
                     elif timer(frequency):
-                        Movement.omni_drive([0, 0, 0])
+                        mainboard.omni_drive([0, 0, 0])
                         pause_counter += 1
                 elif timer(frequency):
-                    Movement.omni_drive([0, 0, 1])  # turns on the spot
+                    mainboard.omni_drive([0, 0, 1])  # turns on the spot
                     rotating_counter += 1
 
         elif tasks['rotate']:
@@ -128,9 +128,9 @@ try:
                 current_task = 'look'
                 continue
             else:  # starts rotating
-                basket = Camera.basket_finder(hsv_frame, targetValues)
+                basket = camera.basket_finder(hsv_frame, targetValues)
                 if timer(frequency):
-                    start_throw = Movement.rotate_ball(ball, basket)
+                    start_throw = mainboard.rotate_ball(ball, basket)
                 if start_throw:
                     tasks[current_task] = False
                     tasks['throw'] = True
@@ -141,16 +141,16 @@ try:
             print("throwing")
             if throwing_cycle < 10:  # thrower speedup phase
                 if timer(thrower_frequency):
-                    Movement.thrower(1900)
+                    mainboard.thrower(1900)
                     throwing_cycle += 1
             elif throwing_cycle < throwing_dur:
                 if timer(frequency):
-                    Movement.omni_drive([0, 0.2, 0])
+                    mainboard.omni_drive([0, 0.2, 0])
                     throwing_cycle += 1
                 if timer(thrower_frequency):
-                    Movement.thrower(1900)
+                    mainboard.thrower(1900)
             else:
-                Movement.thrower(1000)
+                mainboard.thrower(1000)
                 throwing_cycle = 0
                 tasks[current_task] = False
                 tasks['look'] = True
@@ -169,7 +169,7 @@ try:
 
         cv2.imshow('RealSense', frame)
 finally:
-    Camera.stop()
-    Movement.close()
+    camera.stop()
+    mainboard.close()
     cv2.destroyAllWindows()
     print("end")

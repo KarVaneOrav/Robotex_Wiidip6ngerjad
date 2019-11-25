@@ -5,10 +5,12 @@ from math import sqrt, atan2, cos, radians
 # Takes list of existing ports. Chooses the mainboard if there are no others.
 port = (str(list_ports.comports()[0]).split(' '))[0]
 ser = serial.Serial(port, 115200, timeout=0.00001)
+ser_ref = serial.Serial(port, 9600, timeout=0.01)
 
 speeds = {3.2: 2153, 2.9: 2050, 2.8: 2000, 2.6: 1950, 2.4: 1850, 2.3: 1790,
           2.2: 1750, 2.0: 1705, 1.8: 1670, 1.6: 1650, 1.4: 1600, 1.2: 1570,
           1.0: 1535, 0.8: 1500, 0.6: 1470}
+ref_mes = ''
 
 
 def close():
@@ -18,6 +20,33 @@ def close():
 def read_serial():
     while ser.inWaiting():
         ser.read()
+
+
+def read_ref(robotID, courtID):
+    global ref_mes
+    while ser_ref.inWaiting():
+        ref_mes += ser_ref.read().decode('ascii')
+
+    while True:
+        end = ref_mes.find('\n')
+        if end == -1:
+            return None
+        else:
+            mes = ref_mes[:end]
+            print(mes)
+            ref_mes = ref_mes[(end+1):]
+            if mes[6] == courtID and mes[7] == robotID or mes[7] == 'X':
+                ser_ref.write(str.encode('rf:a' + courtID + robotID + 'ACK----- \r \n'))
+                if 'START' in mes:
+                    return 'START'
+                elif 'STOP' in mes:
+                    return 'STOP'
+                elif 'PING' in mes:
+                    return None
+            else:
+                return None
+
+
 
 
 def move_to_ball(ball):
