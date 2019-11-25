@@ -63,7 +63,7 @@ try:
 
     while True:
         new_task = mainboard.read_ref(robotID, courtID, current_task)
-        print(new_task)
+        print('ref: ' + new_task)
         if new_task != current_task:
             tasks[current_task] = False
             tasks[new_task] = True
