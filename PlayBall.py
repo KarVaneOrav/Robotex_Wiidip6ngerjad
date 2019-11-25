@@ -62,12 +62,12 @@ try:
     comTime = time.time()
 
     while True:
-        new_task = mainboard.read_ref(robotID, courtID, current_task)
+        '''new_task = mainboard.read_ref(robotID, courtID, current_task)
         print('ref: ' + new_task)
         if new_task != current_task:
             tasks[current_task] = False
             tasks[new_task] = True
-            current_task = new_task
+            current_task = new_task'''
 
         depth_frame, frame = camera.get_frame()
         hsv_frame = camera.to_hsv(frame)
