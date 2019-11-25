@@ -38,7 +38,7 @@ greenValues = {'lowerLimits': np.array([green[0], green[1], green[2]]),
                'upperLimits': np.array([green[3], green[4], green[5]])}
 targetValues = {'lowerLimits': None, 'upperLimits': None, 'kernelDilate': None}
 
-tasks = {"controller": False, "look": True, "rotate":  False, 'throw': False}
+tasks = {"nothing": False, "controller": False, "look": True, "rotate":  False, 'throw': False}
 current_task = 'look'
 frequency = 0.0166667  # send movement signals at 60Hz
 thrower_frequency = 0.002
@@ -58,10 +58,17 @@ start_throw = False
 
 try:
     set_target_basket(opponent)
-    mainboard.thrower(1000)  # init thrower motor
+    mainboard.thrower(130)  # init thrower motor
     comTime = time.time()
 
     while True:
+        new_task = mainboard.read_ref(robotID, courtID, current_task)
+        print(new_task)
+        if new_task != current_task:
+            tasks[current_task] = False
+            tasks[new_task] = True
+            current_task = new_task
+
         depth_frame, frame = camera.get_frame()
         hsv_frame = camera.to_hsv(frame)
         processed_frame_green = camera.process_balls(hsv_frame, greenValues)
@@ -77,7 +84,10 @@ try:
             tasks["controller"] = True
             current_task = 'controller'
 
-        if tasks['controller']:
+        if tasks['nothing']:
+            pass
+
+        elif tasks['controller']:
             print("Controlling by remote")
             print("throwing " + str(throwing))
             if key == 116:  # 't' to start thrower

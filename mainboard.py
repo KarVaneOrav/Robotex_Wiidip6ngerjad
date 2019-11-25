@@ -22,7 +22,7 @@ def read_serial():
         ser.read()
 
 
-def read_ref(robotID, courtID):
+def read_ref(robotID, courtID, current_task):
     global ref_mes
     while ser_ref.inWaiting():
         ref_mes += ser_ref.read().decode('ascii')
@@ -30,7 +30,7 @@ def read_ref(robotID, courtID):
     while True:
         end = ref_mes.find('\n')
         if end == -1:
-            return None
+            return current_task
         else:
             mes = ref_mes[:end]
             print(mes)
@@ -38,13 +38,15 @@ def read_ref(robotID, courtID):
             if mes[6] == courtID and mes[7] == robotID or mes[7] == 'X':
                 ser_ref.write(str.encode('rf:a' + courtID + robotID + 'ACK----- \r \n'))
                 if 'START' in mes:
-                    return 'START'
+                    return 'look'
                 elif 'STOP' in mes:
-                    return 'STOP'
+                    return 'nothing'
                 elif 'PING' in mes:
-                    return None
+                    return current_task
+                else:
+                    print("bad ref message")
             else:
-                return None
+                return current_task
 
 
 
