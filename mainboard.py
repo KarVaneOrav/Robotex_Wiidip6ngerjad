@@ -15,16 +15,17 @@ ref_mes = ''
 
 def close():
     ser.close()
+    ser_ref.close()
 
 
 def read_serial():
-    while ser.inWaiting():
+    while ser.inWaiting() > 0:
         ser.read()
 
 
 def read_ref(robotID, courtID, current_task):
     global ref_mes
-    while ser_ref.inWaiting():
+    while ser_ref.inWaiting() > 0:
         ref_mes += ser_ref.read().decode('ascii')
 
     while True:
