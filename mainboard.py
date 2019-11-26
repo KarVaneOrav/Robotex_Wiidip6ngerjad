@@ -18,11 +18,6 @@ def close():
     ser_ref.close()
 
 
-def read_serial():
-    while ser.inWaiting() > 0:
-        ser.read()
-
-
 def read_ref(robotID, courtID, current_task):
     global ref_mes
     while ser_ref.inWaiting() > 0:
@@ -49,8 +44,6 @@ def read_ref(robotID, courtID, current_task):
                     print("bad ref message")
             else:
                 return current_task
-
-
 
 
 def move_to_ball(ball):
@@ -96,8 +89,6 @@ def motors(robotSpeed, robotDirectionAngle, robotAngularVelocity = 0):
     ser.write(move.encode('utf-8'))
     print(move)
 
-    read_serial()
-
 
 def rotate_ball(ball, basket):
     # sets the ball and the basket in a line
@@ -115,7 +106,6 @@ def rotate_ball(ball, basket):
         other = '0'
 
     ser.write(('sd:'+back+':'+other+':'+other+'\n').encode('utf-8'))
-    read_serial()
 
     if back == other:  # if both '0' start throwing
         return True
