@@ -13,7 +13,7 @@ courtID = 'A'
 
 
 def timer(pause):
-    # sets communication to 60Hz
+    # used to set communication intervals
     global comTime
     if time.time() >= (comTime + pause):
         comTime = time.time()
@@ -42,8 +42,8 @@ tasks = {"nothing": False, "controller": False, "look": True, "rotate":  False, 
 current_task = 'look'
 frequency = 0.0166667  # send movement signals at 60Hz
 thrower_frequency = 0.002
-ball = []
-basket = []
+#ball = []
+#basket = []
 
 rotating_counter = 0
 rotating_limit = 20  # how much robot rotates at a time
@@ -68,13 +68,14 @@ try:
             tasks[current_task] = False
             tasks[new_task] = True
             current_task = new_task
+            throwing = False
 
         depth_frame, frame = camera.get_frame()
         hsv_frame = camera.to_hsv(frame)
         processed_frame_green = camera.process_balls(hsv_frame, greenValues)
 
         ball = camera.green_finder(processed_frame_green)  # returns closest ball
-        basket = []
+        #basket = []
 
         key = cv2.waitKey(1)
         if key == 113:
