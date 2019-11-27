@@ -42,8 +42,6 @@ tasks = {"nothing": False, "controller": False, "look": True, "rotate":  False, 
 current_task = 'look'
 frequency = 0.0166667  # send movement signals at 60Hz
 thrower_frequency = 0.002
-#ball = []
-#basket = []
 
 rotating_counter = 0
 rotating_limit = 20  # how much robot rotates at a time
@@ -75,7 +73,7 @@ try:
         processed_frame_green = camera.process_balls(hsv_frame, greenValues)
 
         ball = camera.green_finder(processed_frame_green)  # returns closest ball
-        #basket = []
+        basket = []
 
         key = cv2.waitKey(1)
         if key == 113:
@@ -93,22 +91,22 @@ try:
             print("throwing " + str(throwing))
             if key == 116:  # 't' to start thrower
                 throwing = not throwing
-                mainboard.thrower(1000)
+                mainboard.thrower(100)
             if timer(frequency):
                 end_control = mainboard.controller(key)
             if timer(thrower_frequency) and throwing:
-                mainboard.thrower(1900)
+                mainboard.thrower(190)
             if end_control:
                 tasks[current_task] = False
                 tasks['look'] = True
                 current_task = 'look'
                 end_control = False
                 throwing = False
-                mainboard.thrower(1000)
+                mainboard.thrower(100)
 
         elif tasks['look']:
             print("looking")
-            mainboard.thrower(1000)  # just in case thrower stays on
+            mainboard.thrower(100)  # just in case thrower stays on
             if ball:
                 rotating_counter = 0
                 pause_counter = 0
@@ -168,7 +166,7 @@ try:
                 if timer(thrower_frequency):
                     mainboard.thrower(thrower_speed)
             else:
-                mainboard.thrower(1000)
+                mainboard.thrower(100)
                 throwing_counter = 0
                 tasks[current_task] = False
                 tasks['look'] = True

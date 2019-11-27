@@ -7,9 +7,9 @@ port = (str(list_ports.comports()[0]).split(' '))[0]
 ser = serial.Serial(port, 115200, timeout=0.00001)
 ser_ref = serial.Serial(port, 9600, timeout=0.01)
 
-speeds = {3.2: 267, 2.9: 2050, 2.8: 2000, 2.6: 1950, 2.4: 1850, 2.3: 1790,
-          2.2: 1750, 2.0: 1705, 1.8: 1670, 1.6: 1650, 1.4: 1600, 1.2: 1570,
-          1.0: 1535, 0.8: 1500, 0.6: 1470}
+speeds = {3.2: 267, 3.1: 250, 2.9: 245, 2.8: 243, 2.7: 243, 2.6: 241, 2.4: 237, 2.3: 235,
+          2.2: 233, 2.0: 229, 1.8: 225, 1.6: 221, 1.4: 217, 1.2: 213,
+          1.0: 209, 0.8: 205, 0.6: 201}
 ref_mes = ''
 
 
@@ -135,10 +135,10 @@ def controller(key):
 
 
 def thrower_speed(distance):
-    if distance > 3.4 or distance == 0:
-        return 2153
+    if distance > 3.2 or distance == 0:
+        return 267
     elif distance < 0.6:
-        return 1500
+        return 200
     else:
         speed = speeds.get(distance)
         if speed is None:
