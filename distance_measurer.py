@@ -35,7 +35,7 @@ while True:
 
     if basket:
         distance = round(depth_frame.get_distance(basket[0], basket[1]), 1)
-        values += distance
+        values += [distance]
         middle = round(sum(values)/len(values), 1)
         if len(values) > 6:
             del values[0]
