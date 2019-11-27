@@ -20,7 +20,7 @@ def set_target_basket(op):
 
 
 targetValues = {'lowerLimits': None, 'upperLimits': None, 'kernelDilate': None}
-
+set_target_basket(opponent)
 cv2.namedWindow('rgb_img', cv2.WINDOW_NORMAL)
 while True:
     if cv2.waitKey(1) & 0xFF == ord('q'):
