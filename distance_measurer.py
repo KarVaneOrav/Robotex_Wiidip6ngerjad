@@ -21,6 +21,9 @@ def set_target_basket(op):
 
 targetValues = {'lowerLimits': None, 'upperLimits': None, 'kernelDilate': None}
 set_target_basket(opponent)
+
+values = []
+
 cv2.namedWindow('rgb_img', cv2.WINDOW_NORMAL)
 while True:
     if cv2.waitKey(1) & 0xFF == ord('q'):
@@ -32,7 +35,11 @@ while True:
 
     if basket:
         distance = round(depth_frame.get_distance(basket[0], basket[1]), 1)
-        print("Distance: " + str(distance))
+        values += distance
+        middle = round(sum(values)/len(values), 1)
+        if len(values) > 6:
+            del values[0]
+        print("Distance: " + str(distance), "Around: " + str(middle))
 
 camera.stop()
 cv2.destroyAllWindows()
