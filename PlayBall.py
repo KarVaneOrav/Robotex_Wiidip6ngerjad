@@ -38,7 +38,7 @@ greenValues = {'lowerLimits': np.array([green[0], green[1], green[2]]),
                'upperLimits': np.array([green[3], green[4], green[5]])}
 targetValues = {'lowerLimits': None, 'upperLimits': None, 'kernelDilate': None}
 
-tasks = {"nothing": False, "controller": False, "look": True, "rotate":  False, 'throw': False}
+tasks = {"nothing": True, "controller": False, "look": False, "rotate":  False, 'throw': False}
 current_task = 'nothing'
 frequency = 0.0166667  # send movement signals at 60Hz
 thrower_frequency = 0.002
