@@ -102,9 +102,9 @@ def rotate_ball(ball, basket):
         back = '-30'
     else:
         back = '0'
-    if ball[0] < 570:
+    if ball[0] < 575:
         other = '-10'
-    elif ball[0] > 610:
+    elif ball[0] > 605:
         other = '10'
     else:
         other = '0'
