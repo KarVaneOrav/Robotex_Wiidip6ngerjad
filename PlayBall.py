@@ -49,6 +49,7 @@ pause_counter = 0
 pause_limit = 10  # how long robot waits after rotating
 throwing_counter = 0
 throwing_limit = 60  # how long robot tries to throw the ball
+distances = []  # to find middle value
 
 end_control = False
 throwing = False
@@ -153,7 +154,11 @@ try:
             if not basket:
                 continue
             distance = round(depth_frame.get_distance(basket[0], basket[1]), 1)
-            thrower_speed = mainboard.thrower_speed(distance)
+            distances += [distance]
+            if len(distances) > 5:
+                del distances[0]
+            aprox_distance = round(sum(distances)/len(distances), 1)
+            thrower_speed = mainboard.thrower_speed(aprox_distance)
             print("Distance:", distance, "; Speed:", thrower_speed)
             if throwing_counter < 10:  # thrower speedup phase
                 if timer(thrower_frequency):
