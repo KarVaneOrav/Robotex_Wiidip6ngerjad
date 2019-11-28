@@ -121,13 +121,13 @@ def controller(key):
     if key == 27:  # esc
         return True
     elif key == 119:  # w
-        motors(0.3, 1.57, 0)
+        motors(0.6, 1.57, 0)
     elif key == 97:  # a
-        motors(0.3, 3.14, 0)
+        motors(0.6, 3.14, 0)
     elif key == 115:  # s
-        motors(0.3, 4.71, 0)
+        motors(0.6, 4.71, 0)
     elif key == 100:  # d
-        motors(0.3, 0, 0)
+        motors(0.6, 0, 0)
     elif key == 111:  # o
         motors(0, 0, 2)
     elif key == 112:  # p
