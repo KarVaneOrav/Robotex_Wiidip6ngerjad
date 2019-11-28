@@ -7,7 +7,7 @@ import numpy as np
 green = [16, 163, 93, 124, 255, 255]  # threshold values, morph values
 pink = [95, 203, 61, 255, 255, 255, 3]
 blue = [35, 0, 29, 255, 91, 255, 3]
-opponent = 'pink'  # 'blue' or 'pink'
+opponent = 'blue'  # 'blue' or 'pink'
 robotID = 'A'
 courtID = 'A'
 
@@ -85,7 +85,7 @@ try:
             current_task = 'controller'
 
         if tasks['nothing']:
-            pass
+            mainboard.omni_drive([0, 0, 0])
 
         elif tasks['controller']:
             print("Controlling by remote")
