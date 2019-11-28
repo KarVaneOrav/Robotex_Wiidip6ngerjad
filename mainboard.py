@@ -26,14 +26,13 @@ def read_ref(robotID, courtID, current_task):
     while ser_ref.inWaiting() > 0:
         ref_mes += ser_ref.read().decode('ascii')
 
-    print("pure:" + ref_mes)
     while True:
         end = ref_mes.find('\n')
         if end == -1:
             return current_task
         else:
             mes = ref_mes[:end]
-            print(mes)
+            print("From ref: ", mes)
             ref_mes = ref_mes[(end+1):]
             if mes[6] == courtID and mes[7] == robotID or mes[7] == 'X':
                 ser_ref.write(str.encode('rf:a' + courtID + robotID + 'ACK----- \r \n'))

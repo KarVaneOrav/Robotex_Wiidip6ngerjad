@@ -10,6 +10,7 @@ blue = [35, 0, 29, 255, 91, 255, 3]
 opponent = 'blue'  # 'blue' or 'pink'
 robotID = 'A'
 courtID = 'A'
+current_task = 'look'
 
 
 def timer(pause):
@@ -34,12 +35,25 @@ def set_target_basket(op):
     targetValues['targetKerne'] = np.ones((target[6], target[6]), np.uint8)
 
 
+def halt():
+    mainboard.omni_drive([0, 0, 0])
+    mainboard.thrower(100)
+
+
+def change_task(new):
+    global current_task
+
+    tasks[current_task] = False
+    tasks[new] = True
+    current_task = new
+
+
 greenValues = {'lowerLimits': np.array([green[0], green[1], green[2]]),
                'upperLimits': np.array([green[3], green[4], green[5]])}
 targetValues = {'lowerLimits': None, 'upperLimits': None, 'kernelDilate': None}
 
-tasks = {"nothing": False, "controller": False, "look": True, "rotate":  False, 'throw': False}
-current_task = 'look'
+tasks = {"nothing": False, "controller": False, "look": False, "rotate":  False, 'throw': False}
+tasks[current_task] = True
 frequency = 0.0166667  # send movement signals at 60Hz
 thrower_frequency = 0.002
 
@@ -64,9 +78,9 @@ try:
         new_task = mainboard.read_ref(robotID, courtID, current_task)
         print('ref: ' + new_task)
         if new_task != current_task:
-            tasks[current_task] = False
-            tasks[new_task] = True
-            current_task = new_task
+            if new_task == 'nothing':
+                halt()
+            change_task(new_task)
             throwing = False
 
         depth_frame, frame = camera.get_frame()
@@ -80,13 +94,11 @@ try:
         if key == 113:
             break
         elif key == 99 and not tasks['controller']:  # if 'c' is pressed and already not controlling
-            tasks[current_task] = False
-            tasks["controller"] = True
-            current_task = 'controller'
+            change_task('controller')
+            halt()
 
         if tasks['nothing']:
-            mainboard.omni_drive([0, 0, 0])
-            mainboard.thrower(100)
+            pass
 
         elif tasks['controller']:
             print("Controlling by remote")
@@ -99,9 +111,7 @@ try:
             if timer(thrower_frequency) and throwing:
                 mainboard.thrower(190)
             if end_control:
-                tasks[current_task] = False
-                tasks['look'] = True
-                current_task = 'look'
+                change_task('look')
                 end_control = False
                 throwing = False
                 mainboard.thrower(100)
@@ -117,9 +127,7 @@ try:
                         mainboard.move_to_ball(ball)
                 else:
                     mainboard.omni_drive([0, 0, 0])  # stop
-                    tasks[current_task] = False
-                    tasks["rotate"] = True
-                    current_task = "rotate"
+                    change_task('rotate')
             else:
                 if rotating_counter >= rotating_limit:  # take pauses to process
                     if pause_counter >= pause_limit:
@@ -135,18 +143,14 @@ try:
         elif tasks['rotate']:
             print("rotating")
             if not ball or ball[1] < 500:  # if loses the ball or gets too far
-                tasks[current_task] = False
-                tasks["look"] = True
-                current_task = 'look'
+                change_task('look')
                 continue
             else:  # starts rotating
                 basket = camera.basket_finder(hsv_frame, targetValues)
                 if timer(frequency):
                     start_throw = mainboard.rotate_ball(ball, basket)
                 if start_throw:
-                    tasks[current_task] = False
-                    tasks['throw'] = True
-                    current_task = 'throw'
+                    change_task('throw')
                     start_throw = False
 
         elif tasks['throw']:
@@ -174,9 +178,7 @@ try:
             else:
                 mainboard.thrower(100)
                 throwing_counter = 0
-                tasks[current_task] = False
-                tasks['look'] = True
-                current_task = 'look'
+                change_task('look')
 
         else:
             print("Error in tasks logic")
