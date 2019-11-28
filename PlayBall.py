@@ -61,6 +61,7 @@ rotating_counter = 0
 rotating_limit = 20  # how much robot rotates at a time
 pause_counter = 0
 pause_limit = 10  # how long robot waits after rotating
+thrower_warmup = 10
 throwing_counter = 0
 throwing_limit = 60  # how long robot tries to throw the ball
 distances = []  # to find middle value
@@ -167,17 +168,12 @@ try:
                 aprox_distance = round(sum(distances)/len(distances), 1)
                 thrower_speed = mainboard.thrower_speed(aprox_distance)
             print("Distance:", distance, "; Speed:", thrower_speed)
-            if throwing_counter < 10:  # thrower speedup phase
-                if timer(thrower_frequency):
-                    mainboard.thrower(thrower_speed)
-                    throwing_counter += 1
-            elif throwing_counter < throwing_limit:
-                if timer(frequency):
-                    mainboard.omni_drive([0, 0.2, 0])
-                    throwing_counter += 1
-                if timer(thrower_frequency):
-                    mainboard.thrower(thrower_speed)
-            else:
+            if timer(thrower_frequency):
+                #mainboard.thrower(thrower_speed)
+                throwing_counter += 1
+            if thrower_warmup < throwing_counter:
+                mainboard.omni_drive([0, 0.2, 0])
+            if throwing_counter >= throwing_limit:
                 mainboard.thrower(100)
                 throwing_counter = 0
                 change_task('look')
