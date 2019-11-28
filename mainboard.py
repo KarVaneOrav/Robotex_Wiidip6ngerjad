@@ -16,8 +16,8 @@ ref_mes = ''
 
 
 def close():
-    ser.close()
     omni_drive([0, 0, 0])
+    ser.close()
     ser_ref.close()
 
 
