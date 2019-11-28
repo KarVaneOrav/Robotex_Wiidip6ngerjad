@@ -7,14 +7,17 @@ port = (str(list_ports.comports()[0]).split(' '))[0]
 ser = serial.Serial(port, 115200, timeout=0.00001)
 ser_ref = serial.Serial(port, 9600, timeout=0.01)
 
-speeds = {3.2: 267, 3.1: 250, 2.9: 245, 2.8: 243, 2.7: 243, 2.6: 241, 2.4: 237, 2.3: 235,
-          2.2: 233, 2.0: 229, 1.8: 225, 1.6: 221, 1.4: 217, 1.2: 213,
-          1.0: 209, 0.8: 205, 0.6: 201}
+speeds = {3.5: 265, 3.3: 260, 3.2: 255, 3.1: 250, 3.0: 249, 2.9: 245,
+          2.8: 240, 2.6: 227, 2.5: 225, 2.4: 224, 2.3: 220, 2.2: 219,
+          2.1: 215, 2.0: 214, 1.9: 210, 1.8: 207, 1.7: 206, 1.6: 202,
+          1.5: 200, 1.4: 198, 1.3: 196, 1.2: 194, 1.1: 191, 1.0: 190,
+          0.9: 188, 0.8: 186, 0.7: 182, 0.6: 181}
 ref_mes = ''
 
 
 def close():
     ser.close()
+    omni_drive([0, 0, 0])
     ser_ref.close()
 
 
@@ -135,10 +138,10 @@ def controller(key):
 
 
 def thrower_speed(distance):
-    if distance > 3.2 or distance == 0:
-        return 267
-    elif distance < 0.6:
-        return 200
+    if distance >= 3.5 or distance == 0:
+        return 265
+    elif distance <= 0.6:
+        return 181
     else:
         speed = speeds.get(distance)
         if speed is None:
