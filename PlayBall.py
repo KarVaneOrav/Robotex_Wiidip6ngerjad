@@ -157,13 +157,15 @@ try:
             print("throwing")
             basket = camera.basket_finder(hsv_frame, targetValues)
             if not basket:
-                continue
-            distance = round(depth_frame.get_distance(basket[0], basket[1]), 1)
-            distances += [distance]
-            if len(distances) > 5:
-                del distances[0]
-            aprox_distance = round(sum(distances)/len(distances), 1)
-            thrower_speed = mainboard.thrower_speed(aprox_distance)
+                thrower_speed = 265
+                distance = -1
+            else:
+                distance = round(depth_frame.get_distance(basket[0], basket[1]), 1)
+                distances += [distance]
+                if len(distances) > 5:
+                    del distances[0]
+                aprox_distance = round(sum(distances)/len(distances), 1)
+                thrower_speed = mainboard.thrower_speed(aprox_distance)
             print("Distance:", distance, "; Speed:", thrower_speed)
             if throwing_counter < 10:  # thrower speedup phase
                 if timer(thrower_frequency):
