@@ -45,6 +45,7 @@ def read_ref(robotID, courtID, current_task):
                     return current_task
                 else:
                     print("bad ref message")
+                    return current_task
             else:
                 return current_task
 
