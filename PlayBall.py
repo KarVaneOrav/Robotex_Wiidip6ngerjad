@@ -57,7 +57,7 @@ start_throw = False
 
 try:
     set_target_basket(opponent)
-    mainboard.thrower(130)  # init thrower motor
+    mainboard.thrower(100)  # init thrower motor
     comTime = time.time()
 
     while True:
