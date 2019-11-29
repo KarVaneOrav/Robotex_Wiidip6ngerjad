@@ -63,7 +63,7 @@ try:
     while True:
         depth_frame, frame = camera.get_frame()
         hsv_frame = camera.to_hsv(frame)
-        processed_frame_green = camera.process_balls(hsv_frame, greenValues)
+        processed_frame_green = camera.process_frame(hsv_frame, greenValues)
 
         ball = camera.green_finder(processed_frame_green)  # returns closest ball
         basket = []

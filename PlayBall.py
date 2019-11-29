@@ -32,7 +32,7 @@ def set_target_basket(op):
 
     targetValues['lowerLimits'] = np.array([target[0], target[1], target[2]])
     targetValues['upperLimits'] = np.array([target[3], target[4], target[5]])
-    targetValues['targetKerne'] = np.ones((target[6], target[6]), np.uint8)
+    targetValues['kernelDilate'] = np.ones((target[6], target[6]), np.uint8)
 
 
 def halt():
@@ -86,7 +86,7 @@ try:
 
         depth_frame, frame = camera.get_frame()
         hsv_frame = camera.to_hsv(frame)
-        processed_frame_green = camera.process_balls(hsv_frame, greenValues)
+        processed_frame_green = camera.process_frame(hsv_frame, greenValues)
 
         ball = camera.green_finder(processed_frame_green)  # returns closest ball
         basket = []

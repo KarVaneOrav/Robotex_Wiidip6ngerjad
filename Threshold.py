@@ -39,7 +39,7 @@ try:
         hsv = camera.to_hsv(frame)
 
         # for balls
-        processed_frame = camera.process_balls(hsv, values)
+        processed_frame = camera.process_frame(hsv, values)
 
         # for baskets
         # processed_frame = Camera.process_basket(hsv, lowerLimits, upperLimits, kernelDilate)

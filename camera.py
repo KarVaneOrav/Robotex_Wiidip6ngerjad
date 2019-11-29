@@ -60,33 +60,23 @@ def to_hsv(color_frame):  # turns color frame to hsv
     return cv2.cvtColor(color_frame, cv2.COLOR_BGR2HSV)
 
 
-def process_balls(hsv_frame, values):
-    # takes a hsv frame as input, outputs balls as white
+def process_frame(hsv_frame, values):
+    # takes a hsv frame as input, outputs desired object as white
     lowerlimits = values.get('lowerLimits')
     upperlimits = values.get('upperLimits')
-
     thresholded = cv2.inRange(hsv_frame, lowerlimits, upperlimits)
 
-    # in case morphing is needed
-    # morphed = cv2.erode(thresholded,kernelErode,iterations = 1)
-    # morphed = cv2.dilate(thresholded, kernelDilate, iterations = 1)
-    return thresholded
-
-
-def process_basket(hsv_frame, values):
-    # takes a hsv frame as input, outputs basket as white
-    lowerlimits = values.get('lowerLimits')
-    upperlimits = values.get('upperLimits')
-    dilate = values.get('kernelDilate')
-
-    thresholded = cv2.inRange(hsv_frame, lowerlimits, upperlimits)
-    morphed = cv2.dilate(thresholded, dilate, iterations=1)
-    return morphed
+    if 'kernelDilate' in values:
+        dilate = values.get('kernelDilate')
+        morphed = cv2.dilate(thresholded, dilate, iterations=1)
+        return morphed
+    else:
+        return thresholded
 
 
 def basket_finder(hsv_frame, values):
     # input processed image, outputs a keypoint on the target
-    processed_frame = process_basket(hsv_frame, values)
+    processed_frame = process_frame(hsv_frame, values)
     contours, _hierarchy = cv2.findContours(processed_frame, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     keypoints = map(cv2.minEnclosingCircle, contours)
     try:
@@ -117,7 +107,7 @@ def green_finder(frame):
 def border_follower(hsv, values):
     # meant to see black lines to not cross them
     cropped_hsv = hsv[600:680, 530:650]
-    processed_frame = process_balls(cropped_hsv, values)
+    processed_frame = process_frame(cropped_hsv, values)
 
     contours, _hierarchy = cv2.findContours(processed_frame, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     circles = map(cv2.minEnclosingCircle, contours)
