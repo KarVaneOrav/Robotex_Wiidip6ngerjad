@@ -35,6 +35,7 @@ try:
         values['upperLimits'] = np.array([bars[3], bars[4], bars[5]])
         
         d, frame = camera.get_frame()
+        frame = frame[600:680, 630:750]
         hsv = camera.to_hsv(frame)
 
         # for balls
