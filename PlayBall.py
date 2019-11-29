@@ -125,6 +125,7 @@ try:
             if camera.border_follower(hsv_frame, blackValues):
                 if timer(frequency):
                     mainboard.omni_drive([0, -2, 0])
+                    time.sleep(0.02)
                     mainboard.omni_drive([0, 0, 5])  # turns on the spot
             mainboard.thrower(100)  # just in case thrower stays on
             if ball:
