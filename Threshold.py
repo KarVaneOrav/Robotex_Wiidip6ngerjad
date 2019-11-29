@@ -11,7 +11,7 @@ def updateValue(bar, new_value):
 
 
 # trackbars
-bars = [16, 163, 93, 124, 255, 255, 2]
+bars = [0, 0, 20, 11, 210, 171, 1]
 values = {'lowerLimits': None, 'upperLimits': None, 'kernelDilate': None}
 
 cv2.namedWindow('Controls', cv2.WINDOW_AUTOSIZE)
@@ -35,7 +35,7 @@ try:
         values['upperLimits'] = np.array([bars[3], bars[4], bars[5]])
         
         d, frame = camera.get_frame()
-        frame = frame[600:680, 630:750]
+        frame = frame[600:680, 530:650]
         hsv = camera.to_hsv(frame)
 
         # for balls
