@@ -123,10 +123,10 @@ try:
         elif tasks['look']:
             print("looking")
             if camera.border_follower(hsv_frame, blackValues):
-                if timer(frequency):
+                if timer(frequency):  # if near off-limits zone, backs up and turns
                     mainboard.omni_drive([0, -2, 0])
                     time.sleep(0.02)
-                    mainboard.omni_drive([0, 0, 5])  # turns on the spot
+                    mainboard.omni_drive([0, 0, 5])
             mainboard.thrower(100)  # just in case thrower stays on
             if ball:
                 rotating_counter = 0
