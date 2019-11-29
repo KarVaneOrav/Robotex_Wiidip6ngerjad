@@ -2,7 +2,7 @@ from serial.tools import list_ports
 import serial
 from math import sqrt, atan2, cos, radians
 
-# Takes list of existing ports. Chooses the mainboard if there are no others.
+# Chooses the mainboard if there are no others.
 port = (str(list_ports.comports()[0]).split(' '))[0]
 ser = serial.Serial(port, 115200, timeout=0.00001)
 ser_ref = serial.Serial(port, 9600, timeout=0.01)
@@ -21,7 +21,7 @@ def close():
     ser_ref.close()
 
 
-def read_ref(robotID, courtID, current_task):
+def read_ref(robot, court, current_task):
     global ref_mes
     while ser_ref.inWaiting() > 0:
         ref_mes += ser_ref.read().decode('ascii')
@@ -34,8 +34,8 @@ def read_ref(robotID, courtID, current_task):
             mes = ref_mes[:end]
             print("From ref: ", mes)
             ref_mes = ref_mes[(end+1):]
-            if mes[6] == courtID and mes[7] == robotID or mes[7] == 'X':
-                ser_ref.write(str.encode('rf:a' + courtID + robotID + 'ACK----- \r \n'))
+            if mes[6] == court and mes[7] == robot or mes[7] == 'X':
+                ser_ref.write(str.encode('rf:a' + court + robot + 'ACK----- \r \n'))
                 if 'START' in mes:
                     return 'look'
                 elif 'STOP' in mes:
@@ -59,17 +59,17 @@ def move_to_ball(ball):
 
 def omni_drive(values):
     # for more manual insertion
-    robotSpeedX = values[0]
-    robotSpeedY = values[1]
-    robotAngularVelocity = values[2]
+    side_speed = values[0]
+    forward_speed = values[1]
+    angular_velocity = values[2]
 
-    robotSpeed = sqrt(robotSpeedX * robotSpeedX + robotSpeedY * robotSpeedY)
-    robotDirectionAngle = atan2(robotSpeedY, robotSpeedX)
-    motors(robotSpeed, robotDirectionAngle, robotAngularVelocity)
+    speed = sqrt(side_speed * side_speed + forward_speed * forward_speed)
+    direction_angle = atan2(forward_speed, side_speed)
+    motors(speed, direction_angle, angular_velocity)
 
 
-def motors(robotSpeed, robotDirectionAngle, robotAngularVelocity = 0):
-    # the core of omnidrive, also reads serial
+def motors(speed, direction_angle, angular_velocity=0):
+    # the core of omnidrive
     '''
     wheelLinearVelocity = robotSpeed * cos(robotDirectionAngle - wheelAngle) + \
                            wheelDistanceFromCenter * robotAngularVelocity
@@ -80,30 +80,32 @@ def motors(robotSpeed, robotDirectionAngle, robotAngularVelocity = 0):
     wheelSpeedToMainboardUnits = 90.991
     '''
 
-    wheelAngularSpeedMainboardUnits0 = round(-1 * (robotSpeed * cos(robotDirectionAngle - radians(0))
-                                                   + 0.14 * -robotAngularVelocity) * 90.991)
-    wheelAngularSpeedMainboardUnits1 = round(-1 * (robotSpeed * cos(robotDirectionAngle - radians(120))
-                                                   + 0.14 * -robotAngularVelocity) * 90.991)
-    wheelAngularSpeedMainboardUnits2 = round(-1 * (robotSpeed * cos(robotDirectionAngle - radians(240))
-                                                   + 0.14 * -robotAngularVelocity) * 90.991)
+    wheel0 = round(-1 * (speed * cos(direction_angle - radians(0)) + 0.13 * -angular_velocity) * 90.991)
+    wheel1 = round(-1 * (speed * cos(direction_angle - radians(120)) + 0.13 * -angular_velocity) * 90.991)
+    wheel2 = round(-1 * (speed * cos(direction_angle - radians(240)) + 0.13 * -angular_velocity) * 90.991)
 
-    move = 'sd:'+str(wheelAngularSpeedMainboardUnits0)+':'+str(wheelAngularSpeedMainboardUnits1)+':'+\
-           str(wheelAngularSpeedMainboardUnits2)+'\n'
+    move = 'sd:'+str(wheel0)+':'+str(wheel1)+':'+str(wheel2)+'\n'
     ser.write(move.encode('utf-8'))
     print(move)
 
 
 def rotate_ball(ball, basket):
     # sets the ball and the basket in a line  590
-    if not basket or basket[0] > 605:
-        back = '30'
-    elif basket[0] < 575:
-        back = '-30'
+    if not basket or basket[0] > 610:
+        if basket[0] > 600:
+            back = '15'
+        else:
+            back = '30'
+    elif basket[0] < 570:
+        if basket[0] < 580:
+            back = '-15'
+        else:
+            back = '-30'
     else:
         back = '0'
-    if ball[0] < 575:
+    if ball[0] < 570:
         other = '-10'
-    elif ball[0] > 605:
+    elif ball[0] > 610:
         other = '10'
     else:
         other = '0'

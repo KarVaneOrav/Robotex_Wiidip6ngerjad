@@ -62,10 +62,10 @@ def to_hsv(color_frame):  # turns color frame to hsv
 
 def process_balls(hsv_frame, values):
     # takes a hsv frame as input, outputs balls as white
-    lowerLimits = values.get('lowerLimits')
-    upperLimits = values.get('upperLimits')
+    lowerlimits = values.get('lowerLimits')
+    upperlimits = values.get('upperLimits')
 
-    thresholded = cv2.inRange(hsv_frame, lowerLimits, upperLimits)
+    thresholded = cv2.inRange(hsv_frame, lowerlimits, upperlimits)
 
     # in case morphing is needed
     # morphed = cv2.erode(thresholded,kernelErode,iterations = 1)
@@ -75,11 +75,11 @@ def process_balls(hsv_frame, values):
 
 def process_basket(hsv_frame, values):
     # takes a hsv frame as input, outputs basket as white
-    lowerLimits = values.get('lowerLimits')
-    upperLimits = values.get('upperLimits')
+    lowerlimits = values.get('lowerLimits')
+    upperlimits = values.get('upperLimits')
     dilate = values.get('kernelDilate')
 
-    thresholded = cv2.inRange(hsv_frame, lowerLimits, upperLimits)
+    thresholded = cv2.inRange(hsv_frame, lowerlimits, upperlimits)
     morphed = cv2.dilate(thresholded, dilate, iterations=1)
     return morphed
 
