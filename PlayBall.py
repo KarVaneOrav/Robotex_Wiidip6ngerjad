@@ -124,7 +124,7 @@ try:
             print("looking")
             if camera.border_follower(hsv_frame, blackValues):
                 if timer(frequency):
-                    mainboard.omni_drive([0, 0, 3])  # turns on the spot
+                    mainboard.omni_drive([0, 0, 7])  # turns on the spot
             mainboard.thrower(100)  # just in case thrower stays on
             if ball:
                 rotating_counter = 0
