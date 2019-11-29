@@ -91,7 +91,9 @@ def motors(speed, direction_angle, angular_velocity=0):
 
 def rotate_ball(ball, basket):
     # sets the ball and the basket in a line  590
-    if not basket or basket[0] > 610:
+    if not basket:
+        back = '40'
+    elif basket[0] > 610:
         if basket[0] > 600:
             back = '15'
         else:
