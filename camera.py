@@ -112,3 +112,13 @@ def green_finder(frame):
     except:
         print('No balls')
         return []
+
+
+def border_follower(hsv, values):
+    # meant to see black lines to not cross them
+    cropped_hsv = hsv[600:680, 530:650]
+    processed_frame = process_balls(cropped_hsv, values)
+
+    contours, _hierarchy = cv2.findContours(processed_frame, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    circles = map(cv2.minEnclosingCircle, contours)
+
