@@ -106,7 +106,7 @@ def green_finder(frame):
 
 def border_follower(hsv, values):
     # meant to see off-limits areas
-    cropped_hsv = hsv[560:680, 530:650]
+    cropped_hsv = hsv[530:680, 530:650]
     processed_frame = process_frame(cropped_hsv, values)
 
     contours, _hierarchy = cv2.findContours(processed_frame, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
