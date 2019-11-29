@@ -46,7 +46,7 @@ try:
 
         contours, _hierarchy = cv2.findContours(processed_frame, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
         circles = map(cv2.minEnclosingCircle, contours)
-        print(len(circles))
+
         # tagging all blobs
         for i in circles:
             coordinate = (int(i[0][0]), int(i[0][1]))

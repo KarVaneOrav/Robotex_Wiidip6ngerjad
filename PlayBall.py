@@ -7,6 +7,7 @@ import numpy as np
 green = [16, 163, 93, 124, 255, 255]  # threshold values, morph values
 pink = [95, 203, 61, 255, 255, 255, 3]
 blue = [35, 0, 29, 255, 91, 255, 3]
+black = [0, 0, 20, 11, 210, 171]
 opponent = 'blue'  # 'blue' or 'pink'
 robotID = 'A'
 courtID = 'A'
@@ -50,6 +51,8 @@ def change_task(new):
 
 greenValues = {'lowerLimits': np.array([green[0], green[1], green[2]]),
                'upperLimits': np.array([green[3], green[4], green[5]])}
+blackValues = {'lowerLimits': np.array([black[0], black[1], black[2]]),
+               'upperLimits': np.array([black[3], black[4], black[5]])}
 targetValues = {'lowerLimits': None, 'upperLimits': None, 'kernelDilate': None}
 
 tasks = {"nothing": False, "controller": False, "look": False, "rotate":  False, 'throw': False}
@@ -119,6 +122,9 @@ try:
 
         elif tasks['look']:
             print("looking")
+            if camera.border_follower(hsv_frame, blackValues):
+                if timer(frequency):
+                    mainboard.omni_drive([0, 0, 3])  # turns on the spot
             mainboard.thrower(100)  # just in case thrower stays on
             if ball:
                 rotating_counter = 0
