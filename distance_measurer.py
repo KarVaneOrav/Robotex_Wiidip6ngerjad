@@ -34,7 +34,7 @@ while True:
     basket = camera.basket_finder(hsv_frame, targetValues)
 
     if basket:
-        distance = round(depth_frame.get_distance(basket[0], basket[1]), 1)
+        distance = camera.distance(depth_frame, basket)
         values += [distance]
         middle = round(sum(values)/len(values), 1)
         if len(values) > 6:
