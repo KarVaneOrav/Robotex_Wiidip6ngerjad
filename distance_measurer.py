@@ -2,7 +2,7 @@ import camera
 import numpy as np
 import cv2
 
-pink = [122, 177, 242, 255, 255, 255, 3]
+pink = [61, 128, 247, 255, 255, 255, 3]
 blue = [35, 0, 29, 255, 91, 255, 3]
 opponent = 'pink'  # 'blue' or 'pink'
 
@@ -41,6 +41,7 @@ while True:
             del values[0]
         print("Distance: " + str(distance), "Around: " + str(middle))
 
+    depth_frame = np.asanyarray(depth_frame.get_data())
     cv2.imshow('Depth', depth_frame)
 
 camera.stop()
