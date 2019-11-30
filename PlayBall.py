@@ -175,7 +175,7 @@ try:
                 thrower_speed = 265
                 distance = -1
             else:
-                distance = round(depth_frame.get_distance(basket[0], basket[1]), 1)
+                distance = camera.distance(depth_frame)
                 distances += [distance]
                 if len(distances) > 7:
                     del distances[0]
