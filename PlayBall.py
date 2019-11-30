@@ -125,6 +125,7 @@ try:
             print("looking")
             mainboard.thrower(100)  # just in case thrower stays on
             if camera.border_follower(hsv_frame, blackValues):  # if near off-limits zone, backs up and turns
+                rotating_tracker = 0
                 if timer(frequency):
                     mainboard.omni_drive([0, -2, 3])
                 continue
@@ -144,11 +145,13 @@ try:
                     if pause_counter >= pause_limit:
                         rotating_counter = 0
                         rotating_tracker += 1
-                        print(rotating_tracker)
                         pause_counter = 0
                     elif timer(frequency):
                         mainboard.omni_drive([0, 0, 0])
                         pause_counter += 1
+                elif rotating_tracker >= 10:
+                    if timer(frequency):
+                        mainboard.motors(0.6, 1.57, 0)  # changes location
                 elif timer(frequency):
                     mainboard.omni_drive([0, 0, 1])  # turns on the spot
                     rotating_counter += 1
