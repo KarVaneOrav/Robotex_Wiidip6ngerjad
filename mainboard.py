@@ -58,7 +58,7 @@ def move_to_ball(ball):
 
 
 def omni_drive(values):
-    # for more manual insertion
+    # for more manual insertion in form of [x, y, rotation]
     side_speed = values[0]
     forward_speed = values[1]
     angular_velocity = values[2]
@@ -90,7 +90,7 @@ def motors(speed, direction_angle, angular_velocity=0):
 
 
 def rotate_ball(ball, basket):
-    # sets the ball and the basket in a line  590 (585)
+    # sets the ball and the basket in a line (585 used as middle, real 590)
     if not basket:
         back = '40'
     elif basket[0] > 605:
@@ -105,6 +105,7 @@ def rotate_ball(ball, basket):
             back = '-30'
     else:
         back = '0'
+
     if ball[0] < 570:
         other = '-10'
     elif ball[0] > 610:

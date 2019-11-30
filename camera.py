@@ -89,8 +89,9 @@ def basket_finder(hsv_frame, values):
         return []
 
 
-def green_finder(frame):
-    # finds the closest ball from a black and white frame. Returns an empty list if no balls, otherwise as [x, y]
+def green_finder(hsv_frame, green):
+    # returns closest ball as [x, y]
+    frame = process_frame(hsv_frame, green)
     contours, _hierarchy = cv2.findContours(frame, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     circles = map(cv2.minEnclosingCircle, contours)
 

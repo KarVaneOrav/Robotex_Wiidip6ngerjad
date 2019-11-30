@@ -57,9 +57,9 @@ targetValues = {'lowerLimits': None, 'upperLimits': None, 'kernelDilate': None}
 
 tasks = {"nothing": False, "controller": False, "look": False, "rotate":  False, 'throw': False}
 tasks[current_task] = True
+
 frequency = 0.0166667  # send movement signals at 60Hz
 thrower_frequency = 0.002
-
 rotating_counter = 0
 rotating_limit = 20  # how much robot rotates at a time
 rotating_tracker = 0
@@ -68,7 +68,7 @@ pause_limit = 10  # how long robot waits after rotating
 thrower_warmup = 10
 throwing_counter = 0
 throwing_limit = 60  # how long robot tries to throw the ball
-distances = []  # to find middle value
+distances = []  # to find middle value of distance
 
 end_control = False
 throwing = False
@@ -81,8 +81,8 @@ try:
 
     while True:
         new_task = mainboard.read_ref(robotID, courtID, current_task)
-        print('ref: ' + new_task)
         if new_task != current_task:
+            print('ref: ' + new_task)
             if new_task == 'nothing':
                 halt()
             change_task(new_task)
@@ -90,9 +90,8 @@ try:
 
         depth_frame, frame = camera.get_frame()
         hsv_frame = camera.to_hsv(frame)
-        processed_frame_green = camera.process_frame(hsv_frame, greenValues)
 
-        ball = camera.green_finder(processed_frame_green)  # returns closest ball
+        ball = camera.green_finder(hsv_frame, greenValues)  # returns closest ball
         basket = []
 
         key = cv2.waitKey(1)
@@ -204,7 +203,7 @@ try:
             cv2.putText(frame, str(basket), tuple(basket),
                         cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
 
-        #cv2.imshow('RealSense', frame)
+        cv2.imshow('RealSense', frame)
 finally:
     camera.stop()
     mainboard.close()
