@@ -169,7 +169,7 @@ try:
             else:
                 distance = round(depth_frame.get_distance(basket[0], basket[1]), 1)
                 distances += [distance]
-                if len(distances) > 5:
+                if len(distances) > 7:
                     del distances[0]
                 aprox_distance = round(sum(distances)/len(distances), 1)
                 thrower_speed = mainboard.thrower_speed(aprox_distance)

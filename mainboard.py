@@ -50,7 +50,7 @@ def read_ref(robot, court, current_task):
 
 
 def move_to_ball(ball):
-    speed = 0.5
+    speed = 0.7
     x = ball[0] - 590
     y = 680 - ball[1]
     angle = atan2(y, x)
@@ -94,12 +94,12 @@ def rotate_ball(ball, basket):
     if not basket:
         back = '40'
     elif basket[0] > 610:
-        if basket[0] > 600:
+        if basket[0] > 595:
             back = '15'
         else:
             back = '30'
     elif basket[0] < 570:
-        if basket[0] < 580:
+        if basket[0] < 585:
             back = '-15'
         else:
             back = '-30'
