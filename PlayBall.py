@@ -175,7 +175,7 @@ try:
                 thrower_speed = mainboard.thrower_speed(aprox_distance)
             print("Distance:", distance, "; Speed:", thrower_speed)
             if timer(thrower_frequency):
-                #mainboard.thrower(thrower_speed)
+                mainboard.thrower(thrower_speed)
                 throwing_counter += 1
             if thrower_warmup < throwing_counter:
                 mainboard.omni_drive([0, 0.2, 0])
@@ -195,7 +195,7 @@ try:
             cv2.putText(frame, str(basket), tuple(basket),
                         cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
 
-        cv2.imshow('RealSense', frame)
+        #cv2.imshow('RealSense', frame)
 finally:
     camera.stop()
     mainboard.close()
