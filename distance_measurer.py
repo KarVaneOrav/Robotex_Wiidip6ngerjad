@@ -41,8 +41,7 @@ while True:
             del values[0]
         print("Distance: " + str(distance), "Around: " + str(middle))
 
-    print(depth_frame.get_data())
-    depth_frame = cv2.applyColorMap(cv2.convertScaleAbs(depth_frame, alpha=0.03), cv2.COLORMAP_JET)
+    depth_frame = cv2.applyColorMap(cv2.convertScaleAbs(np.asanyarray(depth_frame.get_data()), alpha=0.03), cv2.COLORMAP_JET)
     cv2.imshow('Depth', depth_frame)
 
 camera.stop()
