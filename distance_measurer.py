@@ -41,5 +41,7 @@ while True:
             del values[0]
         print("Distance: " + str(distance), "Around: " + str(middle))
 
+    cv2.imshow('Depth', depth_frame)
+
 camera.stop()
 cv2.destroyAllWindows()
