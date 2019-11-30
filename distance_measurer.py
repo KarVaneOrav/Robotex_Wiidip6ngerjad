@@ -41,6 +41,7 @@ while True:
             del values[0]
         print("Distance: " + str(distance), "Around: " + str(middle))
 
+    print(depth_frame.get_data())
     depth_frame = np.asanyarray(depth_frame.get_data())
     cv2.imshow('Depth', depth_frame)
 
