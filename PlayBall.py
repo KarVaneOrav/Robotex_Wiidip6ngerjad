@@ -5,7 +5,7 @@ import cv2
 import numpy as np
 
 green = [16, 163, 93, 124, 255, 255]  # threshold values, morph values
-pink = [95, 203, 61, 255, 255, 255, 3]
+pink = [176, 191, 96, 255, 255, 255, 3]
 blue = [35, 0, 29, 255, 91, 255, 3]
 black = [0, 0, 20, 11, 210, 171]
 opponent = 'pink'  # 'blue' or 'pink'
