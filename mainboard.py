@@ -50,7 +50,7 @@ def read_ref(robot, court, current_task):
 
 
 def move_to_ball(ball):
-    speed = 0.7
+    speed = 0.9
     x = ball[0] - 590
     y = 680 - ball[1]
     angle = atan2(y, x)
