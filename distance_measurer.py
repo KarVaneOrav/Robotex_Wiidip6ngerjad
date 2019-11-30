@@ -2,7 +2,7 @@ import camera
 import numpy as np
 import cv2
 
-pink = [176, 191, 96, 255, 255, 255, 3]
+pink = [122, 177, 242, 255, 255, 255, 3]
 blue = [35, 0, 29, 255, 91, 255, 3]
 opponent = 'pink'  # 'blue' or 'pink'
 
