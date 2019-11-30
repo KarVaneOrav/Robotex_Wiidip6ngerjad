@@ -62,6 +62,7 @@ thrower_frequency = 0.002
 
 rotating_counter = 0
 rotating_limit = 20  # how much robot rotates at a time
+rotating_tracker = 0
 pause_counter = 0
 pause_limit = 10  # how long robot waits after rotating
 thrower_warmup = 10
@@ -122,10 +123,12 @@ try:
 
         elif tasks['look']:
             print("looking")
-            if camera.border_follower(hsv_frame, blackValues):
-                if timer(frequency):  # if near off-limits zone, backs up and turns
-                    mainboard.omni_drive([0, -2, 3])
             mainboard.thrower(100)  # just in case thrower stays on
+            if camera.border_follower(hsv_frame, blackValues):  # if near off-limits zone, backs up and turns
+                if timer(frequency):
+                    mainboard.omni_drive([0, -2, 3])
+                continue
+
             if ball:
                 rotating_counter = 0
                 pause_counter = 0
@@ -139,6 +142,8 @@ try:
                 if rotating_counter >= rotating_limit:  # take pauses to process
                     if pause_counter >= pause_limit:
                         rotating_counter = 0
+                        rotating_tracker += 1
+                        print(rotating_tracker)
                         pause_counter = 0
                     elif timer(frequency):
                         mainboard.omni_drive([0, 0, 0])
