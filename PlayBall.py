@@ -131,6 +131,7 @@ try:
 
             if ball:
                 rotating_counter = 0
+                rotating_tracker = 0
                 pause_counter = 0
                 if ball[1] < 500:  # if ball is too far
                     if timer(frequency):
