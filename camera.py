@@ -107,10 +107,13 @@ def basket_bottom(hsv_frame, values):
     # finds the bottommost vertical coordinate
     processed_frame = process_frame(hsv_frame, values)
     contours, hierarchy = cv2.findContours(processed_frame, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    print("contours", contours)
     areas = [cv2.contourArea(c) for c in contours]
+    print("areas", areas)
     max_index = np.argmax(areas)
     cnt = contours[max_index]
     return cnt
+
 
 def green_finder(hsv_frame, green):
     # returns closest ball as [x, y]
