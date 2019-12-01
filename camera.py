@@ -111,7 +111,7 @@ def basket_bottom(hsv_frame, values):
     if not areas:
         return []
     else:
-        max_index = np.argmax(areas[0])
+        max_index = np.argmax(areas[len(areas)//2])
         cnt = contours[max_index]
         x, y, w, h = cv2.boundingRect(cnt)
         return [x+w, y+h]

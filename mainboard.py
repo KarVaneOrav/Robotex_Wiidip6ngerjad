@@ -7,7 +7,7 @@ port = (str(list_ports.comports()[0]).split(' '))[0]
 ser = serial.Serial(port, 115200, timeout=0.00001)
 ser_ref = serial.Serial(port, 9600, timeout=0.01)
 
-speeds = {120: }
+speeds = {121: 265, }
 ref_mes = ''
 
 
