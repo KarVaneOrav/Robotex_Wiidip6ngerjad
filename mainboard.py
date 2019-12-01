@@ -25,6 +25,7 @@ def read_ref(robot, court, current_task):
     while ser_ref.inWaiting() > 0:
         ref_mes += ser_ref.read().decode('ascii')
 
+    print("Ref pure: ", ref_mes)
     while True:
         end = ref_mes.find('\n')
         if end == -1:

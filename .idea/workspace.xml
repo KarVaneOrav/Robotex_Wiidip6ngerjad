@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="39b78f02-c27e-4874-a048-5aee4c62ec90" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PlayBall.py" beforeDir="false" afterPath="$PROJECT_DIR$/PlayBall.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainboard.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -49,7 +49,7 @@
           <entry key="Python Console" value="389" />
           <entry key="dummy" value="36" />
           <entry key="ini" value="1" />
-          <entry key="py" value="20108" />
+          <entry key="py" value="20132" />
           <entry key="txt" value="13" />
         </counts>
       </usages-collector>
@@ -57,18 +57,18 @@
         <counts>
           <entry key="Ini" value="1" />
           <entry key="PLAIN_TEXT" value="49" />
-          <entry key="Python" value="20497" />
+          <entry key="Python" value="20521" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mainboard.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-510">
-              <caret line="11" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
+            <state relative-caret-position="238">
+              <caret line="27" column="31" selection-start-line="27" selection-start-column="31" selection-end-line="27" selection-end-column="31" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -94,10 +94,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PlayBall.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
+            <state relative-caret-position="-881">
               <caret line="11" column="12" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
@@ -137,8 +137,8 @@
         <option value="$PROJECT_DIR$/distance_measurer2.py" />
         <option value="$PROJECT_DIR$/camera.py" />
         <option value="$PROJECT_DIR$/Threshold.py" />
-        <option value="$PROJECT_DIR$/mainboard.py" />
         <option value="$PROJECT_DIR$/PlayBall.py" />
+        <option value="$PROJECT_DIR$/mainboard.py" />
       </list>
     </option>
   </component>
@@ -316,13 +316,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1567943690172</updated>
-    </task>
-    <task id="LOCAL-00310" summary="&#10;f">
-      <created>1575146081663</created>
-      <option name="number" value="00310" />
-      <option name="presentableId" value="LOCAL-00310" />
-      <option name="project" value="LOCAL" />
-      <updated>1575146081663</updated>
     </task>
     <task id="LOCAL-00311" summary="&#10;f">
       <created>1575147940922</created>
@@ -660,7 +653,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575187667410</updated>
     </task>
-    <option name="localTasksCounter" value="359" />
+    <task id="LOCAL-00359" summary="&#10;f">
+      <created>1575193896555</created>
+      <option name="number" value="00359" />
+      <option name="presentableId" value="LOCAL-00359" />
+      <option name="project" value="LOCAL" />
+      <updated>1575193896555</updated>
+    </task>
+    <option name="localTasksCounter" value="360" />
     <servers />
   </component>
   <component name="TodoView">
@@ -775,16 +775,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mainboard.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-510">
-          <caret line="11" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/camera.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="949">
@@ -803,10 +793,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/PlayBall.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
+        <state relative-caret-position="-881">
           <caret line="11" column="12" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mainboard.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="27" column="31" selection-start-line="27" selection-start-column="31" selection-end-line="27" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
           </folding>
         </state>
       </provider>
