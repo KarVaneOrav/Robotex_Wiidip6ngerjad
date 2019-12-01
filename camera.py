@@ -104,16 +104,14 @@ def distance_by_sensor(depth_frame, basket):
 
 
 def basket_bottom(hsv_frame, values):
-    # finds the bottommost vertical coordinate
+    # finds the bottommost vertical coordinate of largest blob
     processed_frame = process_frame(hsv_frame, values)
     contours, hierarchy = cv2.findContours(processed_frame, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
-    areas = [cv2.contourArea(c) for c in contours]
-    if not areas:
+    if not contours:
         return []
     else:
-        max_index = np.argmax(areas[len(areas)//2])
-        cnt = contours[max_index]
-        x, y, w, h = cv2.boundingRect(cnt)
+        c = max(contours, key=cv2.contourArea)
+        x, y, w, h = cv2.boundingRect(c)
         return [x+w, y+h]
 
 

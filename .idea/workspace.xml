@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="39b78f02-c27e-4874-a048-5aee4c62ec90" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mainboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainboard.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -49,7 +48,7 @@
           <entry key="Python Console" value="389" />
           <entry key="dummy" value="36" />
           <entry key="ini" value="1" />
-          <entry key="py" value="19373" />
+          <entry key="py" value="19391" />
           <entry key="txt" value="13" />
         </counts>
       </usages-collector>
@@ -57,14 +56,14 @@
         <counts>
           <entry key="Ini" value="1" />
           <entry key="PLAIN_TEXT" value="49" />
-          <entry key="Python" value="19762" />
+          <entry key="Python" value="19780" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mainboard.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="153">
@@ -85,19 +84,19 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/camera.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="362">
-              <caret line="116" column="25" selection-start-line="116" selection-start-column="25" selection-end-line="116" selection-end-column="25" />
+            <state relative-caret-position="311">
+              <caret line="113" column="48" selection-start-line="113" selection-start-column="48" selection-end-line="113" selection-end-column="48" />
               <folding>
                 <element signature="e#25#50#0" expanded="true" />
-                <marker date="1575167021471" expanded="true" signature="904:906" ph="..." />
-                <marker date="1575167021471" expanded="true" signature="2210:2215" ph="..." />
-                <marker date="1575167021471" expanded="true" signature="2210:3631" ph="..." />
-                <marker date="1575167021471" expanded="true" signature="3186:3631" ph="..." />
-                <marker date="1575167021471" expanded="true" signature="4189:4194" ph="..." />
-                <marker date="1575167021471" expanded="true" signature="4189:4565" ph="..." />
+                <marker date="1575168115452" expanded="true" signature="904:906" ph="..." />
+                <marker date="1575168115452" expanded="true" signature="2210:2215" ph="..." />
+                <marker date="1575168115452" expanded="true" signature="2210:3643" ph="..." />
+                <marker date="1575168115452" expanded="true" signature="3186:3643" ph="..." />
+                <marker date="1575168115452" expanded="true" signature="4201:4206" ph="..." />
+                <marker date="1575168115452" expanded="true" signature="4201:4577" ph="..." />
               </folding>
             </state>
           </provider>
@@ -145,9 +144,9 @@
         <option value="$PROJECT_DIR$/distance_measurer.py" />
         <option value="$PROJECT_DIR$/backup.py" />
         <option value="$PROJECT_DIR$/PlayBall.py" />
-        <option value="$PROJECT_DIR$/camera.py" />
         <option value="$PROJECT_DIR$/distance_measurer2.py" />
         <option value="$PROJECT_DIR$/mainboard.py" />
+        <option value="$PROJECT_DIR$/camera.py" />
       </list>
     </option>
   </component>
@@ -157,9 +156,9 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
     <option name="x" value="-7" />
-    <option name="width" value="489" />
+    <option name="width" value="814" />
     <option name="height" value="867" />
   </component>
   <component name="ProjectLevelVcsManager">
@@ -325,13 +324,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1567943690172</updated>
-    </task>
-    <task id="LOCAL-00280" summary="&#10;f">
-      <created>1574962216044</created>
-      <option name="number" value="00280" />
-      <option name="presentableId" value="LOCAL-00280" />
-      <option name="project" value="LOCAL" />
-      <updated>1574962216044</updated>
     </task>
     <task id="LOCAL-00281" summary="&#10;f">
       <created>1574980784075</created>
@@ -669,7 +661,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575167589029</updated>
     </task>
-    <option name="localTasksCounter" value="329" />
+    <task id="LOCAL-00329" summary="&#10;f">
+      <created>1575168118912</created>
+      <option name="number" value="00329" />
+      <option name="presentableId" value="LOCAL-00329" />
+      <option name="project" value="LOCAL" />
+      <updated>1575168118912</updated>
+    </task>
+    <option name="localTasksCounter" value="330" />
     <servers />
   </component>
   <component name="TodoView">
@@ -682,7 +681,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="0" width="489" height="867" extended-state="0" />
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.31299734" />
@@ -787,22 +786,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/camera.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="362">
-          <caret line="116" column="25" selection-start-line="116" selection-start-column="25" selection-end-line="116" selection-end-column="25" />
-          <folding>
-            <element signature="e#25#50#0" expanded="true" />
-            <marker date="1575167021471" expanded="true" signature="904:906" ph="..." />
-            <marker date="1575167021471" expanded="true" signature="2210:2215" ph="..." />
-            <marker date="1575167021471" expanded="true" signature="2210:3631" ph="..." />
-            <marker date="1575167021471" expanded="true" signature="3186:3631" ph="..." />
-            <marker date="1575167021471" expanded="true" signature="4189:4194" ph="..." />
-            <marker date="1575167021471" expanded="true" signature="4189:4565" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/distance_measurer2.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="564">
@@ -816,6 +799,22 @@
           <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/camera.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="113" column="48" selection-start-line="113" selection-start-column="48" selection-end-line="113" selection-end-column="48" />
+          <folding>
+            <element signature="e#25#50#0" expanded="true" />
+            <marker date="1575168115452" expanded="true" signature="904:906" ph="..." />
+            <marker date="1575168115452" expanded="true" signature="2210:2215" ph="..." />
+            <marker date="1575168115452" expanded="true" signature="2210:3643" ph="..." />
+            <marker date="1575168115452" expanded="true" signature="3186:3643" ph="..." />
+            <marker date="1575168115452" expanded="true" signature="4201:4206" ph="..." />
+            <marker date="1575168115452" expanded="true" signature="4201:4577" ph="..." />
           </folding>
         </state>
       </provider>
