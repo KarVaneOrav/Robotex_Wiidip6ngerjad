@@ -175,8 +175,6 @@ try:
                 thrower_speed = 265
             else:
                 thrower_speed = mainboard.thrower_speed(basket[1])
-                if thrower_speed > 200:  # for quick adjustment
-                    thrower_speed -= 2
             print("Basket: ", basket, "; Speed:", thrower_speed)
             if timer(thrower_frequency):
                 mainboard.thrower(thrower_speed)
