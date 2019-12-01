@@ -4,7 +4,7 @@
     <list default="true" id="39b78f02-c27e-4874-a048-5aee4c62ec90" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PlayBall.py" beforeDir="false" afterPath="$PROJECT_DIR$/PlayBall.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/camera.py" beforeDir="false" afterPath="$PROJECT_DIR$/camera.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mainboard.py" beforeDir="false" afterPath="$PROJECT_DIR$/mainboard.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -50,7 +50,7 @@
           <entry key="Python Console" value="389" />
           <entry key="dummy" value="36" />
           <entry key="ini" value="1" />
-          <entry key="py" value="19861" />
+          <entry key="py" value="19869" />
           <entry key="txt" value="13" />
         </counts>
       </usages-collector>
@@ -58,18 +58,18 @@
         <counts>
           <entry key="Ini" value="1" />
           <entry key="PLAIN_TEXT" value="49" />
-          <entry key="Python" value="20250" />
+          <entry key="Python" value="20258" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mainboard.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2737">
-              <caret line="161" column="51" lean-forward="true" selection-start-line="161" selection-start-column="51" selection-end-line="161" selection-end-column="51" />
+            <state relative-caret-position="544">
+              <caret line="165" column="67" selection-start-line="165" selection-start-column="67" selection-end-line="165" selection-end-column="67" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -95,11 +95,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PlayBall.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="69" column="18" selection-start-line="69" selection-start-column="18" selection-end-line="69" selection-end-column="18" />
+            <state relative-caret-position="170">
+              <caret line="10" column="16" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -136,10 +136,10 @@
         <option value="$PROJECT_DIR$/distance_measurer.py" />
         <option value="$PROJECT_DIR$/backup.py" />
         <option value="$PROJECT_DIR$/Threshold.py" />
-        <option value="$PROJECT_DIR$/mainboard.py" />
         <option value="$PROJECT_DIR$/distance_measurer2.py" />
-        <option value="$PROJECT_DIR$/PlayBall.py" />
         <option value="$PROJECT_DIR$/camera.py" />
+        <option value="$PROJECT_DIR$/PlayBall.py" />
+        <option value="$PROJECT_DIR$/mainboard.py" />
       </list>
     </option>
   </component>
@@ -317,13 +317,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1567943690172</updated>
-    </task>
-    <task id="LOCAL-00293" summary="&#10;f">
-      <created>1574992688949</created>
-      <option name="number" value="00293" />
-      <option name="presentableId" value="LOCAL-00293" />
-      <option name="project" value="LOCAL" />
-      <updated>1574992688949</updated>
     </task>
     <task id="LOCAL-00294" summary="&#10;f">
       <created>1574993538949</created>
@@ -661,7 +654,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575178362545</updated>
     </task>
-    <option name="localTasksCounter" value="342" />
+    <task id="LOCAL-00342" summary="&#10;f">
+      <created>1575178738439</created>
+      <option name="number" value="00342" />
+      <option name="presentableId" value="LOCAL-00342" />
+      <option name="project" value="LOCAL" />
+      <updated>1575178738439</updated>
+    </task>
+    <option name="localTasksCounter" value="343" />
     <servers />
   </component>
   <component name="TodoView">
@@ -792,22 +792,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/mainboard.py">
+    <entry file="file://$PROJECT_DIR$/PlayBall.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2737">
-          <caret line="161" column="51" lean-forward="true" selection-start-line="161" selection-start-column="51" selection-end-line="161" selection-end-column="51" />
+        <state relative-caret-position="170">
+          <caret line="10" column="16" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
           <folding>
-            <element signature="e#0#35#0" expanded="true" />
+            <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PlayBall.py">
+    <entry file="file://$PROJECT_DIR$/mainboard.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="544">
-          <caret line="69" column="18" selection-start-line="69" selection-start-column="18" selection-end-line="69" selection-end-column="18" />
+          <caret line="165" column="67" selection-start-line="165" selection-start-column="67" selection-end-line="165" selection-end-column="67" />
           <folding>
-            <element signature="e#0#13#0" expanded="true" />
+            <element signature="e#0#35#0" expanded="true" />
           </folding>
         </state>
       </provider>
