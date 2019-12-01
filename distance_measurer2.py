@@ -32,11 +32,13 @@ while True:
     hsv_frame = camera.to_hsv(frame)
 
     basket = camera.basket_bottom(hsv_frame, targetValues)
-    print("Bottom coordinate:", basket[1])
 
     if basket:
+        print("Bottom coordinate:", basket[1])
         cv2.putText(frame, str(basket), tuple(basket),
                     cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
+    else:
+        print("No Basket")
     cv2.imshow("Show", frame)
 
 camera.stop()
