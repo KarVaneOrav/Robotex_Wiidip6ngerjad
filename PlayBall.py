@@ -4,10 +4,10 @@ import time
 import cv2
 import numpy as np
 
-green = [16, 163, 93, 124, 255, 255]  # threshold values, morph values
+green = [13, 56, 36, 56, 213, 197]  # threshold values, morph values
 pink = [61, 128, 247, 255, 255, 255, 3]
-blue = [35, 0, 29, 255, 91, 255, 3]
-black = [0, 0, 20, 11, 210, 171]
+blue = [43, 0, 0, 163, 92, 147, 3]
+black = [0, 0, 0, 5, 172, 189]
 opponent = 'pink'  # 'blue' or 'pink'
 robotID = 'A'
 courtID = 'A'
