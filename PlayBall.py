@@ -9,9 +9,9 @@ pink = [61, 128, 247, 255, 255, 255, 3]
 blue = [43, 0, 0, 163, 92, 147, 3]
 black = [0, 0, 0, 5, 172, 189]
 opponent = 'pink'  # 'blue' or 'pink'
-robotID = 'A'
+robotID = 'B'
 courtID = 'A'
-current_task = 'look'
+current_task = 'nothing'
 
 
 def timer(pause):
@@ -68,7 +68,6 @@ pause_limit = 10  # how long robot waits after rotating
 thrower_warmup = 10
 throwing_counter = 0
 throwing_limit = 60  # how long robot tries to throw the ball
-distances = []  # to find middle value of distance
 
 end_control = False
 throwing = False
