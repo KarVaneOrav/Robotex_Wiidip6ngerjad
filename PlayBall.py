@@ -65,9 +65,9 @@ rotating_limit = 20  # how much robot rotates at a time
 rotating_tracker = 0
 pause_counter = 0
 pause_limit = 10  # how long robot waits after rotating
-thrower_warmup = 20
+thrower_warmup = 10
 throwing_counter = 0
-throwing_limit = 70  # how long robot tries to throw the ball
+throwing_limit = 60  # how long robot tries to throw the ball
 distances = []  # to find middle value of distance
 
 end_control = False
