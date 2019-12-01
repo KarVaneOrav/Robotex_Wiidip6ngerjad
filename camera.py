@@ -89,7 +89,7 @@ def basket_finder(hsv_frame, values):
         return []
 
 
-def distance(depth_frame, basket):
+def distance_by_sensor(depth_frame, basket):
     dist_range = []
     horizontal = basket[0]
     vertical = basket[1]
@@ -102,6 +102,15 @@ def distance(depth_frame, basket):
 
     return round(sum(dist_range)/len(dist_range), 1)
 
+
+def basket_bottom(hsv_frame, values):
+    # finds the bottommost vertical coordinate
+    processed_frame = process_frame(hsv_frame, values)
+    contours, hierarchy = cv2.findContours(processed_frame, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    areas = [cv2.contourArea(c) for c in contours]
+    max_index = np.argmax(areas)
+    cnt = contours[max_index]
+    return cnt
 
 def green_finder(hsv_frame, green):
     # returns closest ball as [x, y]

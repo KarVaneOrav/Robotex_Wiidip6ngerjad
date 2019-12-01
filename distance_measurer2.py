@@ -31,18 +31,11 @@ while True:
     depth_frame, frame = camera.get_frame()
     hsv_frame = camera.to_hsv(frame)
 
-    basket = camera.basket_finder(hsv_frame, targetValues)
+    cnt = camera.basket_bottom(hsv_frame, values)
 
-    if basket:
-        distance = camera.distance_by_sensor(depth_frame, basket)
-        values += [distance]
-        middle = round(sum(values)/len(values), 1)
-        if len(values) > 6:
-            del values[0]
-        print("Distance: " + str(distance), "Around: " + str(middle))
-
-    depth_frame = cv2.applyColorMap(cv2.convertScaleAbs(np.asanyarray(depth_frame.get_data()), alpha=0.03), cv2.COLORMAP_JET)
-    cv2.imshow('Depth', depth_frame)
+    x, y, w, h = cv2.boundingRect(cnt)
+    cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
+    cv2.imshow("Show", frame)
 
 camera.stop()
 cv2.destroyAllWindows()

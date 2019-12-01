@@ -175,7 +175,7 @@ try:
                 thrower_speed = 265
                 distance = -1
             else:
-                distance = camera.distance(depth_frame)
+                distance = camera.distance_by_sensor(depth_frame)
                 distances += [distance]
                 if len(distances) > 7:
                     del distances[0]
