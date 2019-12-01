@@ -161,9 +161,9 @@ try:
                 change_task('look')
                 continue
             else:  # starts rotating
-                basket_bottom = camera.basket_finder(hsv_frame, targetValues)
+                basket = camera.basket_finder(hsv_frame, targetValues)
                 if timer(frequency):
-                    start_throw = mainboard.rotate_ball(ball, basket_bottom)
+                    start_throw = mainboard.rotate_ball(ball, basket)
                 if start_throw:
                     change_task('throw')
                     start_throw = False
@@ -171,12 +171,11 @@ try:
         elif tasks['throw']:
             print("throwing")
             basket = camera.basket_bottom(hsv_frame, targetValues)
-            print("Basket bottom: ", basket_bottom)
             if not basket:
                 thrower_speed = 265
             else:
                 thrower_speed = mainboard.thrower_speed(basket[1])
-            print("Basket bottom: ", basket_bottom, "; Speed:", thrower_speed)
+            print("Basket: ", basket, "; Speed:", thrower_speed)
             if timer(thrower_frequency):
                 mainboard.thrower(thrower_speed)
                 throwing_counter += 1
