@@ -170,12 +170,12 @@ try:
 
         elif tasks['throw']:
             print("throwing")
-            basket_bottom = camera.basket_bottom(hsv_frame, targetValues)
+            basket = camera.basket_bottom(hsv_frame, targetValues)
             print("Basket bottom: ", basket_bottom)
-            if basket_bottom == -1:
+            if not basket:
                 thrower_speed = 265
             else:
-                thrower_speed = mainboard.thrower_speed(basket_bottom)
+                thrower_speed = mainboard.thrower_speed(basket[1])
             print("Basket bottom: ", basket_bottom, "; Speed:", thrower_speed)
             if timer(thrower_frequency):
                 mainboard.thrower(thrower_speed)
