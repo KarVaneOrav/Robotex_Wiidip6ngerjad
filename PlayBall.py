@@ -92,7 +92,7 @@ try:
         hsv_frame = camera.to_hsv(frame)
 
         ball = camera.green_finder(hsv_frame, greenValues)  # returns closest ball
-        basket = []
+        basket_bottom = []
 
         key = cv2.waitKey(1)
         if key == 113:
@@ -161,27 +161,22 @@ try:
                 change_task('look')
                 continue
             else:  # starts rotating
-                basket = camera.basket_finder(hsv_frame, targetValues)
+                basket_bottom = camera.basket_finder(hsv_frame, targetValues)
                 if timer(frequency):
-                    start_throw = mainboard.rotate_ball(ball, basket)
+                    start_throw = mainboard.rotate_ball(ball, basket_bottom)
                 if start_throw:
                     change_task('throw')
                     start_throw = False
 
         elif tasks['throw']:
             print("throwing")
-            basket = camera.basket_finder(hsv_frame, targetValues)
-            if not basket:
+            basket_bottom = camera.basket_bottom(hsv_frame, targetValues)
+            print("Basket bottom: ", basket_bottom)
+            if basket_bottom == -1:
                 thrower_speed = 265
-                distance = -1
             else:
-                distance = camera.distance_by_sensor(depth_frame)
-                distances += [distance]
-                if len(distances) > 7:
-                    del distances[0]
-                aprox_distance = round(sum(distances)/len(distances), 1)
-                thrower_speed = mainboard.thrower_speed(aprox_distance)
-            print("Distance:", distance, "; Speed:", thrower_speed)
+                thrower_speed = mainboard.thrower_speed(basket_bottom)
+            print("Basket bottom: ", basket_bottom, "; Speed:", thrower_speed)
             if timer(thrower_frequency):
                 mainboard.thrower(thrower_speed)
                 throwing_counter += 1
@@ -199,8 +194,8 @@ try:
         if ball:
             cv2.putText(frame, str(ball), tuple(ball),
                         cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
-        if basket:
-            cv2.putText(frame, str(basket), tuple(basket),
+        if basket_bottom:
+            cv2.putText(frame, str(basket_bottom), tuple(basket_bottom),
                         cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
 
         cv2.imshow('RealSense', frame)

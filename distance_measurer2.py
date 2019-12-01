@@ -32,6 +32,7 @@ while True:
     hsv_frame = camera.to_hsv(frame)
 
     basket = camera.basket_bottom(hsv_frame, targetValues)
+    print("Bottom coordinate:", basket[1])
 
     if basket:
         cv2.putText(frame, str(basket), tuple(basket),

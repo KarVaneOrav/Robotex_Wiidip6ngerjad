@@ -109,12 +109,12 @@ def basket_bottom(hsv_frame, values):
     contours, hierarchy = cv2.findContours(processed_frame, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     areas = [cv2.contourArea(c) for c in contours]
     if not areas:
-        return []
+        return -1
     else:
         max_index = np.argmax(areas[0])
         cnt = contours[max_index]
         x, y, w, h = cv2.boundingRect(cnt)
-        return [x+w, y+h]
+        return y+h
 
 
 def green_finder(hsv_frame, green):
