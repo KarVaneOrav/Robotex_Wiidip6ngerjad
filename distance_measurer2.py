@@ -4,7 +4,7 @@ import cv2
 
 pink = [61, 128, 247, 255, 255, 255, 3]
 blue = [43, 0, 0, 163, 92, 147, 3]
-opponent = 'blue'  # 'blue' or 'pink'
+opponent = 'pink'  # 'blue' or 'pink'
 
 
 def set_target_basket(op):
