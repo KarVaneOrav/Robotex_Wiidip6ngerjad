@@ -92,13 +92,13 @@ def rotate_ball(ball, basket):
     # sets the ball and the basket in a line (585 used as middle, real 590)
     if not basket:
         back = '40'
-    elif basket[0] > 610:
-        if basket[0] > 595:
+    elif basket[0] > 605:
+        if basket[0] > 590:
             back = '15'
         else:
             back = '30'
-    elif basket[0] < 570:
-        if basket[0] < 585:
+    elif basket[0] < 565:
+        if basket[0] < 580:
             back = '-15'
         else:
             back = '-30'
