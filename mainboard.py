@@ -142,9 +142,9 @@ def controller(key):
 
 
 def thrower_speed(distance):
-    if distance >= 3.5 or distance == 0:
+    if distance <= 119 or distance == 0:
         return 265
-    elif distance <= 0.6:
+    elif distance >= 348:
         return 181
     else:
         speed = speeds.get(distance)
