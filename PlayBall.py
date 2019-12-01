@@ -4,7 +4,7 @@ import time
 import cv2
 import numpy as np
 
-green = [13, 56, 36, 56, 213, 197]  # threshold values (first 6), morph values (dilate)
+green = [15, 57, 26, 70, 255, 225]  # threshold values (first 6), morph values (dilate)
 pink = [61, 128, 247, 255, 255, 255, 3]
 blue = [43, 0, 0, 163, 92, 147, 3]
 black = [0, 0, 0, 5, 172, 189]
