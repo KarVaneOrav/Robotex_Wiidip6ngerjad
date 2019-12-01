@@ -89,20 +89,6 @@ def basket_finder(hsv_frame, values):
         return []
 
 
-def distance_by_sensor(depth_frame, basket):
-    dist_range = []
-    horizontal = basket[0]
-    vertical = basket[1]
-    if vertical >= 3:  # try to get index's from +- 3
-        vertical -= 3
-
-    for vertical_coordinate in range(6):
-        dist_range += [round(depth_frame.get_distance(horizontal, vertical), 1)]
-        vertical += vertical_coordinate
-
-    return round(sum(dist_range)/len(dist_range), 1)
-
-
 def basket_bottom(hsv_frame, values):
     # finds the bottommost vertical coordinate of largest blob
     processed_frame = process_frame(hsv_frame, values)
