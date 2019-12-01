@@ -31,10 +31,11 @@ while True:
     depth_frame, frame = camera.get_frame()
     hsv_frame = camera.to_hsv(frame)
 
-    cnt = camera.basket_bottom(hsv_frame, targetValues)
+    basket = camera.basket_bottom(hsv_frame, targetValues)
 
-    x, y, w, h = cv2.boundingRect(cnt)
-    cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
+    if basket:
+        cv2.putText(frame, str(basket), tuple(basket),
+                    cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 0, 0), 2)
     cv2.imshow("Show", frame)
 
 camera.stop()
