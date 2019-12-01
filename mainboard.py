@@ -89,16 +89,16 @@ def motors(speed, direction_angle, angular_velocity=0):
 
 
 def rotate_ball(ball, basket):
-    # sets the ball and the basket in a line (580 used as middle, real 590)
+    # sets the ball and the basket in a line (575 used as middle, real 590)
     if not basket:
         back = '40'
-    elif basket[0] > 600:
-        if basket[0] > 585:
+    elif basket[0] > 695:
+        if basket[0] > 580:
             back = '15'
         else:
             back = '30'
-    elif basket[0] < 560:
-        if basket[0] < 575:
+    elif basket[0] < 555:
+        if basket[0] < 570:
             back = '-15'
         else:
             back = '-30'
