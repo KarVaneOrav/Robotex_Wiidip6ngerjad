@@ -7,7 +7,10 @@ port = (str(list_ports.comports()[0]).split(' '))[0]
 ser = serial.Serial(port, 115200, timeout=0.00001)
 ser_ref = serial.Serial(port, 9600, timeout=0.01)
 
-speeds = {121: 265, }
+speeds = {119: 265, 122: 244, 124: 242, 126: 238, 128: 237, 131: 235, 134: 233,
+          138: 229, 144: 225, 145: 222, 146: 220, 151: 215, 159: 213, 162: 210,
+          166: 208, 172: 205, 184: 200, 196: 195, 206: 190, 220: 188, 246: 186,
+          261: 185, 264: 182, 292: 180, 319: 178, 348: 177}
 ref_mes = ''
 
 
@@ -150,11 +153,11 @@ def thrower_speed(distance):
             speed_min = None
             speed_max = None
             while speed_min is None:
-                distance_min = round(distance_min - 0.1, 1)
+                distance_min += 1
                 speed_min = speeds.get(distance_min, 1)
                 print("Speed_min", speed_min, "distance_min", distance_min)
             while speed_max is None:
-                distance_max = round(distance_max + 0.1, 1)
+                distance_max -= 1
                 speed_max = speeds.get(distance_max, 1)
                 print("Speed_max", speed_max, "distance_min", distance_max)
             # int((x-in_min) * (out_max-out_min) / (in_max-in_min) + out_min)

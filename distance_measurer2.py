@@ -3,7 +3,7 @@ import numpy as np
 import cv2
 
 pink = [61, 128, 247, 255, 255, 255, 3]
-blue = [35, 0, 29, 255, 91, 255, 3]
+blue = [43, 0, 0, 163, 113, 255, 3]
 opponent = 'pink'  # 'blue' or 'pink'
 
 
